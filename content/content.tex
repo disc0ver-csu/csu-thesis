@@ -1,0 +1,271 @@
+% 论文正文是主体，主体部分应从另页右页开始，每一章应另起页。一般由序号标题、文字叙述、图、表格和公式等五个部分构成。
+\section{绪论}
+\subsection{研究背景与意义}
+
+Word不难用，但是想用得漂亮还得费一番功夫。
+
+对于小白来说，（注意！！是对于小白来说，不要跟我杠！！！我就是word小白，高端玩法玩不动）：
+
+插入个图片，下面的说明文字是不是插入文本框？那文本框要不要跟图片“组合”？，是不是直接圈没法圈起来？因为图片要变成浮动格式，和文本框绑定后再改回嵌入格式，你说蛋疼不蛋疼？不组合？那有一定概率发生你的图片在上一页，描述文字在下一页。呵呵。
+
+插入参考文献，手动编辑？我的天哪，一百多个文献，中间插一个，怎么改序号？ 
+很好，可以用交叉引用，一个个编辑文献格式？
+很好，可以用endnote或者noteexpress的插入功能，你有没有发现插入是个宏，ctrl+z的时候会烦死你啊……
+叮叮！让我们祭出LaTeX！！，有bibliography，一个$\\cite$包打天下！不要太爽。
+
+插入公式，对word小白来说，公式居中编号靠右就是一道百度搜索能力过滤器。
+
+word里编辑三线表，啊烦躁。
+
+等等等等……
+
+让我们，专心写论文好不好？
+
+爱你们。
+
+
+\subsection{主要研究工作}
+我堂堂双一流高校竟然没有官方研究生论文LaTeX模板！！！虽然我LaTeX水平也很水……但是通过大量debug也勉强给大家凑出来一个格式绝对标准的LaTeX模板，模板代码丑就丑吧，能用就行。写了大量注释，有一点LaTeX基础就可以根据自己需要修改CSUthesis.cls文件。
+
+(1) 提供图片插入示例。
+
+(2) 提供表格插入示例。
+
+(3) 提供公式插入示例。
+
+(4) 提供参考文献插入示例。
+
+\subsection{论文组织结构}
+
+全文内容共六章，具体内容组织如下：
+
+第一章为绪论。
+
+第二章为图片插入示例。
+
+第三章为表格插入示例。
+
+第四章为公式插入示例。
+
+第五章为参考文献插入示例。
+
+第六章总结与展望，总结了本文的主要工作，展望了下一阶段的研究方向。
+
+\newpage
+
+\section{图像布局}
+\label{sec.figure}
+\textbf{按学校格式要求，每个子图的小标(a)、(b)、(c)等在【左上角】。}
+
+\subsection{单图布局}
+
+\lipsum
+
+\textbf{单图布局如图\ref{F.csu_single}所示。}
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.5\textwidth]{csu.png}
+\caption{单图布局示例}
+\label{F.csu_single}
+\end{figure}
+
+\subsection{横排布局}
+
+\textbf{横排布局如图\ref{F.csu_row}所示。}
+
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}[t]{0.24\linewidth}
+        \caption{}
+        \begin{minipage}[b]{1\linewidth}
+        \includegraphics[width=1\linewidth]{csu.png}
+        \end{minipage}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.24\linewidth}
+        \caption{}
+        \begin{minipage}[b]{1\linewidth}
+        \includegraphics[width=1\linewidth]{csu.png}
+        \end{minipage}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.24\linewidth}
+        \caption{}
+        \begin{minipage}[b]{1\linewidth}
+        \includegraphics[width=1\linewidth]{csu.png}
+        \end{minipage}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.24\linewidth}
+        \caption{}
+        \begin{minipage}[b]{1\linewidth}
+        \includegraphics[width=1\linewidth]{csu.png}
+        \end{minipage}
+    \end{subfigure}
+    \caption{横排布局示例}
+    \label{F.csu_row}
+\end{figure}
+
+\lipsum
+
+\subsection{竖排布局}
+\textbf{竖排布局如图\ref{F.csu_col}所示。}
+
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}[t]{0.15\linewidth}
+        \caption{}
+        \begin{minipage}[b]{1\linewidth}
+        \includegraphics[width=1\linewidth]{csu.png}
+        \end{minipage}
+    \end{subfigure}\\
+    \begin{subfigure}[t]{0.15\linewidth}
+        \caption{}
+        \begin{minipage}[b]{1\linewidth}
+        \includegraphics[width=1\linewidth]{csu.png}
+        \end{minipage}
+    \end{subfigure}
+    \caption{竖排布局示例}
+    \label{F.csu_col}
+\end{figure}
+
+\lipsum
+
+\subsection{竖排多图横排布局}
+
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}[t]{0.13\linewidth}
+        \caption{}
+        \begin{minipage}[b]{1\linewidth}
+        \includegraphics[width=1\linewidth]{csu.png} \vspace{-1ex} \vfill 
+        \includegraphics[width=1\linewidth]{csu.png}
+        \end{minipage}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.13\linewidth}
+        \caption{}
+        \begin{minipage}[b]{1\linewidth}
+        \includegraphics[width=1\linewidth]{csu.png} \vspace{-1ex} \vfill 
+        \includegraphics[width=1\linewidth]{csu.png}
+        \end{minipage}
+    \end{subfigure}
+    \caption{竖排多图横排布局}
+    \label{F.csu_col_row}
+\end{figure}
+
+\textbf{竖排多图横排布局如图\ref{F.csu_col_row}所示。注意看(a)、(b)编号与图关系。}
+
+
+\subsection{横排多图竖排布局}
+
+\lipsum
+
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}[t]{0.3\linewidth}
+        \caption{}
+        \begin{minipage}[b]{1\linewidth}
+        \includegraphics[width=0.45\linewidth]{csu.png}
+        \includegraphics[width=0.45\linewidth]{csu.png}
+        \end{minipage}
+    \end{subfigure}\\
+    \begin{subfigure}[t]{0.3\linewidth}
+        \caption{}
+        \begin{minipage}[b]{1\linewidth}
+        \includegraphics[width=0.45\linewidth]{csu.png}
+        \includegraphics[width=0.45\linewidth]{csu.png}
+        \end{minipage}
+    \end{subfigure}
+    \caption{横排多图竖排布局}
+    \label{F.csu_row_col}
+\end{figure}
+
+\textbf{横排多图竖排布局如图\ref{F.csu_row_col}所示。注意看(a)、(b)编号与图关系。}
+
+\subsection{本章小结}
+本章示例图片布局。
+
+\newpage
+
+
+\section{表格插入示例}
+
+\begin{table}[htb]
+  \centering
+  \caption{学校文件里对表格的要求不是很高，不过按照学术论文的一般规范，表格为三线表。}
+  \label{T.example}
+  \begin{tabular}{llllll}
+  \hline
+   & A  & B  & C  & D  & E \\
+  \hline
+1 	& 212 & 414 & 4 		& 23 & fgw	\\
+2 	& 212 & 414 & v 		& 23 & fgw	\\
+3 	& 212 & 414 & vfwe		& 23 & 嗯	\\
+4 	& 212 & 414 & 4fwe		& 23 & 嗯	\\
+5 	& af2 & 4vx & 4 		& 23 & fgw	\\
+6 	& af2 & 4vx & 4 		& 23 & fgw	\\
+7 	& 212 & 414 & 4 		& 23 & fgw	\\
+
+\hline{}
+\end{tabular}
+\end{table}
+
+\textbf{表格如表\ref{T.example}所示，latex表格技巧很多，这里不再详细介绍。}
+
+\lipsum
+
+\newpage
+
+\section{公式插入示例}
+
+\lipsum
+
+\textbf{公式插入示例如公式(\ref{E.example})所示。}
+
+\begin{equation}
+\gamma_{x}=
+\left\{
+  \begin{array}{lr}
+  0, & {\rm if}~~\;|x| \leq \delta \\
+  x, & {\rm otherwise}
+  \end{array}
+\right.
+\label{E.example}
+\end{equation}
+
+
+\newpage
+
+\section{参考文献插入示例}
+
+LaTeX\cite{lamport1994latex}插入参考文献最方便的方式是使用bibliography\cite{pritchard1969statistical}，大多数出版商的论文页面都会有导出bib格式参考文献的链接，把每个文献的bib放入``thesis-references''，然后用bibkey即可插入参考文献。
+
+\lipsum
+
+\newpage
+
+
+\section{总结与展望}
+
+XX的XX都存在XX，所以我们XX，本章总结XX。
+
+\subsection{本文工作总结}
+在总结和分析已有XX的理论基础上，本文对XX进行了XX，主要工作如下：
+
+（1）图片插入布局，如第\ref{sec.figure}章所示。
+
+（2）XXXXXXXXXX
+
+（3）XXXXXXXXXX
+
+（4）XXXXXXXXXX
+
+\subsection{工作展望}
+本课题针对XX，鉴于XXX，对XX进行了提高，但是XXX，所以有如下XX：
+
+（1）目前XX虽然XX，但是XX仍然XX，所以XX仍然是一个值得XX的问题。
+
+（2）随着XX，XX具有XX的问题，仍值得进一步XX。
+
+（3）本课题在XX有了XX，但是XX的XX还存在XX，所以XX。
+
+
+\newpage
