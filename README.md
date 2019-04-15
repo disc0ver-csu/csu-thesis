@@ -46,7 +46,7 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 
 对LaTeX有所了解的同学，也可按需修改这个文件。如果这个文件的样式设计有什么bug，欢迎在issue里提出。
 
-### `gbt7714-2005-unsrt.bst`和`gbt7714.sty`两个文件
+### `gbt7714-unsrt.bst`和`gbt7714.sty`两个文件
 
 来自项目[CTeX-org/gbt7714-bibtex-style](https://github.com/CTeX-org/gbt7714-bibtex-style)，是参考文献的样式，与学校论文撰写规范一致。
 
