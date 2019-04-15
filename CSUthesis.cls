@@ -206,7 +206,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         \vspace{2cm} % 两个空行
         {\zihao{2} \bfseries \heiti \@titlecn \par} % 二号黑体
         {\zihao{-2}\bfseries \@titleen \par} % 小二号，timesnewroman
-        \vspace{3.5cm} % 两个空行
+        \vspace{4cm} % 两个空行
         {
             \zihao{3} \songti
             \begin{tabular}{ll}
@@ -217,7 +217,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
             \end{tabular}
         }
         \par
-        \vspace{3.5cm} 
+        \vspace{4cm} 
         % \vfill
         {
             \centering
@@ -258,7 +258,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
             { \bfseries \@titleen \par} % 英文标题小二号 Times New Roman
         }
 
-        \vspace{2.5cm} % 空行
+        \vspace{3cm} % 空行
 
         {
             \zihao{3} \songti 
@@ -276,7 +276,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
             \end{tabular}
         }
 
-        \vspace{2.5cm}
+        \vspace{3cm}
 
         {
             \zihao{-3} \songti
