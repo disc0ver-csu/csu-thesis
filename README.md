@@ -55,7 +55,7 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 
 所有论文的编辑内容在这里。
 
-`info.tex`：论文的各种信息，标题姓名学院之类的。
+`info.tex`：论文的各种信息，标题姓名学院之类的。添加盲审格式输出，根据需求注释/保留 `\blindreviewtrue`和 `\blindreviewfalse`，输出正式版本和盲审送审版本。
 
 `abstactcn.tex`和`abstracten.tex`：顾名思义。
 

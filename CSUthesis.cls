@@ -160,6 +160,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\department}[1]{\gdef\@department{#1}}                     % 二级培养单位
 \newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}                     % 导师
 \newcommand*{\subsupervisor}[1]{\gdef\@subsupervisor{#1}}               % 副导师
+\newcommand*{\studentid}[1]{\gdef\@studentid{#1}}                       % 学号
 
 \newcommand*{\clcnumber}[1]{\gdef\@clcnumber{#1}}                       % 中图分类号 Chinese Library Classification
 \newcommand*{\schoolcode}[1]{\gdef\@schoolcode{#1}}                     % 学校代码
@@ -210,10 +211,15 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         {
             \zihao{3} \songti
             \begin{tabular}{ll}
-                学科专业 & \@priormajor \\
-                学科方向 & \@minormajor \\
-                作者姓名 & \@author \\
-                指导教师 & \@supervisor \\
+                \makebox[4em][s]{学科专业} & \@priormajor \\
+                \makebox[4em][s]{学科方向} & \@minormajor \\        
+\ifblindreview
+                \makebox[4em][s]{研究方向} & \@interestmajor \\
+                \makebox[4em][s]{学   号}  & \@studentid \\
+\else
+                \makebox[4em][s]{作者姓名} & \@author \\
+                \makebox[4em][s]{指导教师} & \@supervisor \\
+\fi
             \end{tabular}
         }
         \par
@@ -233,6 +239,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 公开、涉密学位论文扉页采用统一格式，一律不带密级栏，分为学术学位、专业学位两种格式（具体见样例5-6）。
 % 扉页除包含封面正面的全部内容外，还应包括中图分类号、UDC、学校代码、学位类别（专业学位或学术学位）、副题名（必要时）、研究方向、二级培养单位、副指导教师（必要时）、以及论文答辩日期和答辩委员会主席等内容。
 % 中图分类号（http://www.ztflh.com/）和UDC号（《国际十进位分类法》）可在图书馆查阅获得
+
 \newcommand{\maketitlepage} {
     \setlength\parindent{0em}
     {
