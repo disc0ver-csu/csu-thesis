@@ -82,7 +82,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{subcaption}
 % 定制列表环境
 \RequirePackage{enumitem}
-
+% 提供\AtBeginEnvironment以方便全局调整一些结构的设置
+\RequirePackage{etoolbox}
 % % 下划线 
 % \RequirePackage{ulem}
 % % 尺寸计算
@@ -385,7 +386,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
     \begin{center} \zihao{3} \bfseries \heiti \@titlecn \end{center}
 
-    \vspace{1cm}
+    \vspace{0.5cm}
 
     \noindent {\zihao{4} \bfseries \heiti 摘\quad 要：} % 摘要俩字为四号黑体
     \zihao{4}\songti \noindent % 内容为四号宋体
@@ -410,7 +411,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
     \begin{center} \zihao{3} \bfseries \@titleen \end{center}
 
-    \vspace{1cm}
+    \vspace{0.5cm}
 
     \noindent {\zihao{4} \bfseries Abstract:~} % 摘要俩字为四号黑体
     \zihao{4} \noindent % 内容为四号宋体
@@ -570,6 +571,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 } {
     \csu@endoldtabular\egroup
 }
+
+% 表格字号应比正文小，一般五号/10.5pt，但是暂时没法再cls里设置（不然会影响到封面等tabular环境）
+% 所以目前只好在主文件里局部\AtBeginEnvironment
 
 % 数学环境, 定理等设置 %
 % -------------------------------------------------------%
