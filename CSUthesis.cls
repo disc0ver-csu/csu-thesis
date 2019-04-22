@@ -438,8 +438,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %               {sep}%定义标题和标号之间的水平距离
 %               {before-code}%定义标题前的内容
 %               [after-code]%定义标题后的内容
-\titleformat{\section}{\zihao{4} \bfseries \heiti}{\thesection}{1em}{}
-\titleformat{\subsection}{\zihao{-4} \bfseries \heiti}{\thesubsection}{1em}{}
+\titleformat{\section}{\zihao{3} \bfseries \heiti}{\thesection}{1em}{}
+\titleformat{\subsection}{\zihao{4} \bfseries \heiti}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\zihao{-4} \bfseries \songti}{\thesubsubsection}{1em}{}
 % 定义在目录中的格式
 % \titlecontents{标题名}
