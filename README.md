@@ -79,3 +79,16 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 请使用`xelatex`，对`csuthesis_main.tex`文件进行编译。
 
 使用高级文本编辑器，如sublime等，否则可能因为ANSI、UTF-8等编码格式问题编译失败。
+
+
+## 一些毕业流程上与word差异的考虑
+
+想到多少补充多少吧。
+
+### 知网查重
+知网查重有识别参考文献的功能，但是不怎么成熟。一般word编译的pdf能识别出来，但是有的识别不出来。这个latex模板的pdf，知网查重会把参考文献标红。
+
+不过不用担心，目前中南查重规则是要去掉参考文献的pdf。参考[`official_documents/中南大学研究生学位论文“学术不端文献检测系统”使用管理办法.mht`](http://gra.its.csu.edu.cn/yjsy/pygl/wjtzxq54863_3_6.html)
+
+
+
