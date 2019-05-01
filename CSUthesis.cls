@@ -128,7 +128,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newCJKfontfamily[hei]\heiti{SimHei}[AutoFakeBold]
 \let\songti\relax
 \newCJKfontfamily[song]\songti{SimSun}[AutoFakeBold]
-
+\newcommand{\kaiti}{\CJKfamily{kai}} 
 
 % 每行缩进两个汉字
 \setlength{\parindent}{2em}
@@ -160,6 +160,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\interestmajor}[1]{\gdef\@interestmajor{#1}}               % 研究方向，关键词组
 \newcommand*{\department}[1]{\gdef\@department{#1}}                     % 二级培养单位
 \newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}                     % 导师
+\newcommand*{\myclass}[1]{\gdef\@myclass{#1}}                     % 导师
 \newcommand*{\subsupervisor}[1]{\gdef\@subsupervisor{#1}}               % 副导师
 \newcommand*{\studentid}[1]{\gdef\@studentid{#1}}                       % 学号
 
@@ -204,32 +205,37 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         \centering
         \linespread{1.5}
         \vspace*{1.5cm}
-        {\zihao{-2} \bfseries \heiti 博士学位论文 \par} % 小二号黑体
-        \vspace{2cm} % 两个空行
-        {\zihao{2} \bfseries \heiti \@titlecn \par} % 二号黑体
-        {\zihao{-2}\bfseries \@titleen \par} % 小二号，timesnewroman
-        \vspace{4cm} % 两个空行
+        
+        \begin{figure}[hbt]
+        	\centering
+        	\includegraphics[width=1\textwidth]{cover_icon.png}
+        \end{figure}
+        {\fontsize{45}{60}{\selectfont \heiti 本科毕业设计(论文)} \par} % 45磅，黑体
+        {\zihao{1} \setmainfont{SimHei} GRADUATION DESIGN(THESIS) \par} % 1号，黑体
+        \vspace{2cm} % 空行
         {
-            \zihao{3} \songti
+            \zihao{3} \heiti
             \begin{tabular}{ll}
-                \makebox[4em][s]{学科专业} & \@priormajor \\
-                \makebox[4em][s]{学科方向} & \@minormajor \\        
+                \makebox[4em][s]{题目:} & \underline{\makebox[16em][l]{\@titlecn}} \\
+                \makebox[4em][s]{学生姓名:} & \underline{\makebox[16em][l]{\@author}} \\    
+                %%本科生不需要盲审    
 \ifblindreview
-                \makebox[4em][s]{研究方向} & \@interestmajor \\
-                \makebox[4em][s]{学   号}  & \@studentid \\
+                \makebox[4em][s]{研究方向} & \uline\@interestmajor \\
+                \makebox[4em][s]{学   号}  & \uline \@studentid \\
 \else
-                \makebox[4em][s]{作者姓名} & \@author \\
-                \makebox[4em][s]{指导教师} & \@supervisor \\
+                \makebox[4em][s]{指导老师:} &  \underline{\makebox[16em][l]{\@supervisor}}  \\
+                \makebox[4em][s]{学院:} & \underline{\makebox[16em][l]{\@department}}  \\
+                \makebox[4em][s]{专业班级:} & \underline{\makebox[16em][l]{\@myclass}}  \\
 \fi
             \end{tabular}
         }
         \par
-        \vspace{4cm} 
+        \vspace{3cm} 
         % \vfill
         {
             \centering
-            {\centering \zihao{-3} \songti 中\quad 南\quad 大\quad 学 \par} 
-            {\centering \zihao{-3} \songti \@thesisdate \par}
+            {\centering \zihao{2} \heiti 本科生院制 \par} 
+            {\centering \zihao{2} \heiti \@thesisdate \par}
         }
     }
 }
@@ -379,23 +385,26 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 中文摘要格式具体见样例8，居中打印论文题名（三号黑体），换行顶格编排“摘要”（四号黑体）及摘要内容（四号宋体），每段开头空二格。摘要内容后下换行顶格编排“关键词”和“分类号”（四号黑体）。每篇论文应选取3-8个关键词，每一关键词之间用分号分开，最后一个关键词后不打标点符号。
 %
 \newcommand*{\keywordscn}[1]{\gdef\@keywordscn{#1}} % 定义中文关键词
-\newcommand*{\categorycn}[1]{\gdef\@categorycn{#1}} % 定义中文分类
+%\newcommand*{\categorycn}[1]{\gdef\@categorycn{#1}} % 定义中文分类
 \newenvironment{abstractcn} { % 定义中文摘要环境
 
     \linespread{1.2}
 
     \begin{center} \zihao{3} \bfseries \heiti \@titlecn \end{center}
 
-    \vspace{0.5cm}
+    \vspace{0.3cm}
 
-    \noindent {\zihao{4} \bfseries \heiti 摘\quad 要：} % 摘要俩字为四号黑体
-    \zihao{4}\songti \noindent % 内容为四号宋体
+    \begin{center} \zihao{4} \bfseries \heiti 摘要 \end{center}  % 摘要俩字为四号黑体
+    
+    \vspace{0.3cm}
+    
+    \zihao{4}\songti  % 内容为四号宋体
 }
 % 显示中文关键词和分类号
 {
     \begin{flushleft}
         \noindent {\zihao{4} \bfseries \heiti 关键词：} {\zihao{4} \songti \@keywordscn} \par % 关键词为四号黑体，内容为四号宋体
-        \noindent {\zihao{4} \bfseries \heiti 分类号：} {\zihao{4} \songti \@categorycn} \par % 分类号为四号黑体，内容为四号宋体
+        %\noindent {\zihao{4} \bfseries \heiti 分类号：} {\zihao{4} \songti \@categorycn} \par % 分类号为四号黑体，内容为四号宋体
     \end{flushleft}
 }
 
@@ -405,21 +414,23 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 英文摘要格式和内容与中文摘要相对应，另起一页，具体见样例9。居中打印论文英文题名（三号Times New Roman字体），换行顶格编排“Abstract”及英文摘要内容（四号Times New Roman字体），摘要内容每段开头留四个字符空格。摘要内容后下换行顶格编排“Keywords”和“Classification”。
 % 定义英文摘要，字体全部为timesnewroman
 \newcommand*{\keywordsen}[1]{\gdef\@keywordsen{#1}} % 英文关键词
-\newcommand*{\categoryen}[1]{\gdef\@categoryen{#1}} % 中文分类
+
 \newenvironment{abstracten} { % 新建英文摘要环境
     \linespread{1.2}
 
     \begin{center} \zihao{3} \bfseries \@titleen \end{center}
 
+    \vspace{0.3cm}
+    
+  	\begin{center} \zihao{3} \bfseries ABSTRACT \end{center}
+    
     \vspace{0.5cm}
-
-    \noindent {\zihao{4} \bfseries Abstract:~} % 摘要俩字为四号黑体
-    \zihao{4} \noindent % 内容为四号宋体
+    \zihao{4} % 内容为四号宋体
+    
 }
 {
     \begin{flushleft}
         \noindent {\zihao{4} \bfseries Keywords:~} {\zihao{4} \@keywordsen} \par % 关键词为四号黑体，内容为四号宋体
-        \noindent {\zihao{4} \bfseries Classification:~} {\zihao{4} \@categoryen} \par % 分类号为四号黑体，内容为四号宋体
     \end{flushleft}
 }
 
@@ -438,7 +449,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %               {sep}%定义标题和标号之间的水平距离
 %               {before-code}%定义标题前的内容
 %               [after-code]%定义标题后的内容
-\titleformat{\section}{\zihao{3} \bfseries \heiti}{\thesection}{1em}{}
+
+\newcommand{\chaptername}{第{\thesection}章}
+\titleformat{\section}{\zihao{3} \bfseries \heiti \centering}{\chaptername}{1em}{}
 \titleformat{\subsection}{\zihao{4} \bfseries \heiti}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\zihao{-4} \bfseries \songti}{\thesubsubsection}{1em}{}
 % 定义在目录中的格式
