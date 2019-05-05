@@ -39,7 +39,8 @@
 %\fancyhf{} % 清空原有格式
 %\renewcommand{\headrulewidth}{0pt}
 % 封面页无需页码，其他前置部分需要（按此理解扉页也是要页码的）。
-\fancyhf[CF]{\thepage} % 所有（奇数和偶数）中间页脚
+% totalPage是一个标签，把它放在正文的最后面
+\fancyfoot[C]{\songti 第 \thepage 页\quad 共\pageref{totalPage} 页} % 所有（奇数和偶数）中间页脚
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 扉页 
@@ -139,5 +140,6 @@
 \newpage
 
 \include{content/additional}
+
 
 \end{document}

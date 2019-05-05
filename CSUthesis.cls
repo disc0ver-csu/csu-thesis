@@ -451,9 +451,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %               [after-code]%定义标题后的内容
 
 \newcommand{\chaptername}{第{\thesection}章}
-\titleformat{\section}{\zihao{3} \bfseries \heiti \centering}{\chaptername}{1em}{}
-\titleformat{\subsection}{\zihao{4} \bfseries \heiti}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\zihao{-4} \bfseries \songti}{\thesubsubsection}{1em}{}
+\titleformat{\section}{\zihao{3}  \heiti \centering}{\chaptername}{1em}{}
+\titleformat{\subsection}{\zihao{-4}  \heiti}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\zihao{-4}  \kaishu}{\thesubsubsection}{1em}{}
 % 定义在目录中的格式
 % \titlecontents{标题名}
 %               [左间距]
