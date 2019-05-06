@@ -535,8 +535,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 这部分功能由 subcaption 这个包实现，而这个包不能和 subfigure 同时使用，所以子图的写法也与 subfigure 包的不大一样。 
 \captionsetup[subfigure]{singlelinecheck=off,justification=raggedright}
 
-% 图下方描述的楷体字
-\DeclareCaptionFont{kai}{\kaishu}
+% 图下方描述的黑体
+\DeclareCaptionFont{hei}{\heiti}
 \DeclareCaptionFont{five}{\zihao{5}}
 \renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
 % \renewcommand{\thefigure} {\thesection-\arabic{figure}}
@@ -544,7 +544,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \captionsetup[figure]{
 	format=plain,      % 标题从第二行开始是否缩进，plain无缩进，hang有缩进
 	labelsep=quad,     % 分隔符是一个空格
-	font={kai,five},   % 图的字体, 宋体小四
+	font={hei,five},   
 	position=bottom    % position=bottom, 不代表标题放在下面, 标题仍放在你放\caption的位置.
 }
 % 表格格式
@@ -554,7 +554,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \captionsetup[table]{
 	format=plain,      % 标题从第二行开始是否缩进，plain无缩进，hang有缩进
 	labelsep=quad,     % 分隔符是一个空格
-	font={kai,five},   % 表的字体, 宋体小四
+	font={hei,five},   % 表的字体, 宋体小四
 	position=top
 }
 
