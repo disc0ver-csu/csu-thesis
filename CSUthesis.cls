@@ -13,7 +13,7 @@
 % 9.附录（必要时）；
 % 10.攻读博（硕）士学位期间主要研究成果；
 % 11.致谢。
-% 
+%
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{CSUthesis}[2018/12/30 v1.1 Standard LaTeX document class]
@@ -84,7 +84,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{enumitem}
 % 提供\AtBeginEnvironment以方便全局调整一些结构的设置
 \RequirePackage{etoolbox}
-% % 下划线 
+% % 下划线
 % \RequirePackage{ulem}
 % % 尺寸计算
 % \RequirePackage{calc}
@@ -128,7 +128,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newCJKfontfamily[hei]\heiti{SimHei}[AutoFakeBold]
 \let\songti\relax
 \newCJKfontfamily[song]\songti{SimSun}[AutoFakeBold]
-\newcommand{\kaiti}{\CJKfamily{kai}} 
+\newcommand{\kaiti}{\CJKfamily{kai}}
 
 % 每行缩进两个汉字
 \setlength{\parindent}{2em}
@@ -191,7 +191,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 }
 
 % 以下为公开学位论文（学术）的封面内容
-% TODO: 
+% TODO:
 % - 公开学位论文（专业）
 % - 涉密学位论文（学术）
 % - 涉密学位论文（专业）
@@ -205,7 +205,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         \centering
         \linespread{1.5}
         \vspace*{1.5cm}
-        
+
         \begin{figure}[hbt]
         	\centering
         	\includegraphics[width=1\textwidth]{cover_icon.png}
@@ -214,34 +214,28 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         {\zihao{1} \setmainfont{SimHei} GRADUATION DESIGN(THESIS) \par} % 1号，黑体
         \vspace{2cm} % 空行
         {
-            \zihao{3} \heiti
+            \zihao{-2} \heiti
             \begin{tabular}{ll}
-                \makebox[4em][s]{题目:} & \underline{\makebox[16em][l]{\@titlecn}} \\
-                \makebox[4em][s]{学生姓名:} & \underline{\makebox[16em][l]{\@author}} \\    
-                %%本科生不需要盲审    
-\ifblindreview
-                \makebox[4em][s]{研究方向} & \uline\@interestmajor \\
-                \makebox[4em][s]{学   号}  & \uline \@studentid \\
-\else
-                \makebox[4em][s]{指导老师:} &  \underline{\makebox[16em][l]{\@supervisor}}  \\
-                \makebox[4em][s]{学院:} & \underline{\makebox[16em][l]{\@department}}  \\
-                \makebox[4em][s]{专业班级:} & \underline{\makebox[16em][l]{\@myclass}}  \\
-\fi
+                \makebox[4em][s]{题目:} & \underline{\parbox[][][c]{16em}{\kaishu \@titlecn}} \\
+                \makebox[4em][s]{学生姓名:} & \underline{\makebox[16em][l]{\kaishu \@author}} \\
+                \makebox[4em][s]{指导老师:} &  \underline{\makebox[16em][l]{\kaishu \@supervisor}}  \\
+                \makebox[4em][s]{学院:} & \underline{\makebox[16em][l]{\kaishu \@department}}  \\
+                \makebox[4em][s]{专业班级:} & \underline{\makebox[16em][l]{\kaishu \@myclass}}  \\
             \end{tabular}
         }
         \par
-        \vspace{3cm} 
+        \vspace{3cm}
         % \vfill
         {
             \centering
-            {\centering \zihao{2} \heiti 本科生院制 \par} 
+            {\centering \zihao{2} \heiti 本科生院制 \par}
             {\centering \zihao{2} \heiti \@thesisdate \par}
         }
     }
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 扉页 
+% 扉页
 % -----------------------------------------------%
 % 公开、涉密学位论文扉页采用统一格式，一律不带密级栏，分为学术学位、专业学位两种格式（具体见样例5-6）。
 % 扉页除包含封面正面的全部内容外，还应包括中图分类号、UDC、学校代码、学位类别（专业学位或学术学位）、副题名（必要时）、研究方向、二级培养单位、副指导教师（必要时）、以及论文答辩日期和答辩委员会主席等内容。
@@ -253,9 +247,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         \zihao{4} \songti
         \begin{tabular}{l@{}c p{3cm} l@{}c}     % @{}去除边框距离，更符合学校模板的下划线紧贴描述文字
             中图分类号  & \underline{\makebox[3cm][c]{\@clcnumber}} & &
-            学校代码    & \underline{\makebox[3cm][c]{\@schoolcode}} \\ 
+            学校代码    & \underline{\makebox[3cm][c]{\@schoolcode}} \\
             UDC         & \underline{\makebox[3cm][c]{\@udc}} & &
-            学术类别    & \underline{\makebox[3cm][c]{\@academiccategory}} \\ 
+            学术类别    & \underline{\makebox[3cm][c]{\@academiccategory}} \\
         \end{tabular}
     }
 
@@ -275,7 +269,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         \vspace{3cm} % 空行
 
         {
-            \zihao{3} \songti 
+            \zihao{3} \songti
             \setlength\parindent{2em} % 由于这里填写的内容不对称，完全居中反而不够美观，于是缩进一个汉字的宽度
             \begin{tabular}{ll}
                 % 利用\makebox[7em][s]{} 实现两端对齐，即字数不同但左右对齐。
@@ -295,8 +289,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         {
             \zihao{-3} \songti
             \begin{tabular}{l@{}l p{0.5cm} l@{}l}
-                论文答辩日期   & \underline{\makebox[3cm][c]{}} & & 
-                答辩委员会主席 & \underline{\makebox[3cm][c]{}} \\ 
+                论文答辩日期   & \underline{\makebox[3cm][c]{}} & &
+                答辩委员会主席 & \underline{\makebox[3cm][c]{}} \\
             \end{tabular}
         }
     }
@@ -304,7 +298,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     \vspace{3cm}
     {
         \linespread{1.5}
-        {\centering \zihao{-3} \songti 中\quad 南\quad 大\quad 学 \par} 
+        {\centering \zihao{-3} \songti 中\quad 南\quad 大\quad 学 \par}
         {\centering \zihao{-3} \songti \@thesisdate \par}
     }
     % 中 南 大 学 （小三号宋体）
@@ -312,7 +306,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 2. 原创性声明和学位论文版权使用授权书 
+% 2. 原创性声明和学位论文版权使用授权书
 % -----------------------------------------------%
 % 单独设一页，排在扉页后
 % 按模板，标题二号，内容四号，这里学校没有特别强调字体字号，
@@ -343,7 +337,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
             \underline{\makebox[1.5em][c]{}} 月
             \underline{\makebox[1.5em][c]{}} 日
         \end{flushright}
-        
+
     }
 
     \vspace{1cm}
@@ -353,7 +347,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     \vspace{0.5cm}
 
     {
-        \zihao{4} 
+        \zihao{4}
         本学位论文作者和指导教师完全了解中南大学有关保留、使用学位论文的规定：即学校有权保留并向国家有关部门或机构送交学位论文的复印件和电子版；本人允许本学位论文被查阅和借阅；学校可以将本学位论文的全部或部分内容编入有关数据库进行检索，可以采用复印、缩印或其它手段保存和汇编本学位论文。
 
         保密论文待解密后适应本声明。
@@ -361,7 +355,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         \vspace{1cm}
 
         \begin{table}[!ht]
-            \zihao{4} 
+            \zihao{4}
             \begin{tabular*}{\hsize}{@{}@{\extracolsep{\fill}}lll@{}}
             作者签名：\underline{\makebox[5em][c]{}} & &
             指导教师签名：\underline{\makebox[5em][c]{}} \\
@@ -395,9 +389,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     \vspace{0.3cm}
 
     \begin{center} \zihao{4} \bfseries \heiti 摘要 \end{center}  % 摘要俩字为四号黑体
-    
+
     \vspace{0.3cm}
-    
+
     \zihao{4}\songti  % 内容为四号宋体
 }
 % 显示中文关键词和分类号
@@ -421,12 +415,12 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     \begin{center} \zihao{3} \bfseries \@titleen \end{center}
 
     \vspace{0.3cm}
-    
+
   	\begin{center} \zihao{3} \bfseries ABSTRACT \end{center}
-    
+
     \vspace{0.5cm}
     \zihao{4} % 内容为四号宋体
-    
+
 }
 {
     \begin{flushleft}
@@ -485,7 +479,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 6. 符号说明（必要时）%
 % ---------------------------------------------------------%
-% TODO: 
+% TODO:
 %
 % 如果论文中使用了大量的物理量符号、标志、缩略词、专门计量单位、自定义名词和术语等，应编写成注释说明汇集表，说明论文中所用符号所表示的意义及单位（或量纲）。若上述符号和缩略词使用数量不多，可以不设专门的注释说明汇集表，仅在论文中出现时加以说明。
 % “符号说明”四字居中（三号黑体）。
@@ -504,7 +498,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 图序及图名居中置于图的下方，如果图中含有几个不同部分，应将分图号标注在分图的左上角，并在图解下列出各部分内容。图中的术语、符号、单位等应与正文表述所用一致。
 % 表序及表名置于表的上方，表中参数应标明量和单位的符号。表的编排应采用国际通用的三线表。续表均应重复表头，如表需转页接排，随后各页应重复表的编号，其后跟表题（可省略）和“续”置于表上方。
 % 图序及图名、表序及表名采用五号楷体字。若图或表中有附注，采用英文小写字母顺序编号，附注写在图或表的下方。公式的编号用括号括起写在右边行末，其间不加虚线。
-% 图、表、公式等与正文之间要有一定的行间距。 
+% 图、表、公式等与正文之间要有一定的行间距。
 % \RequirePackage{caption}
 % 默认情况下, \LaTeX{} 要求每页的文字至少占据 20%,否则该页就只单独放置一个浮动环境,
 % 而这通常不是我们想要的, 我们将这个要求降低到 5%.
@@ -532,7 +526,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % \captionsetup[subfigure]{labelfont=normalfont,textfont=normalfont,singlelinecheck=off,justification=raggedright}
 % singlelinecheck=off 表示即使caption只有一行， justification 也生效
 % justification=raggedright 使子图 caption 靠左对齐，而caption的上下位置由\caption标签的位置决定，以此实现了学校要求的子图标签在左上角显示。
-% 这部分功能由 subcaption 这个包实现，而这个包不能和 subfigure 同时使用，所以子图的写法也与 subfigure 包的不大一样。 
+% 这部分功能由 subcaption 这个包实现，而这个包不能和 subfigure 同时使用，所以子图的写法也与 subfigure 包的不大一样。
 \captionsetup[subfigure]{singlelinecheck=off,justification=raggedright}
 
 % 图下方描述的黑体
@@ -544,7 +538,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \captionsetup[figure]{
 	format=plain,      % 标题从第二行开始是否缩进，plain无缩进，hang有缩进
 	labelsep=quad,     % 分隔符是一个空格
-	font={hei,five},   
+	font={hei,five},
 	position=bottom    % position=bottom, 不代表标题放在下面, 标题仍放在你放\caption的位置.
 }
 % 表格格式
