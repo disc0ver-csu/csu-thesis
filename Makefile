@@ -1,5 +1,6 @@
 THESIS = csuthesis_main
 # TEX, BIB, TEST dir
+# modified from sjtu thesis
 TEX_DIR = content
 BIB_DIR = .
 
@@ -37,8 +38,6 @@ cleanall :
 	-@latexmk -C -silent 2> /dev/null
 	-@rm -f $(TEX_DIR)/*.aux 2> /dev/null || true
 
-s3 : $(THESIS).pdf
-	s3cmd put $< s3://sjtuthesis/README.pdf
 
 git :
 	git push --tags github; git push github;

@@ -60,13 +60,14 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 
 所有论文的编辑内容在这里。
 
-`info.tex`：论文的各种信息，标题姓名学院之类的。添加盲审格式输出，根据需求注释/保留 `\blindreviewtrue`和 `\blindreviewfalse`，输出盲审送审版本和正式版本。
+`info.tex`：论文的各种信息，标题姓名学院之类的。
 
-`abstactcn.tex`和`abstracten.tex`：顾名思义。
+`abstactcn.tex`和`abstracten.tex`：中文摘要和英文摘要。
 
 `content.tex`：从绪论到总结的全部正文内容。`\cite`的时候可能因为tex文件与主文件分离，LaTeX环境配置不到位，会有找不到bib的提示（Texlive+sublime会这样），没关系，照常插入需要的bibkey即可。
 
-`additional.tex`：成果、致谢、附录之类的。
+
+`additional.tex`：致谢、附录之类的。
 
 
 ### `csuthesis_main.tex`

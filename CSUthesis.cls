@@ -1,18 +1,15 @@
 %
-% 本模版根据中南大学研究生学位论文撰写规范创建
+% 本模版根据中南大学本科生学位论文撰写规范创建
 % 参考源：http://gra.its.csu.edu.cn/yjsy/pygl/wjtzxq54858_3_6.html
 % 论文内容一般应由十一个主要部分组成，依次为：
-% 1.封面、扉页；
-% 2.学位论文原创性声明和版权使用授权书；
-% 3.中文摘要；
-% 4.英文摘要；
-% 5.目录；
-% 6.符号说明（必要时）；
-% 7.论文正文；
-% 8.参考文献；
-% 9.附录（必要时）；
-% 10.攻读博（硕）士学位期间主要研究成果；
-% 11.致谢。
+% 1.封面
+% 2.中文摘要；
+% 3.英文摘要；
+% 4.目录；
+% 5.符号说明（必要时）；
+% 6.论文正文；
+% 7.参考文献；
+% 8.致谢。
 %
 
 \NeedsTeXFormat{LaTeX2e}
@@ -58,8 +55,6 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{array}
 % 长表格
 \RequirePackage{longtable}
-% % 弹性表格
-% \RequirePackage{tabularx}
 % booktabs 提供了\toprule 等命令.
 \RequirePackage{booktabs}
 % multirow 支持在表格中跨行
@@ -75,8 +70,6 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 首行缩进
 \RequirePackage{indentfirst}
 % jing: ccaption宏包不能出现在 caption 宏包之后
-% % 设置中英文标题
-% \RequirePackage{ccaption}
 % 设置浮动体的标题
 \RequirePackage{caption}
 \RequirePackage{subcaption}
@@ -84,10 +77,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{enumitem}
 % 提供\AtBeginEnvironment以方便全局调整一些结构的设置
 \RequirePackage{etoolbox}
-% % 下划线
-% \RequirePackage{ulem}
-% % 尺寸计算
-% \RequirePackage{calc}
+% 枚举
+\RequirePackage{enumitem}
 
 % 参考文献格式 GBT7714-2005
 % 来自https://github.com/CTeX-org/gbt7714-bibtex-style
@@ -146,6 +137,10 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
  %%%  中文关键字
 \newcommand*{\csu@cap@keywordsname}{关键字}
 
+%---------------------------------------------
+%控制引用格式，选用上标引用
+\newcommand\supercite[2][]{%
+    \textsuperscript{\cite[#1]{#2}}}
 
 % 定制titlepage
 % 定义命令和定义相应的宏。
@@ -204,7 +199,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     {
         \centering
         \linespread{1.5}
-        \vspace*{1.5cm}
+        \vspace*{1cm}
 
         \begin{figure}[hbt]
         	\centering
@@ -212,7 +207,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         \end{figure}
         {\fontsize{45}{60}{\selectfont \heiti 本科毕业设计(论文)} \par} % 45磅，黑体
         {\zihao{1} \setmainfont{SimHei} GRADUATION DESIGN(THESIS) \par} % 1号，黑体
-        \vspace{2cm} % 空行
+        \vspace*{1.5cm}
         {
             \zihao{-2} \heiti
             \begin{tabular}{ll}
@@ -223,153 +218,16 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
                 \makebox[4em][s]{专业班级:} & \underline{\makebox[16em][l]{\kaishu \@myclass}}  \\
             \end{tabular}
         }
-        \par
-        \vspace{3cm}
         % \vfill
+        \par
+        \vspace*{1.5cm}
         {
+            \nopagebreak
             \centering
-            {\centering \zihao{2} \heiti 本科生院制 \par}
-            {\centering \zihao{2} \heiti \@thesisdate \par}
+            {\centering \zihao{2} \heiti 本科生院制 \\*}
+            {\centering \zihao{2} \heiti \@thesisdate \\*}
+            \pagebreak
         }
-    }
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 扉页
-% -----------------------------------------------%
-% 公开、涉密学位论文扉页采用统一格式，一律不带密级栏，分为学术学位、专业学位两种格式（具体见样例5-6）。
-% 扉页除包含封面正面的全部内容外，还应包括中图分类号、UDC、学校代码、学位类别（专业学位或学术学位）、副题名（必要时）、研究方向、二级培养单位、副指导教师（必要时）、以及论文答辩日期和答辩委员会主席等内容。
-% 中图分类号（http://www.ztflh.com/）和UDC号（《国际十进位分类法》）可在图书馆查阅获得
-
-\newcommand{\maketitlepage} {
-    \setlength\parindent{0em}
-    {
-        \zihao{4} \songti
-        \begin{tabular}{l@{}c p{3cm} l@{}c}     % @{}去除边框距离，更符合学校模板的下划线紧贴描述文字
-            中图分类号  & \underline{\makebox[3cm][c]{\@clcnumber}} & &
-            学校代码    & \underline{\makebox[3cm][c]{\@schoolcode}} \\
-            UDC         & \underline{\makebox[3cm][c]{\@udc}} & &
-            学术类别    & \underline{\makebox[3cm][c]{\@academiccategory}} \\
-        \end{tabular}
-    }
-
-    {
-        \centering
-
-        {
-            \zihao{-2}
-            % 注意centering的使用，只在局部环境中使用。
-            \vspace{4ex} % 空行
-            { \bfseries \heiti 博士学位论文 \par} % 小二号黑体
-            \vspace{4ex} % 空行
-            { \bfseries \heiti \@titlecn \par} % 中文标题小二号黑体
-            { \bfseries \@titleen \par} % 英文标题小二号 Times New Roman
-        }
-
-        \vspace{3cm} % 空行
-
-        {
-            \zihao{3} \songti
-            \setlength\parindent{2em} % 由于这里填写的内容不对称，完全居中反而不够美观，于是缩进一个汉字的宽度
-            \begin{tabular}{ll}
-                % 利用\makebox[7em][s]{} 实现两端对齐，即字数不同但左右对齐。
-                % 7em表示分散对齐的最长的长度为7个字的长度，参数s表示两端分散对齐。
-                \makebox[7em][s]{作者姓名：}      &  \@author        \\
-                \makebox[7em][s]{学科专业：}      &  \@priormajor    \\
-                \makebox[7em][s]{学科方向：}      &  \@minormajor    \\
-                \makebox[7em][s]{研究方向：}      &  \@interestmajor \\
-                \makebox[7em][s]{二级培养单位：}  &  \@department    \\
-                \makebox[7em][s]{指导教师：}      &  \@supervisor    \\
-                % \makebox[7em][s]{副指导教师：}    &  \@subsupervisor \\
-            \end{tabular}
-        }
-
-        \vspace{3cm}
-
-        {
-            \zihao{-3} \songti
-            \begin{tabular}{l@{}l p{0.5cm} l@{}l}
-                论文答辩日期   & \underline{\makebox[3cm][c]{}} & &
-                答辩委员会主席 & \underline{\makebox[3cm][c]{}} \\
-            \end{tabular}
-        }
-    }
-    \par
-    \vspace{3cm}
-    {
-        \linespread{1.5}
-        {\centering \zihao{-3} \songti 中\quad 南\quad 大\quad 学 \par}
-        {\centering \zihao{-3} \songti \@thesisdate \par}
-    }
-    % 中 南 大 学 （小三号宋体）
-    % 年    月 （小三号宋体，填阿拉伯数字）
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 2. 原创性声明和学位论文版权使用授权书
-% -----------------------------------------------%
-% 单独设一页，排在扉页后
-% 按模板，标题二号，内容四号，这里学校没有特别强调字体字号，
-% 应该有一定自由度。
-
-\newcommand{\announcement}{
-    % 按学校模板这里是华文新魏字体
-
-    \linespread{1.5} % 这部分的行间距跟正文不一样
-
-    {\centering \zihao{2} \huawenxinwei 学位论文原创性声明 \par}
-
-    \vspace{0.5cm}
-
-    \setlength{\parindent}{2em} % 首行缩进
-    {
-        \zihao{4}
-        本人郑重声明，所呈交的学位论文是本人在指导教师指导下进行的研究工作及取得的研究成果。尽我所知，除了论文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得中南大学或其他教育机构的学位或证书而使用过的材料。与我共同工作的同志对本研究所作的贡献均已在论文中作了明确的说明。
-
-        申请学位论文与资料若有不实之处，本人承担一切相关责任。
-
-        \vspace{0.5cm}
-
-        \begin{flushright}
-            作者签名：\underline{\makebox[5em][c]{}} ~~
-            日期：
-            \underline{\makebox[3em][c]{}} 年
-            \underline{\makebox[1.5em][c]{}} 月
-            \underline{\makebox[1.5em][c]{}} 日
-        \end{flushright}
-
-    }
-
-    \vspace{1cm}
-
-    {\centering \zihao{2} \huawenxinwei 学位论文版权使用授权书 \par}
-
-    \vspace{0.5cm}
-
-    {
-        \zihao{4}
-        本学位论文作者和指导教师完全了解中南大学有关保留、使用学位论文的规定：即学校有权保留并向国家有关部门或机构送交学位论文的复印件和电子版；本人允许本学位论文被查阅和借阅；学校可以将本学位论文的全部或部分内容编入有关数据库进行检索，可以采用复印、缩印或其它手段保存和汇编本学位论文。
-
-        保密论文待解密后适应本声明。
-
-        \vspace{1cm}
-
-        \begin{table}[!ht]
-            \zihao{4}
-            \begin{tabular*}{\hsize}{@{}@{\extracolsep{\fill}}lll@{}}
-            作者签名：\underline{\makebox[5em][c]{}} & &
-            指导教师签名：\underline{\makebox[5em][c]{}} \\
-            \\
-            日期：
-            \underline{\makebox[3em][c]{}} 年
-            \underline{\makebox[1.5em][c]{}} 月
-            \underline{\makebox[1.5em][c]{}} 日 & &
-            日期：
-            \underline{\makebox[3em][c]{}} 年
-            \underline{\makebox[1.5em][c]{}} 月
-            \underline{\makebox[1.5em][c]{}} 日 \\
-            \end{tabular*}
-        \end{table}
     }
 }
 
@@ -382,15 +240,12 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %\newcommand*{\categorycn}[1]{\gdef\@categorycn{#1}} % 定义中文分类
 \newenvironment{abstractcn} { % 定义中文摘要环境
 
-    \linespread{1.2}
 
+    \vspace*{-20pt}
     \begin{center} \zihao{3} \bfseries \heiti \@titlecn \end{center}
-
-    \vspace{0.3cm}
-
     \begin{center} \zihao{4} \bfseries \heiti 摘要 \end{center}  % 摘要俩字为四号黑体
 
-    \vspace{0.3cm}
+    \linespread{1.2}
 
     \zihao{4}\songti  % 内容为四号宋体
 }
@@ -410,15 +265,12 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\keywordsen}[1]{\gdef\@keywordsen{#1}} % 英文关键词
 
 \newenvironment{abstracten} { % 新建英文摘要环境
-    \linespread{1.2}
-
+    \vspace*{-20pt}
     \begin{center} \zihao{3} \bfseries \@titleen \end{center}
-
-    \vspace{0.3cm}
 
   	\begin{center} \zihao{3} \bfseries ABSTRACT \end{center}
 
-    \vspace{0.5cm}
+    \linespread{1.2}
     \zihao{4} % 内容为四号宋体
 
 }
