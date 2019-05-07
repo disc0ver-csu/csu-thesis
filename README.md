@@ -68,6 +68,7 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 
 
 `additional.tex`：致谢、附录之类的。
+`subchapters/` : 内容分章节往里填就可以了
 
 
 ### `csuthesis_main.tex`
@@ -84,7 +85,9 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 
 ### 如果你使用命令行编译
 > 请使用`xelatex`，对`csuthesis_main.tex`文件进行编译。
-> 在linux下可以使用`make`编译。
+> 在linux下可以使用`make`编译(MacOS未测试)
+> 需要latexmk和wordcount支持。
+`make {all|wordcount|clean|cleanall|view|zip`
 
 ### 如果你使用TexStudio等IDE
 > 可以从content的任意章节开始编译，也可以从`csuthesis_main.tex`开始。
