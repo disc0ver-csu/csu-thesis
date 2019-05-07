@@ -33,7 +33,7 @@
 % 本科生从摘要开始就要有
 % 设置页眉和页脚 %
 \pagestyle{fancy}
-\lhead{\includegraphics[scale=0.2]{cover_icon.png}}
+\fancyhead[L]{\includegraphics[scale=0.15]{cover_icon.png}}
 \fancyhf[RH]{\heiti \zihao{5} {图像与激光融合的轨道扣件脱落检测}} % 设置所有（奇数和偶数）右侧页眉
 
 % 封面页无需页码，其他前置部分需要（按此理解扉页也是要页码的）。
@@ -52,13 +52,6 @@
 % -----------------------------------------------%
 \include{content/abstracten}
 \newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 正文页眉页脚
-% -----------------------------------------------%
-\setcounter{page}{1} % 重置目录页码为小写罗马字体
-\pagenumbering{roman} % 设置页码为小写罗马字体
-
 
 % 目录
 % -------------------------------------------%
@@ -80,6 +73,7 @@
 % --------------------------------------------%
 \setcounter{page}{1} % 重置页码编号
 \pagenumbering{arabic} % 设置页码编号为阿拉伯数字
+\fancyfoot[C]{\songti 第 \thepage 页\quad 共\pageref{totalPage} 页} % 所有（奇数和偶数）中间页脚
 
 % 可以使用include命令导入tex文件，从而避免过多修改本文件。
 

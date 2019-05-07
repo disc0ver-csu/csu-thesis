@@ -199,34 +199,33 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     {
         \centering
         \linespread{1.5}
-        \vspace*{1cm}
+        \vspace*{18pt}
 
         \begin{figure}[hbt]
-        	\centering
-        	\includegraphics[width=1\textwidth]{cover_icon.png}
+            \centering
+            \includegraphics[width=0.75\textwidth]{cover_icon.png}
         \end{figure}
-        {\fontsize{45}{60}{\selectfont \heiti 本科毕业设计(论文)} \par} % 45磅，黑体
+        \vspace*{24pt}
+        {\fontsize{45}{60}{\selectfont \center \heiti 本科毕业设计(论文)} \par} % 45磅，黑体
         {\zihao{1} \setmainfont{SimHei} GRADUATION DESIGN(THESIS) \par} % 1号，黑体
-        \vspace*{1.5cm}
+        \vspace*{48pt} % 空行
         {
             \zihao{-2} \heiti
             \begin{tabular}{ll}
-                \makebox[4em][s]{题目:} & \underline{\parbox[][][c]{16em}{\kaishu \@titlecn}} \\
-                \makebox[4em][s]{学生姓名:} & \underline{\makebox[16em][l]{\kaishu \@author}} \\
-                \makebox[4em][s]{指导老师:} &  \underline{\makebox[16em][l]{\kaishu \@supervisor}}  \\
-                \makebox[4em][s]{学院:} & \underline{\makebox[16em][l]{\kaishu \@department}}  \\
-                \makebox[4em][s]{专业班级:} & \underline{\makebox[16em][l]{\kaishu \@myclass}}  \\
+                \hspace{16pt} \makebox[4em][s]{题\qquad 目：} & \underline{\parbox[][][c]{198pt}{\center \kaishu \@titlecn}} \\
+                \hspace{16pt} \makebox[4em][s]{学生姓名：} & \underline{\makebox[198pt][c]{\kaishu \@author}} \\
+                \hspace{16pt} \makebox[4em][s]{指导老师：} &  \underline{\makebox[198pt][c]{\kaishu \@supervisor}}  \\
+                \hspace{16pt} \makebox[4em][s]{学\qquad 院：} & \underline{\makebox[198pt][c]{\kaishu \@department}}  \\
+                \hspace{16pt} \makebox[4em][s]{专业班级：} & \underline{\makebox[198pt][c]{\kaishu \@myclass}}  \\
             \end{tabular}
         }
-        % \vfill
         \par
-        \vspace*{1.5cm}
+        \vspace*{60pt}
+        % \vfill
         {
-            \nopagebreak
             \centering
-            {\centering \zihao{2} \heiti 本科生院制 \\*}
-            {\centering \zihao{2} \heiti \@thesisdate \\*}
-            \pagebreak
+            {\centering \zihao{2} \heiti 本科生院制 \par}
+            {\centering \zihao{2} \heiti \@thesisdate \par}
         }
     }
 }
@@ -241,11 +240,11 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newenvironment{abstractcn} { % 定义中文摘要环境
 
 
-    \vspace*{-20pt}
+    \vspace*{8pt}
     \begin{center} \zihao{3} \bfseries \heiti \@titlecn \end{center}
     \begin{center} \zihao{4} \bfseries \heiti 摘要 \end{center}  % 摘要俩字为四号黑体
 
-    \linespread{1.2}
+    \linespread{1.5}
 
     \zihao{4}\songti  % 内容为四号宋体
 }
