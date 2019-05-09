@@ -1,10 +1,14 @@
 \documentclass{CSUthesis}
 
+\addbibresource{CSUthesis_main.bib}
+
 \include{content/info}
 
 % lipsum
 \newcommand{\lipsum} {
     这是一段随机插入的文本，用来填充模板布局，感受模板视觉效果。
+    
+    测试红楼梦\cite{蔡义江2007红楼梦}
 
     中南大学坐落在中国历史文化名城──湖南省长沙市，占地面积5886亩，建筑面积276万平方米，跨湘江两岸，依巍巍岳麓，临滔滔湘水，环境幽雅，景色宜人，是求知治学的理想园地。
 　　中南大学是教育部直属全国重点大学、国家“211工程”首批重点建设高校、国家“985工程”部省重点共建高水平大学和国家“2011计划”首批牵头高校，2017年9月经国务院批准入选世界一流大学A类建设高校。现任校党委书记易红、校长田红旗。
@@ -112,7 +116,8 @@
 % \nocite{*} % 该命令用于显示全部参考文献，即使文中没引用
 % cls文件中已经引入package，这里不需要调用 \bibliographystyle 了。
 % \bibliographystyle{gbt7714-2005}
-\bibliography{thesis-references}
+% \bibliography{thesis-references}
+\printbibliography
 \newpage
 
 \include{content/additional}

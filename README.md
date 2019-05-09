@@ -81,16 +81,33 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 
 放图片，模板已经配置了相对路径，所以在文中插图片时，直接用images目录下的相对路径即可，比如`images/csu.png`，在正文中插入只需要`csu.png`。
 
+### `KaiTi_GB2312.tff`
+
+__注意:__ 由于学校的论文格式中需要用到该字体，但是可能由于系统的原因，并没有带上该字体，需要自行从网上下载，并命名为`KaiTi_GB2312.tff`放置在与`csuthesis_main.tex`同目录下。
+
 ## 编译
 
 ### 如果你使用命令行编译
-> 请使用`xelatex`，对`csuthesis_main.tex`文件进行编译。
-> 在linux下可以使用`make`编译(MacOS未测试)
-> 需要latexmk和wordcount支持。
+#### 手动编译
+1. 清空`.aux`文件。
+2. 使用`xelatex`对`csuthesis_main.tex`文件进行编译。
+    `xelatex csuthesis_main.tex`
+3. 使用`biber`对参考文献进行编译。
+    `biber csuthesis_main`
+4. 再重新编译主tex文件
+    `xelatex csuthesis_main.tex`
+
+#### 自动化编译
+-  可以使用`make`编译
+   需要latexmk和wordcount支持。
 `make {all|wordcount|clean|cleanall|view|zip`
+
+- 也可以直接使用latexmk
+  `latexmk .`
 
 ### 如果你使用TexStudio等IDE
 > 可以从content的任意章节开始编译，也可以从`csuthesis_main.tex`开始。
+
 
 
 使用高级文本编辑器，如sublime等，否则可能因为ANSI、UTF-8等编码格式问题编译失败。

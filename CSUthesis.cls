@@ -83,7 +83,11 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 参考文献格式 GBT7714-2005
 % 来自https://github.com/CTeX-org/gbt7714-bibtex-style
 % \RequirePackage{natbib} % gbt7714.sty已经包含了natbib宏包
-\RequirePackage[numbers,2005]{gbt7714}
+% \RequirePackage[numbers,2005]{gbt7714}
+
+% 参考文献格式 GB/T7714-2015
+% 来自https://github.com/hushidong/biblatex-gb7714-2015
+\RequirePackage[backend=biber,style=gb7714-2015]{biblatex}
 
 
 % 页面布局 %
@@ -97,7 +101,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \renewcommand*{\baselinestretch}{1.0}   % 几倍行间距
 \setlength{\baselineskip}{20pt}         % 基准行间距
 
-\setlength{\bibsep}{0.5ex} % 参考文献条目间距
+%\setlength{\bibsep}{0.5ex} % 参考文献条目间距
 
 % 设置字体 %
 % -------------------------------------------------------%
@@ -113,6 +117,10 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 协议页的标题按模板是华文新魏
 \setCJKfamilyfont{hwxw}{STXinwei}
 \newcommand{\huawenxinwei}{\CJKfamily{hwxw}}
+
+% 实现楷体GB_2312
+\setCJKfamilyfont{kaitigb}{KaiTi_GB2312.ttf}
+\newcommand{\kgb}{\CJKfamily{kaitigb}}
 % 重定义ctex定义好的宋体和黑体，以支持伪加粗AutoFakeBold
 % 即支持类似word里的给黑体、宋体等中文字体加粗的操作，用\bfseries
 \let\heiti\relax
@@ -120,6 +128,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \let\songti\relax
 \newCJKfontfamily[song]\songti{SimSun}[AutoFakeBold]
 \newcommand{\kaiti}{\CJKfamily{kai}}
+
+% 设置参考文献的字体格式
+\renewcommand{\bibfont}{\zihao{5} \kgb}
 
 % 每行缩进两个汉字
 \setlength{\parindent}{2em}
@@ -139,8 +150,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 %---------------------------------------------
 %控制引用格式，选用上标引用
-\newcommand\supercite[2][]{%
-    \textsuperscript{\cite[#1]{#2}}}
+% \newcommand\supercite[2][]{%
+    % \textsuperscript{\cite[#1]{#2}}}
 
 % 定制titlepage
 % 定义命令和定义相应的宏。
