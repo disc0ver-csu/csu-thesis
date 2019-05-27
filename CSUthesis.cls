@@ -80,14 +80,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 枚举
 \RequirePackage{enumitem}
 
-% 参考文献格式 GBT7714-2005
-% 来自https://github.com/CTeX-org/gbt7714-bibtex-style
-% \RequirePackage{natbib} % gbt7714.sty已经包含了natbib宏包
-% \RequirePackage[numbers,2005]{gbt7714}
-
 % 参考文献格式 GB/T7714-2015
 % 来自https://github.com/hushidong/biblatex-gb7714-2015
-\RequirePackage[backend=biber,style=gb7714-2015]{biblatex}
+\RequirePackage[backend=biber,gbpub=false, style=gb7714-2015]{biblatex}
 
 
 % 页面布局 %
@@ -248,22 +243,21 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %
 \newcommand*{\keywordscn}[1]{\gdef\@keywordscn{#1}} % 定义中文关键词
 %\newcommand*{\categorycn}[1]{\gdef\@categorycn{#1}} % 定义中文分类
+
 \newenvironment{abstractcn} { % 定义中文摘要环境
-
-
-    \vspace*{8pt}
-    \begin{center} \zihao{3} \bfseries \heiti \@titlecn \end{center}
-    \begin{center} \zihao{4} \bfseries \heiti 摘要 \end{center}  % 摘要俩字为四号黑体
-
+	\renewcommand*{\headsep}{0pt}
+	\vspace*{0pt}
+    \begin{center} \zihao{-2} \heiti \@titlecn \end{center}
+    \vspace{0pt}
+    \begin{center} \zihao{3} \heiti 摘要 \end{center}  % 摘要为三号黑体
+    \vspace{12pt}
     \linespread{1.5}
-
-    \zihao{4}\songti  % 内容为四号宋体
+    \zihao{-4}\songti  % 内容为四号宋体
 }
 % 显示中文关键词和分类号
 {
     \begin{flushleft}
-        \noindent {\zihao{4} \bfseries \heiti 关键词：} {\zihao{4} \songti \@keywordscn} \par % 关键词为四号黑体，内容为四号宋体
-        %\noindent {\zihao{4} \bfseries \heiti 分类号：} {\zihao{4} \songti \@categorycn} \par % 分类号为四号黑体，内容为四号宋体
+        \noindent {\zihao{-4} \bfseries \songti 关键词：} {\zihao{-4} \songti \@keywordscn} \par % 关键词为小四号宋体加粗，内容为小四号宋体
     \end{flushleft}
 }
 
@@ -275,20 +269,20 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\keywordsen}[1]{\gdef\@keywordsen{#1}} % 英文关键词
 
 \newenvironment{abstracten} { % 新建英文摘要环境
-    \vspace*{-20pt}
-    \begin{center} \zihao{3} \bfseries \@titleen \end{center}
+    \vspace*{0pt}
+    \begin{center} \zihao{-2} \bfseries \@titleen \end{center}
 
-  	\begin{center} \zihao{3} \bfseries ABSTRACT \end{center}
-
-    \linespread{1.2}
-    \zihao{4} % 内容为四号宋体
-
+    \begin{center} \zihao{3} \bfseries ABSTRACT \end{center}
+    \vspace{12pt}
+    \linespread{1.5}
+    \zihao{-4} % 内容为四号宋体
 }
 {
     \begin{flushleft}
-        \noindent {\zihao{4} \bfseries Keywords:~} {\zihao{4} \@keywordsen} \par % 关键词为四号黑体，内容为四号宋体
+        \noindent {\zihao{4} \bfseries Key\ words:~} {\zihao{4} \@keywordsen} \par % 关键词为四号黑体，内容为四号宋体
     \end{flushleft}
 }
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -310,6 +304,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \titleformat{\section}{\zihao{3}  \heiti \centering}{\chaptername}{1em}{}
 \titleformat{\subsection}{\zihao{-4}  \heiti}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\zihao{-4}  \kaishu}{\thesubsubsection}{1em}{}
+
 % 定义在目录中的格式
 % \titlecontents{标题名}
 %               [左间距]
@@ -318,22 +313,24 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %               {无序号标题}
 %               {指引线与页码}
 %               [下间距]
+
 \titlecontents{section}
-              [0.75em] % 按样例目录左侧是和前置部分文字左侧对齐的
+              [0em] % 按样例目录左侧是和前置部分文字左侧对齐的
               {\zihao{-4} \songti}
-              {\contentslabel {1em}}
+              %{\contentslabel {1em}}
+              {第\thecontentslabel\ 章\quad}%
               {\hspace*{-1em}}
               {\titlerule*[0.5pc]{.}\contentspage}
 
 \titlecontents{subsection}
-    [2.5em]
+    [4em]
     {\zihao{-4} \songti} % note that 3.8 = 1.5 + 2.3
     {\contentslabel{2.2em}}
     {\hspace*{-3.5em}}
     {\titlerule*[0.5pc]{.}\contentspage}
 
 \titlecontents{subsubsection}
-    [4em]
+    [7em]
     {\zihao{-4} \songti} % note that 3.8 = 1.5 + 2.3
     {\contentslabel{3.0em}}
     {\hspace*{-5em}}
