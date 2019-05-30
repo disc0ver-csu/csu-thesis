@@ -87,7 +87,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 页面布局 %
 % -------------------------------------------------------%
-\geometry{top=25.4mm,bottom=25.4mm,left=31mm,right=31mm}
+\geometry{top=2.5cm,bottom=2.5cm,left=3cm,right=2cm}
 % 给页眉留足空间（否则会有 \headheight is too small的warning）
 \setlength{\headheight}{14.5pt}
 % “磅”是衡量印刷字体大小的单位,约等于七十二分之一英寸。
@@ -188,7 +188,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 利用上述的pgf的key-value定制论文日期命令
 \newcommand{\thesisdate}[1] {
     \pgfkeys{/thesisdate/pgf/.cd,#1} % 指定使用/thesisdate/pgf/.cd来解释参数，然后在后文能直接使用存储位置来指定解释的内容
-    \gdef\@thesisdate{\year{} 年 \month{} 月} % 将构建好的日期存储到宏（\@thesisdate）中
+    \gdef\@thesisdate{\year{} 年 6{} 月} % 将构建好的日期存储到宏（\@thesisdate）中
 }
 
 % 以下为公开学位论文（学术）的封面内容
@@ -209,7 +209,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
         \begin{figure}[hbt]
             \centering
-            \includegraphics[width=0.75\textwidth]{cover_icon.png}
+            \includegraphics[width=0.70\textwidth]{cover_icon.png}
         \end{figure}
         \vspace*{24pt}
         {\fontsize{45}{60}{\selectfont \center \heiti 本科毕业设计(论文)} \par} % 45磅，黑体
@@ -231,7 +231,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         {
             \centering
             {\centering \zihao{2} \heiti 本科生院制 \par}
-            {\centering \zihao{2} \heiti \@thesisdate \par}
+            {\centering \zihao{-2} \heiti \@thesisdate \par}
         }
     }
 }
