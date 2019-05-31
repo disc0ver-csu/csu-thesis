@@ -1,10 +1,10 @@
 %%
-%% This is file `versions/2005/gbt7714-2005-unsrt.bst',
+%% This is file `gbt7714-unsrt.bst',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% gbt7714.dtx  (with options: `2005,numerical')
+%% gbt7714.dtx  (with options: `2015,numerical')
 %% -------------------------------------------------------------------
 %% GB/T 7714-2015 BibTeX Style
 %% https://github.com/CTeX-org/gbt7714-bibtex-style
@@ -48,10 +48,9 @@ FUNCTION {load.config}
   #0 'in.booktitle :=
   #0 'italic.jounal :=
   #0 'bold.journal.volume :=
-  #0 'show.missing.address.publisher :=
+  #1 'show.missing.address.publisher :=
   #1 'show.url :=
   #1 'show.doi :=
-  #0 'show.doi :=
   #0 'show.note :=
 }
 
@@ -140,7 +139,7 @@ FUNCTION {citation.et.al}
 
 FUNCTION {bbl.colon} { ": " }
 
-FUNCTION {bbl.wide.space} { "\ " }
+FUNCTION {bbl.wide.space} { "\quad " }
 
 FUNCTION {bbl.slash} { "//\allowbreak " }
 

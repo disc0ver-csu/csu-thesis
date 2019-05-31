@@ -7,7 +7,7 @@
 % lipsum
 \newcommand{\lipsum} {
     这是一段随机插入的文本，用来填充模板布局，感受模板视觉效果。
-    
+
     测试红楼梦\cite{蔡义江2007红楼梦}
 
     中南大学坐落在中国历史文化名城──湖南省长沙市，占地面积5886亩，建筑面积276万平方米，跨湘江两岸，依巍巍岳麓，临滔滔湘水，环境幽雅，景色宜人，是求知治学的理想园地。
@@ -73,9 +73,10 @@
 % --------------------------------------------%
 \setcounter{page}{1} % 重置页码编号
 \pagenumbering{arabic} % 设置页码编号为阿拉伯数字
-% totalPage是一个标签，它被放在content/additional.tex的最后一行，保证追踪到最后
-% 一页
-\fancyfoot[C]{\songti 第 \thepage 页\quad 共\pageref{totalPage} 页} % 所有（奇数和偶数）中间页脚
+
+% LastPage是从lastpage宏包中引来的
+\fancyfoot[C]{\songti 第 \thepage 页\quad 共\pageref{LastPage} 页} % 所有（奇数和偶数）中间页脚
+
 
 % 可以使用include命令导入tex文件，从而避免过多修改本文件。
 
@@ -107,6 +108,9 @@
 
 % 主文件有代码去掉页眉章节编号的“.”，但这会因为bug导致无编号章节显示一个错误编号，所以这里在无编号章节之前再次重定义sectionmark。
 \renewcommand{\sectionmark}[1]{\markright{#1}}
+
+% 根据本科生院的要求，致谢应该在参考文献的前面，不编章号，而附录应该位于参考文献后。
+\include{content/thanks}
 
 % section 标题从这里往后改为三号黑体居中
 \titleformat{\section}{\centering \zihao{3}\heiti}{\thesection}{1em}{}

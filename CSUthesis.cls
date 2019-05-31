@@ -79,6 +79,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{etoolbox}
 % 枚举
 \RequirePackage{enumitem}
+% lastpage
+\RequirePackage{lastpage}
 
 % 参考文献格式 GB/T7714-2015
 % 来自https://github.com/hushidong/biblatex-gb7714-2015
