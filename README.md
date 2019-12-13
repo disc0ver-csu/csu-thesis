@@ -1,5 +1,7 @@
 # 中南大学本科学位论文Tex模版
 
+2019/12/13: I'm still maintaining this project, issues and PRs are welcome. 
+
 ## 2019年05月01日
 本项目fork from [CSU-Thesis-Latex-Template](https://github.com/CSGrandeur/CSU-Thesis-LaTeX-Template). 根据本科生院于18年12月的最新模版(official_documents/附件7：中南大学毕业设计(论文)模版.pdf)修改。
 知网查重部分与研究生/论文相同。代码内有大量硕/博论文部分未有清理，忙完后再清理。
