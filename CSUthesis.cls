@@ -47,6 +47,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{fancyhdr}
 % 设置标题格式
 \RequirePackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
 % 超链接 hyperref 的设置
 \RequirePackage{hyperref}
 % 插入图片
@@ -71,8 +72,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{indentfirst}
 % jing: ccaption宏包不能出现在 caption 宏包之后
 % 设置浮动体的标题
-\RequirePackage{caption}
-\RequirePackage{subcaption}
+\RequirePackage[justification=centering]{caption}
+\RequirePackage[justification=centering]{subcaption}
 % 定制列表环境
 \RequirePackage{enumitem}
 % 提供\AtBeginEnvironment以方便全局调整一些结构的设置
@@ -176,10 +177,6 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 封面 %
 % -------------------------------------------------------------%
-% 学位论文封面格式分为公开学位论文（学术学位）、公开学位论文（专业学位）、涉密学位论文（学术学位）、涉密学位论文（专业学位）等四种形式（具体见样例1-4）。
-% 封面正面上填写论文题名、学科专业（一级学科或专业学位类别）、学科方向或专业领域、作者姓名、指导教师姓名等内容。在书脊上方印“博（或硕）士学位论文”，下方印“中南大学”。
-% 涉密学位论文须在封面右上角标注密级、定密日期，由校保密办公室审批、盖章。
-
 
 % 论文日期
 % 采用key-value对的方式来制定存储信息的pgf路径
@@ -194,10 +191,6 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 }
 
 % 以下为公开学位论文（学术）的封面内容
-% TODO:
-% - 公开学位论文（专业）
-% - 涉密学位论文（学术）
-% - 涉密学位论文（专业）
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 定义 \makecoverpage 实现封面的重新绘制

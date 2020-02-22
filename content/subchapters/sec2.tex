@@ -1,8 +1,6 @@
 %!TEX root = ../../csuthesis_main.tex
 \section{图像布局}
 \label{sec.figure}
-\textbf{按学校格式要求，每个子图的小标(a)、(b)、(c)等在【左上角】。}
-
 \subsection{单图布局}
 
 \lipsum
@@ -23,27 +21,27 @@
 \begin{figure}[!htb]
     \centering
     \begin{subfigure}[t]{0.24\linewidth}
-        \caption{}
         \begin{minipage}[b]{1\linewidth}
         \includegraphics[width=1\linewidth]{csu.png}
+        \caption{test}
         \end{minipage}
     \end{subfigure}
     \begin{subfigure}[t]{0.24\linewidth}
-        \caption{}
         \begin{minipage}[b]{1\linewidth}
         \includegraphics[width=1\linewidth]{csu.png}
+        \caption{test}
         \end{minipage}
     \end{subfigure}
     \begin{subfigure}[t]{0.24\linewidth}
-        \caption{}
         \begin{minipage}[b]{1\linewidth}
         \includegraphics[width=1\linewidth]{csu.png}
+        \caption{test}
         \end{minipage}
     \end{subfigure}
     \begin{subfigure}[t]{0.24\linewidth}
-        \caption{}
         \begin{minipage}[b]{1\linewidth}
         \includegraphics[width=1\linewidth]{csu.png}
+        \caption{test}
         \end{minipage}
     \end{subfigure}
     \caption{横排布局示例}
@@ -58,15 +56,17 @@
 \begin{figure}[!htb]
     \centering
     \begin{subfigure}[t]{0.15\linewidth}
-        \caption{}
+        \captionsetup{justification=centering} %ugly hacks
         \begin{minipage}[b]{1\linewidth}
         \includegraphics[width=1\linewidth]{csu.png}
+        \caption{test}
         \end{minipage}
     \end{subfigure}\\
     \begin{subfigure}[t]{0.15\linewidth}
-        \caption{}
+        \captionsetup{justification=centering} %ugly hacks
         \begin{minipage}[b]{1\linewidth}
         \includegraphics[width=1\linewidth]{csu.png}
+        \caption{test}
         \end{minipage}
     \end{subfigure}
     \caption{竖排布局示例}
@@ -80,17 +80,19 @@
 \begin{figure}[!htb]
     \centering
     \begin{subfigure}[t]{0.13\linewidth}
-        \caption{}
+        \captionsetup{justification=centering} 
         \begin{minipage}[b]{1\linewidth}
         \includegraphics[width=1\linewidth]{csu.png} \vspace{-1ex} \vfill
         \includegraphics[width=1\linewidth]{csu.png}
+        \caption{aaa}
         \end{minipage}
     \end{subfigure}
     \begin{subfigure}[t]{0.13\linewidth}
-        \caption{}
+        \captionsetup{justification=centering} 
         \begin{minipage}[b]{1\linewidth}
         \includegraphics[width=1\linewidth]{csu.png} \vspace{-1ex} \vfill
         \includegraphics[width=1\linewidth]{csu.png}
+        \caption{bbb}
         \end{minipage}
     \end{subfigure}
     \caption{竖排多图横排布局}
@@ -107,17 +109,19 @@
 \begin{figure}[!htb]
     \centering
     \begin{subfigure}[t]{0.3\linewidth}
-        \caption{}
+        \captionsetup{justification=centering} 
         \begin{minipage}[b]{1\linewidth}
         \includegraphics[width=0.45\linewidth]{csu.png}
         \includegraphics[width=0.45\linewidth]{csu.png}
+        \caption{}
         \end{minipage}
     \end{subfigure}\\
     \begin{subfigure}[t]{0.3\linewidth}
-        \caption{}
+        \captionsetup{justification=centering} 
         \begin{minipage}[b]{1\linewidth}
         \includegraphics[width=0.45\linewidth]{csu.png}
         \includegraphics[width=0.45\linewidth]{csu.png}
+        \caption{}
         \end{minipage}
     \end{subfigure}
     \caption{横排多图竖排布局}
@@ -129,4 +133,3 @@
 \subsection{本章小结}
 本章示例图片布局。
 
-\newpage
