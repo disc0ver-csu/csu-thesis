@@ -21,6 +21,7 @@
 *.bcf
 *.nav
 *.rar
+*.thm
 ~$*.docx
 ~$*.xlsx
 ~$*.pptx

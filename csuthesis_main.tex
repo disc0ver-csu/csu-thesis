@@ -1,4 +1,4 @@
-\documentclass{CSUthesis}
+\documentclass{csuthesis}
 
 \addbibresource{CSUthesis_main.bib}
 
@@ -23,7 +23,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 封面
 % -----------------------------------------------%
-\makecoverpage
+% \makecoverpage
+\maketitle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 前置部分的页眉页脚设置
@@ -35,6 +36,7 @@
 \setcounter{page}{1} % 从1开始编号页码
 % 设置页眉和页脚
 % 本科生从摘要开始就要有
+%TODO: 针对本科和硕博适配不同的页眉页脚
 % 设置页眉和页脚 %
 \pagestyle{fancy}
 \fancyhead[L]{\includegraphics[scale=0.13]{cover_icon.png}}
@@ -57,11 +59,13 @@
 % -------------------------------------------%
 
 {
-
+%TODO: 本科和硕博目录格式要求不同
 \renewcommand{\contentsname}{\hfill \heiti \zihao{3} 目\quad 录\hfill}
 	\renewcommand*{\baselinestretch}{1.5}   % 行间距
     \tableofcontents
 }
+\newpage
+\tableofcontents
 \newpage
 % 去掉页眉章节序号后面的“.”
 \renewcommand{\sectionmark}[1]{\markright{\thesection~ #1}}
