@@ -3,8 +3,48 @@
 %
 % 设置页边距以及版芯行间距设置
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 边距要求上2.5cm，下2.5cm，
+% 边距要求上2.5cm，下2.5cm，左3cm，右2cm
 \geometry{top=2.5cm,bottom=2.5cm,left=3cm,right=2cm}
+% 本科生从摘要开始就要有
+% 设置页眉和页脚 %
+\pagestyle{fancy}
+% 本科学位论文底部样式
+\newcommand{\csu@thepage@format@zh}[2]{第~{#1}~页 共~{#2}~页}
+\newcommand{\csu@thepage@format@en}[1]{#1}
+% 空白页清空页眉页脚
+\patchcmd{\cleardoublepage}{\newpage}{\thispagestyle{empty}\newpage}{}{}
+% 对章节首页的特殊page style清除页眉页脚
+\patchcmd{\chapter}{\thispagestyle}{\@gobble}{}{}
+
+% 内芯页眉设置
+\fancyhead[L]{\includegraphics[scale=0.13]{cover_icon.png}}
+\fancyhf[RH]{\heiti \zihao{-5} {图像与激光融合的轨道扣件脱落检测}} % 设置所有（奇数和偶数）右侧页眉
+% 摘要目录部分样式设置
+\renewcommand{\frontmatter}{
+    \cleardoublepage
+    \@mainmatterfalse
+    % 根据学校要求使用大罗马编号
+    \pagenumbering{Roman}
+    \def\csu@thepage{\thepage}
+    \def\csu@lastpageref{\pageref{LastPage}}
+    \fancyfoot[C]{\zihao{-5}  \csu@thepage@format@en{\csu@thepage}}
+}
+% 正文部分样式设置
+\renewcommand{\mainmatter}{
+    \cleardoublepage
+    \@mainmattertrue
+    % 正文部分启用阿拉伯数字编号
+    \pagenumbering{arabic}
+    \def\csu@thepage{\thepage}
+    \def\csu@lastpageref{\pageref{LastPage}}
+    \fancyfoot[C]{\zihao{-5} \songti \csu@thepage@format@zh{\csu@thepage}{\csu@lastpageref}}
+}
+
+
+
+
+
+
 % 给页眉留足空间（否则会有 \headheight is too small的warning）
 \setlength{\headheight}{14.5pt}
 % “磅”是衡量印刷字体大小的单位,约等于七十二分之一英寸。
@@ -61,8 +101,36 @@
 \newcommand*{\csu@cap@tablename}{表}
 \newcommand*{\csu@cap@appendixname}{附录}
 \newcommand*{\csu@cap@abstractname}{摘要}
+\newcommand*{\csu@cap@acknowledgementsname}{致谢}
 %  中文关键字
 \newcommand*{\csu@cap@keywordsname}{关键字}
+
+
+
+% TODO:更新chapter的指令
+\NewDocumentCommand{\csu@chapter}{m}{
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \chapter*{#1}
+}
+
+
+
+\newenvironment{acknowledgements}{
+%   \ifcsu@review\relax\else
+    \ifcsu@review\else
+    % \csu@chapter{\csu@name@acknowledgements}
+    \csu@chapter{\csu@cap@acknowledgementsname}
+  \fi
+}
+
+
+\newenvironment{appendixs}{
+    % \ifcsu@review\else
+    \csu@chapter{\csu@cap@appendixname}
+    % \fi
+}
+% 定义附录环境
+
 
 %---------------------------------------------
 %控制引用格式，选用上标引用
@@ -222,6 +290,12 @@
 % 目录应列出论文的大标题、一级和二级节标题，逐项标明页码（具体见样例10）。各级标题应简明扼要、点出各部分主要内容。学位论文的页码编排为：正文和后置部分用阿拉伯数字编连续码，前置部分用罗马数字单独编连续码（封面除外）。
 % “目录”两字居中（三号黑体），下空两行为章、节、小节及其开始页码（靠右顶格）。章、节、小节分别以阶梯式排列：1（第1章）、1.1、1.1.1依次标出。章、节、小节的题名与页码之间用“．．．．．．”连接。除“目录”两字外，其余字体均为小四号宋体。
 
+%TODO: 本科和硕博目录格式要求不同
+% \renewcommand{\contentsname}{\hfill \heiti \zihao{3} 目\quad 录\hfill}
+% 	\renewcommand*{\baselinestretch}{1.5}   % 行间距
+%     \tableofcontents
+% }
+
 \setcounter{secnumdepth}{3}
 % 定义作为标题的格式
 % \titleformat{command}[shape]%定义标题类型和标题样式
@@ -231,10 +305,10 @@
 %               {before-code}%定义标题前的内容
 %               [after-code]%定义标题后的内容
 
-\newcommand{\chaptername}{第{\thesection}章}
-\titleformat{\section}{\zihao{3}  \heiti \centering}{\chaptername}{1em}{}
-\titleformat{\subsection}{\zihao{-4}  \heiti}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\zihao{-4}  \kaishu}{\thesubsubsection}{1em}{}
+\renewcommand{\chaptername}{第{\thesection}章}
+\titleformat{\chapter}{\zihao{3}  \heiti \centering}{\chaptername}{1em}{}
+\titleformat{\section}{\zihao{-4}  \heiti}{\thesection}{1em}{}
+\titleformat{\subsection}{\zihao{-4}  \kaishu}{\thesubsection}{1em}{}
 
 % 定义在目录中的格式
 % \titlecontents{标题名}
@@ -431,9 +505,3 @@
 % ---------------------------------------------------------%
 % 篇眉从正文开始至全文结束，采用宋体五号字左起书写“博（或硕）士学位论文”，靠右写章标题。
 % 页码从正文开始至全文结束按阿拉伯数字连续编排，前置部分（如学位论文原创性声明和版权使用授权书、中文摘要、英文摘要、目录、符号说明等）用罗马数字分别单独编排。页码位于页面底端，居中书写。
-
-% \pagestyle{fancy}
-% \fancyhf{} % 清空原有格式
-% \fancyhf[RH]{\small\leftmark} % 设置所有（奇数和偶数）右侧页眉
-% \fancyhf[LH]{中南大学博士学位论文} % 设置所有（奇数和偶数）左侧页眉
-% \fancyhf[CF]{\thepage} % 所有（奇数和偶数）中间页脚

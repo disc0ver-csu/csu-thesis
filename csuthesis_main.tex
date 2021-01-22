@@ -2,6 +2,11 @@
 
 \addbibresource{CSUthesis_main.bib}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 基本信息
+% -----------------------------------------------%
+% 载入如标题、作者等基本信息
+% 都存储在\content\info.tex文件中
 \include{content/info}
 
 % lipsum
@@ -26,60 +31,53 @@
 % \makecoverpage
 \maketitle
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 前置部分的页眉页脚设置
 % -----------------------------------------------%
-\newpage
+% UPDATE: 页眉页脚的配置现在已全部转移至模板
 % 正文和后置部分用阿拉伯数字编连续码，前置部分用罗马数字单独编连续码（封面除外）。
 % 设置封面页后的页码
-\pagenumbering{Roman} % 大写罗马字母
-\setcounter{page}{1} % 从1开始编号页码
+
+%TEST: 使用 \mainmatter 和 \frontmatter 替换这些指令
+% \pagenumbering{Roman} % 大写罗马字母
+% \setcounter{page}{1} % 从1开始编号页码
+\frontmatter
 % 设置页眉和页脚
-% 本科生从摘要开始就要有
-%TODO: 针对本科和硕博适配不同的页眉页脚
-% 设置页眉和页脚 %
-\pagestyle{fancy}
-\fancyhead[L]{\includegraphics[scale=0.13]{cover_icon.png}}
-\fancyhf[RH]{\heiti \zihao{-5} {图像与激光融合的轨道扣件脱落检测}} % 设置所有（奇数和偶数）右侧页眉
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 中文摘要
 % -----------------------------------------------%
 \include{content/abstractcn}
-\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 英文摘要
 % -----------------------------------------------%
 \include{content/abstracten}
-\newpage
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 目录
 % -------------------------------------------%
 
-{
-%TODO: 本科和硕博目录格式要求不同
-\renewcommand{\contentsname}{\hfill \heiti \zihao{3} 目\quad 录\hfill}
-	\renewcommand*{\baselinestretch}{1.5}   % 行间距
-    \tableofcontents
-}
-\newpage
 \tableofcontents
-\newpage
+
+
 % 去掉页眉章节序号后面的“.”
 \renewcommand{\sectionmark}[1]{\markright{\thesection~ #1}}
-
-
 \renewcommand{\headrulewidth}{1pt}
 
 % 正文内容
 % --------------------------------------------%
-\setcounter{page}{1} % 重置页码编号
-\pagenumbering{arabic} % 设置页码编号为阿拉伯数字
 
-% LastPage是从lastpage宏包中引来的
-\fancyfoot[C]{\songti 第 \thepage 页\quad 共\pageref{LastPage} 页} % 所有（奇数和偶数）中间页脚
+%TEST: 使用 \mainmatter 和 \frontmatter 替换这些指令
+% \setcounter{page}{1} % 重置页码编号
+% \pagenumbering{arabic} % 设置页码编号为阿拉伯数字
+\mainmatter
+% \fancyfoot[C]{\zihao{-5} \songti 第 \thepage 页\quad 共\pageref{LastPage} 页} % 所有（奇数和偶数）中间页脚
 
 
 % 可以使用include命令导入tex文件，从而避免过多修改本文件。
@@ -114,21 +112,24 @@
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 
 % 根据本科生院的要求，致谢应该在参考文献的前面，不编章号，而附录应该位于参考文献后。
-\include{content/thanks}
+\include{content/acknowledgements}
 
 % section 标题从这里往后改为三号黑体居中
-\titleformat{\section}{\centering \zihao{3}\heiti}{\thesection}{1em}{}
+\titleformat{\chapter}{\centering \zihao{3}\heiti}{\thesection}{1em}{}
 
 % \section{参考文献} % bibliography会自动显示参考文献四个字
-\addcontentsline{toc}{section}{参考文献} % 由于参考文献不是section，这句把参考文献加入目录
+\addcontentsline{toc}{chapter}{参考文献} % 由于参考文献不是chapter，这句把参考文献加入目录
 % \nocite{*} % 该命令用于显示全部参考文献，即使文中没引用
 % cls文件中已经引入package，这里不需要调用 \bibliographystyle 了。
 % \bibliographystyle{gbt7714-2005}
 % \bibliography{thesis-references}
 \printbibliography
+
 \newpage
 
-\include{content/additional}
+
+% 附录
+\include{content/appendix}
 
 
 \end{document}

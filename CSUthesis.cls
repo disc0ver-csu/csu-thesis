@@ -64,12 +64,18 @@
     \csu@type@graduatetrue
 \fi
 
+% 定义致谢环境，盲审下隐藏致谢
+\newif\ifcsu@review
+\csu@reviewfalse
+
 
 
 
 % 读取基类
-\LoadClass[a4paper,12pt]{article}
-% \LoadClass[UTF8,a4paper,twoside,zihao=-4]{ctexbook}
+% \LoadClass[a4paper,12pt]{article}
+\LoadClass[UTF8,openany,a4paper,oneside,zihao=-4]{ctexbook}
+% 注意openany和oneside参数，默认是无空白页不区分双面印。
+
 % 加载宏包
 % 引擎执行判断宏包
 \RequirePackage{ifxetex}
@@ -102,7 +108,7 @@
 \RequirePackage{fancyhdr}
 % 设置标题格式
 \RequirePackage{titlesec}
-\newcommand{\sectionbreak}{\clearpage}
+% \newcommand{\sectionbreak}{\clearpage}
 % 超链接 hyperref 的设置
 \RequirePackage{hyperref}
 % 插入图片
