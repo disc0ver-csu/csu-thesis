@@ -33,6 +33,7 @@
 *.run.xml
 
 ## Build tool auxiliary files:
+*.rar
 *.fdb_latexmk
 *.synctex
 *.synctex(busy)
@@ -252,3 +253,4 @@ ehthumbs_vista.db
 # Project specific
 thesis.pdf
 thesis-bot.yml
+
