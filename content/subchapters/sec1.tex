@@ -34,16 +34,22 @@
 TeX (/tɛx, tɛk/, see below), stylized within the system as TEX, is a typesetting system (or a "formatting system") which was designed and mostly written by Donald Knuth[1] and released in 1978. TeX is a popular means of typesetting complex mathematical formulae; it has been noted as one of the most sophisticated digital typographical systems.
 
 
-\section{主要研究工作}
-我堂堂双一流高校竟然没有官方研究生论文LaTeX模板！！！虽然我LaTeX水平也很水……但是通过大量debug也勉强给大家凑出来一个格式绝对标准的LaTeX模板，模板代码丑就丑吧，能用就行。写了大量注释，有一点LaTeX基础就可以根据自己需要修改CSUthesis.cls文件。
+\section{模板主要结构}
 
-(1) 提供图片插入示例。
+本项目模板的主要结构, 如下表所示:
+% TODO
 
-(2) 提供表格插入示例。
-
-(3) 提供公式插入示例。
-
-(4) 提供参考文献插入示例。
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{r|r|l}
+    \hline\hline
+    \multicolumn{2}{l|}{Bachelor-template.tex } & 主文档. 在其中填写正文.                                      \\ \hline
+                                                & frontmatter.tex                      & 郑重声明、中英文摘要. \\ \cline{2-3}
+    \raisebox{1em}{content 目录 }          & backmatter.tex                       & 致谢.                 \\ \hline
+    \multicolumn{2}{l|}{figures 目录}         & 存放图片文件.                                                \\ \hline
+    \multicolumn{2}{l|}{csuthesis.cls }       & 定义文档格式的 class file. 不可删除.                         \\ \hline\hline
+  \end{tabular}
+\end{table}
 
 \section{论文组织结构}
 
