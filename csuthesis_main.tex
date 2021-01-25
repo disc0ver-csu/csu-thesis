@@ -1,15 +1,22 @@
-\documentclass{csuthesis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 载入模版
+%
+% 载入csuthesis.cls文件定义的模板
+% 1.5版本暂不支持选项，预计后续回提供 学位匹配|盲审模式
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[]{csuthesis}
 
 \addbibresource{CSUthesis_main.bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 基本信息
-% -----------------------------------------------%
-% 载入如标题、作者等基本信息
+%
+% 用户自行输入标题、作者等基本信息
 % 都存储在\content\info.tex文件中
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \include{content/info}
 
-% lipsum
+% 测试用lipsum
 \newcommand{\lipsum} {
     这是一段随机插入的文本，用来填充模板布局，感受模板视觉效果。
 
@@ -25,10 +32,13 @@
 }
 
 \begin{document}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 封面
-% -----------------------------------------------%
-% \makecoverpage
+% 封面绘制
+%
+% 1.5版本重新编写了封面绘制宏，并用latex使用者更习惯的
+% \maketitle代替之前的\makecoverpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \maketitle
 
 
@@ -51,7 +61,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 中文摘要
 % -----------------------------------------------%
-\include{content/abstractcn}
+\include{content/abstractzh}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 英文摘要
@@ -67,8 +77,8 @@
 
 
 % 去掉页眉章节序号后面的“.”
-\renewcommand{\sectionmark}[1]{\markright{\thesection~ #1}}
-\renewcommand{\headrulewidth}{1pt}
+% \renewcommand{\sectionmark}[1]{\markright{\thesection~ #1}}
+% \renewcommand{\headrulewidth}{1pt}
 
 % 正文内容
 % --------------------------------------------%
@@ -84,9 +94,6 @@
 
 % 论文正文是主体，主体部分应从另页右页开始，每一章应另起页。一般由序号标题、文字叙述、图、表格和公式等五个部分构成。
 
-% 重新设置正文行间距，因为前置部分设置时候行间距被改过
-\renewcommand*{\baselinestretch}{1.0}   % 几倍行间距
-\setlength{\baselineskip}{20pt}         % 基准行间距
 
 % 正文
 \include{content/content}
@@ -115,10 +122,11 @@
 \include{content/acknowledgements}
 
 % section 标题从这里往后改为三号黑体居中
-\titleformat{\chapter}{\centering \zihao{3}\heiti}{\thesection}{1em}{}
+% UPDATE: 由ctex设置
+% \titleformat{\chapter}{\centering \zihao{3}\heiti}{\thesection}{1em}{}
 
 % \section{参考文献} % bibliography会自动显示参考文献四个字
-\addcontentsline{toc}{chapter}{参考文献} % 由于参考文献不是chapter，这句把参考文献加入目录
+% \addcontentsline{toc}{chapter}{参考文献} % 由于参考文献不是chapter，这句把参考文献加入目录
 % \nocite{*} % 该命令用于显示全部参考文献，即使文中没引用
 % cls文件中已经引入package，这里不需要调用 \bibliographystyle 了。
 % \bibliographystyle{gbt7714-2005}

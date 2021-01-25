@@ -15,11 +15,10 @@
 \patchcmd{\cleardoublepage}{\newpage}{\thispagestyle{empty}\newpage}{}{}
 % 对章节首页的特殊page style清除页眉页脚
 \patchcmd{\chapter}{\thispagestyle}{\@gobble}{}{}
-
 % 内芯页眉设置
 \fancyhead[L]{\includegraphics[scale=0.13]{cover_icon.png}}
 \fancyhf[RH]{\heiti \zihao{-5} {图像与激光融合的轨道扣件脱落检测}} % 设置所有（奇数和偶数）右侧页眉
-% 摘要目录部分样式设置
+% frontmatter设置
 \renewcommand{\frontmatter}{
     \cleardoublepage
     \@mainmatterfalse
@@ -29,7 +28,7 @@
     \def\csu@lastpageref{\pageref{LastPage}}
     \fancyfoot[C]{\zihao{-5}  \csu@thepage@format@en{\csu@thepage}}
 }
-% 正文部分样式设置
+% mainmatter设置
 \renewcommand{\mainmatter}{
     \cleardoublepage
     \@mainmattertrue
@@ -39,21 +38,17 @@
     \def\csu@lastpageref{\pageref{LastPage}}
     \fancyfoot[C]{\zihao{-5} \songti \csu@thepage@format@zh{\csu@thepage}{\csu@lastpageref}}
 }
-
-
-
-
-
-
 % 给页眉留足空间（否则会有 \headheight is too small的warning）
 \setlength{\headheight}{14.5pt}
 % “磅”是衡量印刷字体大小的单位,约等于七十二分之一英寸。
 % 而 1英寸＝25.4毫米，则1磅＝25.4/72≈0.353毫米。
 % 磅和 LaTeX的 pt- points (大约 1/72 inch) 是一致的。
-\renewcommand*{\baselinestretch}{1.0}   % 几倍行间距
+% 基本行间距设置
+\renewcommand*{\baselinestretch}{1.3}   % 几倍行间距
 \setlength{\baselineskip}{20pt}         % 基准行间距
+% \setlength{\bibsep}{0.5ex} % 参考文献条目间距
 
-%\setlength{\bibsep}{0.5ex} % 参考文献条目间距
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 字体设置
@@ -73,7 +68,6 @@
 % 协议页的标题按模板是华文新魏
 \setCJKfamilyfont{hwxw}{STXinwei}
 \newcommand{\huawenxinwei}{\CJKfamily{hwxw}}
-
 % 实现楷体GB_2312
 \setCJKfamilyfont{kaitigb}{KaiTi_GB2312.ttf}
 \newcommand{\kgb}{\CJKfamily{kaitigb}}
@@ -84,52 +78,42 @@
 \let\songti\relax
 \newCJKfontfamily[song]\songti{SimSun}[AutoFakeBold]
 \newcommand{\kaiti}{\CJKfamily{kai}}
-
 % 设置参考文献的字体格式
 \renewcommand{\bibfont}{\zihao{5} \kgb}
 
-% 每行缩进两个汉字
-\setlength{\parindent}{2em}
 
-%  中文标题名称
-\newcommand*{\csu@cap@contentsname}{目录}
-\newcommand*{\csu@cap@listfigurename}{插图清单}
-\newcommand*{\csu@cap@listtablename}{附表清单}
-\newcommand*{\csu@cap@refname}{参考文献}
-\newcommand*{\csu@cap@indexname}{索引}
-\newcommand*{\csu@cap@figurename}{图}
-\newcommand*{\csu@cap@tablename}{表}
-\newcommand*{\csu@cap@appendixname}{附录}
-\newcommand*{\csu@cap@abstractname}{摘要}
-\newcommand*{\csu@cap@acknowledgementsname}{致谢}
-%  中文关键字
-\newcommand*{\csu@cap@keywordsname}{关键字}
+% 预定义名称
+\newcommand*{\csu@name@cover}{扉页}
+\newcommand*{\csu@name@abstract@zh}{中文摘要}
+\newcommand*{\csu@name@abstract@en}{英文摘要}
+\newcommand*{\csu@name@keywords}{关键字}
+\newcommand*{\csu@name@contents}{目录}
+\newcommand*{\csu@name@listfigure}{插图清单}
+\newcommand*{\csu@name@listtable}{附表清单}
+\newcommand*{\csu@name@index}{索引}
+\newcommand*{\csu@name@figure}{图}
+\newcommand*{\csu@name@table}{表}
+\newcommand*{\csu@name@appendix}{附录}
+\newcommand*{\csu@name@acknowledge}{致谢}
 
 
-
-% TODO:更新chapter的指令
-\NewDocumentCommand{\csu@chapter}{m}{
+\newcommand\csu@pdfbookmark[2]{}
+% 定义通用的chapter命令
+\NewDocumentCommand{\csu@chapter}{s m}{
   \if@openright\cleardoublepage\else\clearpage\fi
-  \chapter*{#1}
+%   \addcontentsline{toc}{chapter}{#1}%
+%   \csu@pdfbookmark{0}{#1}
+  \IfBooleanTF{#1}{
+      \csu@pdfbookmark{0}{#2}
+  }{
+      \addcontentsline{toc}{chapter}{#2}
+  }
+  \chapter*{#2}
 }
 
 
 
-\newenvironment{acknowledgements}{
-%   \ifcsu@review\relax\else
-    \ifcsu@review\else
-    % \csu@chapter{\csu@name@acknowledgements}
-    \csu@chapter{\csu@cap@acknowledgementsname}
-  \fi
-}
 
-
-\newenvironment{appendixs}{
-    % \ifcsu@review\else
-    \csu@chapter{\csu@cap@appendixname}
-    % \fi
-}
-% 定义附录环境
 
 
 %---------------------------------------------
@@ -180,7 +164,7 @@
 }
 % 重定义\maketitle实现封面（扉页）绘制
 \RenewDocumentCommand{\maketitle}{}{%
-  %TODO: 书签
+  \csu@pdfbookmark{0}{\csu@name@cover}
   \csu@make@cover@zh%
 }
 % 构建封面绘制宏
@@ -243,7 +227,8 @@
 \newcommand*{\keywordscn}[1]{\gdef\@keywordscn{#1}} % 定义中文关键词
 %\newcommand*{\categorycn}[1]{\gdef\@categorycn{#1}} % 定义中文分类
 % 定义中文摘要环境
-\newenvironment{abstractcn} {
+\newenvironment{abstractzh} {
+    \csu@pdfbookmark{0}{\csu@name@abstract@zh}
 	\renewcommand*{\headsep}{0pt}
 	\vspace*{0pt}
     \begin{center} \zihao{-2} \heiti \@titlecn \end{center}
@@ -268,6 +253,7 @@
 \newcommand*{\keywordsen}[1]{\gdef\@keywordsen{#1}} % 英文关键词
 
 \newenvironment{abstracten} { % 新建英文摘要环境
+    \csu@pdfbookmark{0}{\csu@name@abstract@en}
     \vspace*{0pt}
     \begin{center} \zihao{-2} \bfseries \@titleen \end{center}
 
@@ -292,9 +278,20 @@
 
 %TODO: 本科和硕博目录格式要求不同
 % \renewcommand{\contentsname}{\hfill \heiti \zihao{3} 目\quad 录\hfill}
+% \renewcommand{\contentsname}{目录}
 % 	\renewcommand*{\baselinestretch}{1.5}   % 行间距
 %     \tableofcontents
 % }
+\renewcommand\tableofcontents{
+    \csu@chapter*{\contentsname}
+    % \csu@pdfbookmark{0}{\contentsname}
+    
+    % \chapter*{目录}
+    % \csu@pdfbookmark{0}{\csu@name@contents}
+    \@starttoc{toc}
+}
+
+
 
 \setcounter{secnumdepth}{3}
 % 定义作为标题的格式
@@ -305,10 +302,11 @@
 %               {before-code}%定义标题前的内容
 %               [after-code]%定义标题后的内容
 
-\renewcommand{\chaptername}{第{\thesection}章}
-\titleformat{\chapter}{\zihao{3}  \heiti \centering}{\chaptername}{1em}{}
-\titleformat{\section}{\zihao{-4}  \heiti}{\thesection}{1em}{}
-\titleformat{\subsection}{\zihao{-4}  \kaishu}{\thesubsection}{1em}{}
+% TODO: 修复章节标题样式
+% \renewcommand{\chaptername}{第{\thesection}章}
+% \titleformat{\chapter}{\zihao{3}  \heiti \centering}{\chaptername}{1em}{}
+% \titleformat{\section}{\zihao{-4}  \heiti}{\thesection}{1em}{}
+% \titleformat{\subsection}{\zihao{-4}  \kaishu}{\thesubsection}{1em}{}
 
 % 定义在目录中的格式
 % \titlecontents{标题名}
@@ -319,27 +317,27 @@
 %               {指引线与页码}
 %               [下间距]
 
-\titlecontents{section}
-              [0em] % 按样例目录左侧是和前置部分文字左侧对齐的
-              {\zihao{-4} \songti}
-              %{\contentslabel {1em}}
-              {第\thecontentslabel\ 章\quad}%
-              {\hspace*{-1em}}
-              {\titlerule*[0.5pc]{.}\contentspage}
+% \titlecontents{section}
+%               [0em] % 按样例目录左侧是和前置部分文字左侧对齐的
+%               {\zihao{-4} \songti}
+%               %{\contentslabel {1em}}
+%               {第\thecontentslabel\ 章\quad}%
+%               {\hspace*{-1em}}
+%               {\titlerule*[0.5pc]{.}\contentspage}
 
-\titlecontents{subsection}
-    [4em]
-    {\zihao{-4} \songti} % note that 3.8 = 1.5 + 2.3
-    {\contentslabel{2.2em}}
-    {\hspace*{-3.5em}}
-    {\titlerule*[0.5pc]{.}\contentspage}
+% \titlecontents{subsection}
+%     [4em]
+%     {\zihao{-4} \songti} % note that 3.8 = 1.5 + 2.3
+%     {\contentslabel{2.2em}}
+%     {\hspace*{-3.5em}}
+%     {\titlerule*[0.5pc]{.}\contentspage}
 
-\titlecontents{subsubsection}
-    [7em]
-    {\zihao{-4} \songti} % note that 3.8 = 1.5 + 2.3
-    {\contentslabel{3.0em}}
-    {\hspace*{-5em}}
-    {\titlerule*[0.5pc]{.}\contentspage}
+% \titlecontents{subsubsection}
+%     [7em]
+%     {\zihao{-4} \songti} % note that 3.8 = 1.5 + 2.3
+%     {\contentslabel{3.0em}}
+%     {\hspace*{-5em}}
+%     {\titlerule*[0.5pc]{.}\contentspage}
 
 % 6. 符号说明（必要时）%
 % ---------------------------------------------------------%
@@ -385,6 +383,8 @@
   {picture/}{pic/}{pics/}{image/}{images/}}
 
 
+
+
 % 插图格式
 % ------------------------------------------------------%
 % \captionsetup[subfigure]{labelfont=normalfont,textfont=normalfont,singlelinecheck=off,justification=raggedright}
@@ -415,6 +415,8 @@
 	font={hei,five},   % 表的字体, 宋体小四
 	position=top
 }
+
+
 
 % 列表环境设置 %
 % ------------------------------------------------------------------%
@@ -474,13 +476,86 @@
 \newcommand*{\csu@cap@proof}{证明}
 \newcommand*{\csu@cap@solution}{解}
 
-% 编号分章节。如需要连续编号，注释\makeatletter下面对应内容即可。
-\renewcommand{\theequation}{\arabic{section}-\arabic{equation}}
-\makeatletter
-\@addtoreset{figure}{section}
-\@addtoreset{table}{section}
-\@addtoreset{equation}{section}
-\makeatother
+
+% TODO 测试段落后间距
+% 各级标题格式设置。
+\ctexset{%
+    chapter = {%
+        format       = \zihao{3} \heiti\centering,
+        name         = {第, 章},
+        nameformat   = {},
+        number       = \arabic{chapter},
+        numberformat = {},
+        titleformat  = {},
+        aftername    = \quad,
+        afterindent  = true,
+        % beforeskip 默认为 50pt 适当缩减
+        fixskip      = true,
+        beforeskip   = {15pt},
+        % beforeskip   = {\ifcsu@type@graduate 20pt \else 5pt\fi}
+        % afterskip 默认为 40pt 适当缩减
+        afterskip    = {40pt},
+        % afterskip    = {\ifcsu@type@graduate 30pt\else 20pt\fi},
+    },
+    section = {%
+        format       = \zihao{-4} \heiti,
+        afterindent  = true,
+        % beforeskip 默认为 3.5ex plus 1ex minus .2ex 适当缩减
+        % beforeskip   = {20pt},
+        % beforeskip   = {\ifcsu@type@graduate 30pt \else 20pt\fi}
+        % afterskip 默认为 2.3ex plus .2ex 适当缩减
+        afterskip    = {1ex \@plus .2ex},
+    },
+    subsection = {%
+        format       = \zihao{-4} \kaishu,
+        afterindent  = true,
+        % afterskip 默认为 2.3ex plus .2ex 适当缩减
+        afterskip    = {1ex \@plus .2ex},
+        fixskip      = true,
+    },
+    subsubsection = {%
+        format       = \zihao{-4} \normalfont,
+        afterindent  = true,
+        afterskip    = {1ex \@plus .2ex},
+        fixskip      = true,
+    },
+}
+
+% 定义描述距离的变量
+\newlength{\csu@headings@indent@fixed}
+\setlength{\csu@headings@indent@fixed}{2\ccwd}
+\newcommand{\csu@style@set@indent@heading}{%
+    \gdef\csu@headings@indent{\csu@headings@indent@fixed}
+    % \ifsjtu@type@graduate\relax\else
+    % 本科毕设设置四级标题
+    \ctexset{%
+        subsubsection/name   = {(,)},
+        subsubsection/number = \arabic{subsubsection},
+    }
+    % \fi
+    % 设标题的缩进
+    \ctexset{%
+        section/indent       = \csu@headings@indent,
+        subsection/indent    = \csu@headings@indent,
+        subsubsection/indent = \csu@headings@indent,
+    }
+}
+\csu@style@set@indent@heading
+
+% 全文首行缩进 2 字符， 标点符号用全角
+% \ctexset{%
+%   punct          = quanjiao,
+%   space          = auto,
+%   autoindent     = true,
+% }
+
+% % 编号分章节。如需要连续编号，注释\makeatletter下面对应内容即可。
+% \renewcommand{\theequation}{\arabic{section}-\arabic{equation}}
+% \makeatletter
+% \@addtoreset{figure}{section}
+% \@addtoreset{table}{section}
+% \@addtoreset{equation}{section}
+% \makeatother
 
 % 8. 参考文献 %
 % ------------------------------------------------------%
@@ -489,19 +564,44 @@
 % 参考文献可以采用顺序编码制组织，也可以按“著者-出版年”制组织。建议按顺序编码制，即按中文引用的顺序将参考文献附于文末。作者姓名写到第三位，余者写“，等”或“，et al.”。“参考文献”四字居中(三号黑体)，空一行左起按顺序依次列出参考文献，将序号置于方括号内(如[1])，用小四号宋体字，所有符号均用半角编排。
 % 目前采用bgt7714-2005标准进行文献索引，详见gbt7714-2005.bst.
 
-% 9. 附录（必要时）%
-% -------------------------------------------------------%
-% TODO %
-% 附录中主要列入正文内不便列出的过分冗长的公式推导，供查读方便所需的辅助性数学工具或表格、重复性数据图表、计算程序及说明等。附录依次为附录1，附录2……等，“附录X”三字居中（三号黑体）。附录中的图表公式另编排序号，与正文分开。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 附录
+%
+% 附录中主要列入正文内不便列出的过分冗长的公式推导，供查读方便所需的辅助性数学工具或表格、重复性数据图表、计算程序及说明等。
+% 附录依次为附录1，附录2……等，“附录X”三字居中（三号黑体）。附录中的图表公式另编排序号，与正文分开。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义附录环境
+\newenvironment{appendixs}{
+    % \ifcsu@review\else
+    \csu@chapter{\csu@name@appendix}
+    % \fi
+}
+
 
 % 10. 攻读学位期间主要研究成果 %
 % --------------------------------------------------------%
 % 分类按时间顺序列出作者在攻读学位期间取得的与学位论文相关的研究成果，含参加的研究项目、获奖情况、专利、专著、发表学术论文（含正式录用论文）等,书写格式参照参考文献格式。“攻读学位期间主要研究成果”字体居中（三号黑体）
 
-% 11. 致谢 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 致谢
+%
 % 作者对给予指导、各类资助和协助完成研究工作以及提供各种对论文工作有利条件的单位及个人表示感谢。“致谢”二字居中（三号黑体）。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义致谢环境
+\newenvironment{acknowledgements}{
+%   \ifcsu@review\relax\else
+    \ifcsu@review\else
+    % \csu@chapter{\csu@name@acknowledgements}
+    \csu@chapter{\csu@name@acknowledge}
+  \fi
+}
+
 
 % 篇眉和页码要求 %
 % ---------------------------------------------------------%
 % 篇眉从正文开始至全文结束，采用宋体五号字左起书写“博（或硕）士学位论文”，靠右写章标题。
 % 页码从正文开始至全文结束按阿拉伯数字连续编排，前置部分（如学位论文原创性声明和版权使用授权书、中文摘要、英文摘要、目录、符号说明等）用罗马数字分别单独编排。页码位于页面底端，居中书写。
+
+
+

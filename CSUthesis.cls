@@ -31,6 +31,7 @@
 \RequirePackage{xparse}
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 预先定义（Preliminary declarations）
 % 
@@ -106,10 +107,12 @@
 \RequirePackage{xcolor}
 % 设置页眉和页脚
 \RequirePackage{fancyhdr}
+% UPDATE: 由ctex设置代替
 % 设置标题格式
-\RequirePackage{titlesec}
+% \RequirePackage{titlesec}
 % \newcommand{\sectionbreak}{\clearpage}
 % 超链接 hyperref 的设置
+% 提供书签与链接
 \RequirePackage{hyperref}
 % 插入图片
 \RequirePackage{graphicx}
@@ -129,8 +132,11 @@
 \RequirePackage{cprotect}
 % 设置代码环境
 \RequirePackage{listings}
+% UPDATE: 由ctex设置代替
 % 首行缩进
-\RequirePackage{indentfirst}
+% \RequirePackage{indentfirst}
+
+
 % jing: ccaption宏包不能出现在 caption 宏包之后
 % 设置浮动体的标题
 \RequirePackage[justification=centering]{caption}
@@ -139,6 +145,8 @@
 \RequirePackage{enumitem}
 % 提供\AtBeginEnvironment以方便全局调整一些结构的设置
 \RequirePackage{etoolbox}
+% 确定宏定义的位置
+\RequirePackage{filehook}
 % 枚举
 \RequirePackage{enumitem}
 % 末尾页
@@ -154,6 +162,49 @@
     \input{graduate.cls}
 \else
     \input{undergraduate.cls}
+    % \input{test.cls}
 \fi
+
+\AtEndOfPackageFile*{hyperref}{
+  \hypersetup{
+    linktoc            = all,
+    bookmarksdepth     = 2,
+    bookmarksnumbered  = true,
+    bookmarksopen      = true,
+    bookmarksopenlevel = 1,
+    unicode            = true,
+    psdextra           = true,
+    breaklinks         = true,
+    plainpages         = false,
+    pdfdisplaydoctitle = true,
+    hidelinks,
+  }
+  \newcounter{csu@bookmark}
+  \renewcommand\csu@pdfbookmark[2]{%
+    \phantomsection
+    \stepcounter{csu@bookmark}%
+    \pdfbookmark[#1]{#2}{csuchapter.\thecsu@bookmark}%
+  }
+%   \renewcommand\sjtu@phantomsection{%
+%     \phantomsection
+%   }
+%   \pdfstringdefDisableCommands{%
+%     \let\\\@empty
+%     \let\quad\@empty
+%     \let\hspace\@gobble
+%   }
+%   \@ifpackagelater{hyperref}{2019/04/27}{}{%
+%     \g@addto@macro\psdmapshortnames{\let\mu\textmu}
+%   }%
+%   \AtBeginDocument{%
+%     \hypersetup{
+%       pdftitle    = \sjtu@info@title,
+%       pdfsubject  = \sjtu@name@subject,
+%       pdfkeywords = \sjtu@info@keywords,
+%       pdfauthor   = \sjtu@info@author,
+%       pdfcreator  = {LaTeX with SJTUThesis \version}
+%     }
+%   }%
+}
 
 \endinput

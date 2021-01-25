@@ -148,36 +148,33 @@
 
 
 \newenvironment{cnabstract}{
-    \newpage
-    
-  \begin{center}
-  \heiti \xiaoer 
-   \vspace*{1em}	%空一行
-  \@title\\
-  \vspace*{1em}	%空一行
-  {\heiti\zihao{3}\cnabstractname}
-  \vspace*{1em}	%空一行
-  \end{center}
+  \newpage
+    \begin{center}
+      \heiti \xiaoer 
+      \vspace*{1em}	%空一行
+      \@title\\
+      \vspace*{1em}	%空一行
+      {\heiti\zihao{3}\cnabstractname}
+      \vspace*{1em}	%空一行
+    \end{center}
    \songti\zihao{-4}
-    }
+}
 
 
 
 \newenvironment{enabstract}{
     \newpage
-    
-    \begin{center}
-  \heiti \xiaoer 
-   \vspace*{1em}	%空一行
-  \the\Etitle\\
-  \vspace*{1em}	%空一行
-  {\heiti\zihao{3}\enabstractname}
-  \vspace*{1em}	%空一行
-  \end{center}
-
+      \begin{center}
+      \heiti \xiaoer 
+      \vspace*{1em}	%空一行
+      \the\Etitle\\
+      \vspace*{1em}	%空一行
+      {\heiti\zihao{3}\enabstractname}
+      \vspace*{1em}	%空一行
+    \end{center}
     \songti\zihao{-4}
-   }
-    {\par}
+}
+    % {\par}
 
 %-------------------------------------常用宏包----------------------------------------
 \RequirePackage{amsmath,amssymb}
