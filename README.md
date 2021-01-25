@@ -74,19 +74,11 @@ TeX 作为一个优秀的排版软件，在学术界特别是数学、物理学�
   系列字体,windows 没有）,但是内容全部保留，格式也会保留大部分,直接用该 docx 可以完美通过查重。如果因为各种原因有转为 docx 的需求也可以采用此方法！
 - 格式审查: 各不同院系尺度不同，无法一概而论。
 
-
-2. 使用 XeLaTeX 编译。带 bibtex 需要经历 x-b-x-x 四次才能生成目录完整且引用正确的文档，设置方法：
-3. 主文档是 CSU-template.tex .
-4. 图片请放在 figures 文件夹.
-5. includefile 存放的是 include 页面，至少包括英文摘要页、摘要页、结尾页等，请直接在这些文件中填写相关内容,不要改变文件的位置.
-6. 模板下载更新地址:
-
-
 ## 更新日志
 
-2021/01/25: Edwardzcn 重构项目，对照学校指导文件重新修改样式，并修复目录显示的问题
-2019/12/13: BlurryLight进行了一些代码更新
-2019/05/01: BlurryLight 在[CSU-Thesis-Latex-Template](https://github.com/CSGrandeur/CSU-Thesis-LaTeX-Template) 的基础上进行修改出本科学位论文模板
+- 2021/01/25: Edwardzcn 重构项目，对照学校指导文件重新修改样式，并修复目录显示的问题
+- 2019/12/13: BlurryLight进行了一些代码更新
+- 2019/05/01: BlurryLight 在[CSU-Thesis-Latex-Template](https://github.com/CSGrandeur/CSU-Thesis-LaTeX-Template) 的基础上进行修改出本科学位论文模板
 
 <!-- ## 主要内容
 
