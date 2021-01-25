@@ -46,6 +46,15 @@
     \ClassWarning{csuthesis_warning}{#1}{#2}
 }
 
+% 定义一些命令用于写文档
+% /cs 在ltxdoc 包中也提供，剩下是自定义的
+% 借鉴自thuthesis和ustcthesis模板
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+\DeclareRobustCommand\file{\nolinkurl}
+\DeclareRobustCommand\env{\textsf}
+\DeclareRobustCommand\pkg{\textsf}
+\DeclareRobustCommand\cls{\textsf}
+
 % 模板类型选取
 \newif\ifcsu@type@bachelor
 \csu@type@bachelortrue
@@ -151,6 +160,8 @@
 \RequirePackage{enumitem}
 % 末尾页
 \RequirePackage{lastpage}
+% 
+% \RequirePackage{hypdoc}
 
 % 参考文献格式 GB/T7714-2015
 % 来自https://github.com/hushidong/biblatex-gb7714-2015

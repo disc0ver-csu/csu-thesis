@@ -1,3 +1,25 @@
+% 定制titlepage
+% 定义命令和定义相应的宏。
+%----------------------------------------------------------------------%
+% 预定义全局使用的文字，如姓名、专业等信息，在content/info.tex中定义
+%----------------------------------------------------------------------%
+% 以下定义封面相关命令和相应的宏，以titleen为例，\titleen为实际在源码中使用的命令，一旦执行就会因为\gdef\@titleen{#1}使得其产生一个\@titleen的宏，而该宏能够在后续的环境中使用。
+\newcommand*{\titlecn}[1]{\gdef\@titlecn{#1}}                           % 中文标题
+\newcommand*{\titleen}[1]{\gdef\@titleen{#1}}                           % 英文标题
+\newcommand*{\priormajor}[1]{\gdef\@priormajor{#1}}                     % 一级学科（学科专业）
+\newcommand*{\minormajor}[1]{\gdef\@minormajor{#1}}                     % 二级学科（学科方向）
+\newcommand*{\interestmajor}[1]{\gdef\@interestmajor{#1}}               % 研究方向，关键词组
+\newcommand*{\department}[1]{\gdef\@department{#1}}                     % 二级培养单位
+\newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}                     % 导师
+\newcommand*{\myclass}[1]{\gdef\@myclass{#1}}                           % 导师
+\newcommand*{\subsupervisor}[1]{\gdef\@subsupervisor{#1}}               % 副导师
+\newcommand*{\studentid}[1]{\gdef\@studentid{#1}}                       % 学号
+
+\newcommand*{\clcnumber}[1]{\gdef\@clcnumber{#1}}                       % 中图分类号 Chinese Library Classification
+\newcommand*{\schoolcode}[1]{\gdef\@schoolcode{#1}}                     % 学校代码
+\newcommand*{\udc}[1]{\gdef\@udc{#1}}                                   % UDC
+\newcommand*{\academiccategory}[1]{\gdef\@academiccategory{#1}}         % 学术类别
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 页面布局
 %
@@ -17,7 +39,9 @@
 \patchcmd{\chapter}{\thispagestyle}{\@gobble}{}{}
 % 内芯页眉设置
 \fancyhead[L]{\includegraphics[scale=0.13]{cover_icon.png}}
-\fancyhf[RH]{\heiti \zihao{-5} {图像与激光融合的轨道扣件脱落检测}} % 设置所有（奇数和偶数）右侧页眉
+% \fancyhf[RH]{\heiti \zihao{-5} {图像与激光融合的轨道扣件脱落检测}} % 设置所有（奇数和偶数）右侧页眉
+% UPDATE 更新配置为论文标题
+\fancyhf[RH]{\heiti \zihao{-5} {\@titlecn}}
 % frontmatter设置
 \renewcommand{\frontmatter}{
     \cleardoublepage
@@ -121,27 +145,7 @@
 % \newcommand\supercite[2][]{%
     % \textsuperscript{\cite[#1]{#2}}}
 
-% 定制titlepage
-% 定义命令和定义相应的宏。
-%----------------------------------------------------------------------%
-% 预定义全局使用的文字，如姓名、专业等信息，在content/info.tex中定义
-%----------------------------------------------------------------------%
-% 以下定义封面相关命令和相应的宏，以titleen为例，\titleen为实际在源码中使用的命令，一旦执行就会因为\gdef\@titleen{#1}使得其产生一个\@titleen的宏，而该宏能够在后续的环境中使用。
-\newcommand*{\titlecn}[1]{\gdef\@titlecn{#1}}                           % 中文标题
-\newcommand*{\titleen}[1]{\gdef\@titleen{#1}}                           % 英文标题
-\newcommand*{\priormajor}[1]{\gdef\@priormajor{#1}}                     % 一级学科（学科专业）
-\newcommand*{\minormajor}[1]{\gdef\@minormajor{#1}}                     % 二级学科（学科方向）
-\newcommand*{\interestmajor}[1]{\gdef\@interestmajor{#1}}               % 研究方向，关键词组
-\newcommand*{\department}[1]{\gdef\@department{#1}}                     % 二级培养单位
-\newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}                     % 导师
-\newcommand*{\myclass}[1]{\gdef\@myclass{#1}}                           % 导师
-\newcommand*{\subsupervisor}[1]{\gdef\@subsupervisor{#1}}               % 副导师
-\newcommand*{\studentid}[1]{\gdef\@studentid{#1}}                       % 学号
 
-\newcommand*{\clcnumber}[1]{\gdef\@clcnumber{#1}}                       % 中图分类号 Chinese Library Classification
-\newcommand*{\schoolcode}[1]{\gdef\@schoolcode{#1}}                     % 学校代码
-\newcommand*{\udc}[1]{\gdef\@udc{#1}}                                   % UDC
-\newcommand*{\academiccategory}[1]{\gdef\@academiccategory{#1}}         % 学术类别
 
 
 
