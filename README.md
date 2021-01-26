@@ -1,6 +1,6 @@
 # CSUThesis Latex 模板
 
-[![CSUThesis](https://img.shields.io/badge/CSUTheis-v0.1.2-green.svg)](https://github.com/disc0ver-csu/csu-thesis)
+[![CSUThesis](https://img.shields.io/badge/CSUTheis-v0.1.2-green.svg)](https://github.com/disc0ver-csu/csu-thesis/releases)
 [![](https://img.shields.io/badge/language-TeX-orange.svg)](https://github.com/disc0ver-csu/csu-thesis)
 [![QQGroup](https://img.shields.io/badge/QQGroup-1102036265-blue.svg)]()
 
@@ -23,18 +23,18 @@
 - Github Repository:
 
   ```shell
-  git clone https://github.com/disc0ver-csu/csu-latex-template.git
+  git clone https://github.com/disc0ver-csu/csu-thesis.git
   ```
 
   如果 clone 速度过慢，我们建议您使用代理并添加`--depth`参数。
 
   ```shell
-  git clone https://github.com/disc0ver-csu/csu-latex-template.git --depth=1
+  git clone https://github.com/disc0ver-csu/csu-thesis.git --depth=1
   ```
 
 - Github Releases:
 
-  最新版
+  [Release页面](https://github.com/disc0ver-csu/csu-thesis/releases)
 
 ### Overleaf
 
@@ -89,9 +89,9 @@ TeX 作为一个优秀的排版软件，在学术界特别是数学、物理学�
 
 - 感谢最先制作出中南大学博士学位论文 LaTeX 模板的郭大侠[@CSGrandeur](https://github.com/CSGrandeur)
 - 感谢添加本科学位论文样式支持的[@BlurryLight](https://github.com/BlurryLight)
-- 感谢帮助重构项目并进行测试的[@burst-bao](https://github.com/burst-bao)以及为独立使用LaTeX进行毕业论文写作提供宝贵经验的20届析阅学长
+- 感谢帮助重构项目并进行测试的[@burst-bao](https://github.com/burst-bao)以及为独立使用LaTeX进行毕业论文写作提供宝贵经验的16级姜析阅学长
 - 感谢[CTeX-kit](https://github.com/CTeX-org/ctex-kit) 提供了 LaTeX 的中文支持
-- 感谢上海交通大学学位论文 LaTeX 模板的维护者们[@sjtug](https://github.com/sjtug) 和 清华大学学位论文 LaTeX 模板的维护者们[@tuna](https://github.com/tuna/)给予的宝贵设计经验
+- 感谢上海交通大学学位论文 LaTeX 模板的维护者们[@sjtug](https://github.com/sjtug) 与清华大学学位论文 LaTeX 模板的维护者们[@tuna](https://github.com/tuna/)给予的宝贵设计经验
 
 <!-- ## 主要内容
 
