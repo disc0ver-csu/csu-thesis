@@ -27,9 +27,6 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{csuthesis}[2020/01/21 v1.4.9-dev by Edwardzcn edwardzcn98@gmail.com]
-\ProcessOptions\relax
-\RequirePackage{xparse}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -38,13 +35,6 @@
 % 定义kv对，在模板文件中使用的指令并引入依赖的包
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% 报错与警告
-\NewDocumentCommand{\csu@error}{ m o }{
-    \ClassError{csuthesis_error}{#1}{#2}
-}
-\NewDocumentCommand{\csu@warning}{m o }{
-    \ClassWarning{csuthesis_warning}{#1}{#2}
-}
 
 % 定义一些命令用于写文档
 % /cs 在ltxdoc 包中也提供，剩下是自定义的
@@ -64,7 +54,8 @@
 \csu@type@doctorfalse
 \newif\ifcsu@type@course
 \csu@type@coursefalse
-
+\newif\ifcsu@type@print
+\csu@type@printfalse
 \newif\ifcsu@type@graduate
 \csu@type@graduatefalse
 \ifcsu@type@master
@@ -78,8 +69,15 @@
 \newif\ifcsu@review
 \csu@reviewfalse
 
+% 定义模板选项
+\DeclareOption{doctor}{\csu@type@doctortrue}
+\DeclareOption{master}{\csu@type@mastertrue}
+\DeclareOption{bachelor}{\csu@type@bachelortrue}
+\DeclareOption{course}{\csu@type@coursetrue}
+\DeclareOption{forprint}{\csu@type@printtrue}
 
-
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessOptions\relax
 
 % 读取基类
 % \LoadClass[a4paper,12pt]{article}
@@ -89,6 +87,15 @@
 % 加载宏包
 % 引擎执行判断宏包
 \RequirePackage{ifxetex}
+% 加载xparse宏包
+\RequirePackage{xparse}
+% 报错与警告
+\NewDocumentCommand{\csu@error}{ m o }{
+    \ClassError{csuthesis_error}{#1}{#2}
+}
+\NewDocumentCommand{\csu@warning}{m o }{
+    \ClassWarning{csuthesis_warning}{#1}{#2}
+}
 
 \RequireXeTeX
 \ifxetex

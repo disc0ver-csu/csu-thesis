@@ -38,7 +38,11 @@
 % 对章节首页的特殊page style清除页眉页脚
 \patchcmd{\chapter}{\thispagestyle}{\@gobble}{}{}
 % 内芯页眉设置
-\fancyhead[L]{\includegraphics[scale=0.13]{cover_icon.png}}
+\ifcsu@type@print
+    \fancyhead[L]{\includegraphics[scale=0.13]{csu_logo_long_black.png}}
+\else
+    \fancyhead[L]{\includegraphics[scale=0.13]{csu_logo_long_blue.png}}
+\fi
 % \fancyhf[RH]{\heiti \zihao{-5} {图像与激光融合的轨道扣件脱落检测}} % 设置所有（奇数和偶数）右侧页眉
 % UPDATE 更新配置为论文标题
 \fancyhf[RH]{\heiti \zihao{-5} {\@titlecn}}
@@ -178,7 +182,11 @@
         \vspace*{10pt}
         \begin{figure}[hbt]
             \centering
-            \includegraphics[width=0.71\textwidth]{cover_icon.png}
+            \ifcsu@type@print
+                \includegraphics[width=0.71\textwidth]{csu_logo_long_black.png}
+            \else
+                \includegraphics[width=0.71\textwidth]{csu_logo_long_blue.png}
+            \fi
         \end{figure}
         \vspace{8pt}
         \begingroup
