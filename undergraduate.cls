@@ -83,10 +83,13 @@
 %
 % 进行相关字体设置，定义必须的新字体
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: Times New Roman目前只能在Windows上使用，需要增加Linux系统字体
 \setmainfont{Times New Roman}
 \setmonofont{Courier New}
 \setsansfont{Arial}
 \newfontfamily{\enheiti}{SimHei} % 解决标题英文括号不显示黑体
+
+
 \renewcommand\normalsize{%
 	\@setfontsize\normalsize{12.05}{14.45}%
 	\abovedisplayskip 12\p@ \@plus3\p@ \@minus7\p@
@@ -584,11 +587,13 @@
 % 附录依次为附录1，附录2……等，“附录X”三字居中（三号黑体）。附录中的图表公式另编排序号，与正文分开。
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 定义附录环境
-\newenvironment{appendixs}{
-    % \ifcsu@review\else
-    \csu@chapter{\csu@name@appendix}
-    % \fi
-}
+% 在\appendix 后直接使用 chapter
+% 暂不需要
+% \newenvironment{appendixs}{
+%     % \ifcsu@review\else
+%     \csu@chapter{\csu@name@appendix}
+%     % \fi
+% }
 
 
 % 10. 攻读学位期间主要研究成果 %

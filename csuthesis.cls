@@ -113,6 +113,11 @@
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{bm}
+% 算法排版宏包
+\RequirePackage[chapter]{algorithm}
+\RequirePackage{algorithmic}
+\floatname{algorithm}{算法}
+
 % 自定义关键词
 \RequirePackage{pgfkeys}
 % 设置目录
@@ -123,10 +128,11 @@
 \RequirePackage{xcolor}
 % 设置页眉和页脚
 \RequirePackage{fancyhdr}
-% UPDATE: 由ctex设置代替
-% 设置标题格式
-% \RequirePackage{titlesec}
-% \newcommand{\sectionbreak}{\clearpage}
+% 代码高亮
+% 注：该包依赖python环境Pygments语法高亮显示工具包
+% 并且需要 -shell-escape参数
+% TODO: 日后需要修改为可配置
+
 % 超链接 hyperref 的设置
 % 提供书签与链接
 \RequirePackage{hyperref}
@@ -146,11 +152,26 @@
 \RequirePackage{bigdelim}
 % 保护脆弱命令
 \RequirePackage{cprotect}
+% 设置代码高亮
+% \RequirePackage{minted}
 % 设置代码环境
 \RequirePackage{listings}
-% UPDATE: 由ctex设置代替
-% 首行缩进
-% \RequirePackage{indentfirst}
+\lstset{
+ breaklines,
+ columns=fixed,       
+ numbers=none,                                        % 在左侧显示行号
+ numberstyle=\tiny\color{gray},                       % 设定行号格式
+ frame=single,                                        % 不显示背景边框
+ rulecolor=\color{black},                             % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+%  backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+ keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+ numberstyle=\footnotesize\color{darkgray},           
+ commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
+ stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+ showstringspaces=false,                              % 不显示字符串中的空格
+ language=c++,                                        % 设置语言
+ aboveskip=20pt
+}
 
 
 % jing: ccaption宏包不能出现在 caption 宏包之后

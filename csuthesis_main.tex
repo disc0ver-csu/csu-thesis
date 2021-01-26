@@ -4,7 +4,8 @@
 % 载入csuthesis.cls文件定义的模板
 % 支持选项，forprint（黑白打印模式）
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[forprint]{csuthesis}
+% \documentclass[forprint]{csuthesis}
+\documentclass[]{csuthesis}
 
 \addbibresource{CSUthesis_main.bib}
 
@@ -69,14 +70,6 @@
 
 
 
-% https://www.zhihu.com/question/29413517/answer/44358389 %
-% 说明如下：
-% secnumdepth 这个计数器是 LaTeX 标准文档类用来控制章节编号深度的。在 article 中，这个计数器的值默认是 3，对应的章节命令是 \subsubsection。也就是说，默认情况下，article 将会对 \subsubsection 及其之上的所有章节标题进行编号，也就是 \part, \section, \subsection, \subsubsection。LaTeX 标准文档类中，最大的标题是 \part。它在 book 和 report 类中的层级是「-1」，在 article 类中的层级是「0」。这里，我们在调用 \appendix 的时候将计数器设置为 -2，因此所有的章节命令都不会编号了。不过，一般还是会保留 \part 的编号的。所以在实际使用中，将它设置为 0 就可以了。
-
-% 在修改过程中请注意不要破环命令的完整性
-
-% \renewcommand\appendix{\setcounter{secnumdepth}{-2}}
-% \appendix
 
 % % 主文件有代码去掉页眉章节编号的“.”，但这会因为bug导致无编号章节显示一个错误编号，所以这里在无编号章节之前再次重定义sectionmark。
 % \renewcommand{\sectionmark}[1]{\markright{#1}}
@@ -114,6 +107,17 @@
 % 根据学校要求，正文中不应出现长篇幅的代码段或公式推证
 % 应单独放置在正文后的附录部分
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% https://www.zhihu.com/question/29413517/answer/44358389 %
+% 说明如下：
+% secnumdepth 这个计数器是 LaTeX 标准文档类用来控制章节编号深度的。
+% 在 article 中，这个计数器的值默认是 3，对应的章节命令是 \subsubsection。
+% 也就是说，默认情况下，article 将会对 \subsubsection 及其之上的所有章节标题进行编号，也就是 \part, \section, \subsection, \subsubsection。LaTeX 标准文档类中，最大的标题是 \part。它在 book 和 report 类中的层级是「-1」，在 article 类中的层级是「0」。这里，我们在调用 \appendix 的时候将计数器设置为 -2，因此所有的章节命令都不会编号了。不过，一般还是会保留 \part 的编号的。所以在实际使用中，将它设置为 0 就可以了。
+
+% 在修改过程中请注意不要破环命令的完整性
+
+% \renewcommand\appendix{\setcounter{secnumdepth}{-2}}
+\appendix
 \include{content/appendix}
 
 

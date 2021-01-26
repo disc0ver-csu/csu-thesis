@@ -1,4 +1,109 @@
 %!TEX root = ../csuthesis_main.tex
-\begin{appendixs} % 无章节编号
-    \textbf{这里用来存放不应属于正文的内容、典型如代码、图纸、数学证明过程等内容}
-\end{appendixs}
+% \begin{appendixs} % 无章节编号
+\chapter{附录代码}
+
+附录部分用于存放这里用来存放不适合放置在正文的大篇幅内容、典型如代码、图纸、完整数学证明过程等内容。
+
+\section{堆溢出检测算法}
+
+\begin{algorithm}[h]
+    \caption{堆溢出检测算法}\label{alg:ovf}
+    \begin{algorithmic}[1]
+        \IF {$\beta \in \mathbb{N^{*}} \land \Delta_\beta = \Delta_{\beta - 1} \land \beta < S$}
+            \STATE 正常写入
+        \ELSIF {$\beta \in \mathbb{N^{*}} \land \Delta_\beta \neq \Delta_{\beta - 1} \land \beta \geq S$}
+            \STATE 发生堆溢出
+        \ENDIF
+    \end{algorithmic}
+\end{algorithm}
+
+\section{KMP算法C++描述}
+
+% \begin{minted}[linenos]{c}
+\begin{lstlisting}
+    const int maxn=2e5+5; 
+    int nt[maxn];
+    int aa[maxn],bb[maxn];
+    int a[maxn],b[maxn];
+    int n;
+    //参数为模板串和next数组
+    //字符串均从下标0开始
+    void kmpGetNext(int *s,int *Next)
+    {
+        Next[0]=0;
+    //    int len=strlen(s);
+        for(int i=1,j=0;i<n;i++)
+        {
+            while(j&&s[i]!=s[j]) j=Next[j];
+            if(s[i]==s[j]) j++;
+            Next[i+1]=j;
+        }
+    //    Next[len]=0;
+    }
+    int kmp(int *ss,int *s,int *Next)
+    {
+        kmpGetNext(s,Next);
+    //  调试输出Next数组
+    //	int len=strlen(s);
+    //	for(int i=0;i<=n;i++)
+    //		cout<<Next[i]<<" ";
+    //	cout<<endl; 
+    
+    //    int ans=0;
+    //    int len1=strlen(ss);
+    //    int len2=strlen(s);
+        for(int i=0,j=0;i<2*n;i++)  //倍长 
+        {
+            while(j&&ss[i%n]!=s[j])j=Next[j];
+            if(ss[i%n]==s[j]) j++;
+            if(j==n){
+                return 1;
+            }
+               
+        }
+        return 0;
+    }
+    int main(void)
+    {
+        while(cin>>n)
+        {
+            memset(a,0,sizeof(a));
+            memset(b,0,sizeof(b));
+            rep(i,0,n) cin>>aa[i];
+            rep(i,0,n) cin>>bb[i];
+            sort(aa,aa+n);
+            sort(bb,bb+n);
+            rep(i,0,n-1){
+                a[i]=aa[i+1]-aa[i];
+                b[i]=bb[i+1]-bb[i];
+            }
+            a[n-1]=360000+aa[0]-aa[n-1];
+    //		rep(i,0,n) cout<<a[i]<<" ";
+    //		cout<<endl;
+            b[n-1]=360000+bb[0]-bb[n-1];
+    //		rep(i,0,n) cout<<b[i]<<" ";
+    //		cout<<endl;
+            if(kmp(a,b,nt))
+                cout<<"possible"<<endl;
+            else cout<<"impossible"<<endl;
+        }
+        return 0;
+    }
+\end{lstlisting}
+% \end{minted}
+
+\chapter{康托尔辩辞录：数学的自由与制约}
+
+（录自康托尔：《一般集合论基础》，1883）
+
+数学在其发展中是完全自由的，它只受下述自明的关注所制约，即它的概念既要内在地不存在矛盾，还要参与确定与此前形成的，已经存在着地和已被证明地概念之关系（借助定义贯串起来）。特别地，在引入新数时，数学只遵循：在给出它们地定义时使之具有某种确定性，并且在某些情况下，使之与老数有某种关系，在特定地场合中这种关系一定会使它们（新数和老数）互相区别开来，只要一个数满足这些条件，数学只能而且必须把它看作是存在的和实在的东西，这正是我……关于为什么必须把有理数、无理数和复数看作与有限正整数一样是实在的所建议的理由。
+
+我相信，没有必要害怕，许多人是害怕，这些原则含有对于科学的危险，一方面，实行造出新数的自由必须服从所设计的条件，但这些条件给任意性留下的活动空间是非常小的。而且，每一数学概念在其自身之中也带有必要的矫正物；如果它没有收获也不合适（它的无用很快就会表明这一点），那么它将由于没有成功而被丢弃。另一方面，在我看来，对于数学研究工作的任何多余的限制只会随之而带来更大的危险，由于实际上并没有任何理由可说明它是由科学的本质推断出来的，它的危险就更大了，而数学的本质恰恰在于它的自由。
+
+如果高斯、柯西、阿贝尔、雅可比、狄利克雷、魏尔斯特拉斯、埃尔米特和黎曼总是被束缚而拿他们的新想法去臣服于形而上学的控制，那么，我们今日就不可能为现代函数论的雄伟建筑而高兴，现代函数论的设计和矗立是完全自由的，毫无短视的瞬间目的……。如果福克斯、庞加莱和其他许多杰出的智者受外来影响所包围和限制，我们就会见不到他们带给微分方程论的巨大的推动，还有，如果枯莫尔不是斗胆地（大有仿效者）把所谓的“理想”数引入数论，我们今天也无从去羡慕钦佩克罗内克和戴德金在代数和算术上十分重要和杰出的工作。
+
+因此，如已说明的，数学是要脱离形而上学的桎梏而完全自由地发展 \dots
+
+
+
+% \end{appendixs}
