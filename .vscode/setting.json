@@ -68,6 +68,7 @@
   "latex-workshop.latex.clean.fileTypes": [
     "*.aux",
     "*.bbl",
+    "*.bcf",
     "*.blg",
     "*.idx",
     "*.ind",
@@ -84,6 +85,9 @@
     "*.ist",
     "*.fls",
     "*.log",
-    "*.fdb_latexmk"
+    "*.fdb_latexmk",
+    "*.pdf",
+    "*.synctex.gz",
+    "*.xml"
   ]
 }
