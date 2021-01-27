@@ -46,7 +46,7 @@
 
 ## 模板使用
 
-如果你是使用 Visual Studio Code(with LaTeX Workshop) + (Tex Live | MiKTex) 环境进行写作，我们在 `.vscode` 目录中提供了对应的 LaTeX 插件的配置：如果希望使用该目录下的 `setting.json` 作为项目配置文件，请将其重命名为 `settings.json` ，按 `ctrl + p`，输入 `reload win`，重载 Visual Studio Code，LaTeX Workshop 插件即读取配置文件，你将在插件中的 `COMMANDS - ▷Build LaTeX project` 中看到我们为你准备的五个Recipes，具体条目如下所示。
+如果你是使用 Visual Studio Code(with LaTeX Workshop) + (Tex Live | MiKTex) 环境进行写作，我们在 `.vscode` 目录中提供了对应的 LaTeX 插件的配置：如果希望使用该目录下的 `setting.json` 作为项目配置文件，请将其重命名为 `settings.json` ，按 `ctrl + p`，输入 `reload win`，回车，重载 Visual Studio Code，LaTeX Workshop 插件即读取配置文件，你将在插件中的 `COMMANDS - ▷Build LaTeX project` 中看到我们为你准备的五个Recipes，具体条目如下所示。
 ```plain text
 ▷ Recipe: xelatex
 ▷ Recipe: latexmk
