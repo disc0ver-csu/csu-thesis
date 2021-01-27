@@ -4,6 +4,7 @@
 % 预定义全局使用的文字，如姓名、专业等信息，在content/info.tex中定义
 %----------------------------------------------------------------------%
 % 以下定义封面相关命令和相应的宏，以titleen为例，\titleen为实际在源码中使用的命令，一旦执行就会因为\gdef\@titleen{#1}使得其产生一个\@titleen的宏，而该宏能够在后续的环境中使用。
+% TODO: 之后版本迁移至公共模板入口csuthesis.cls 处（放置在引入子模版之后）
 \newcommand*{\titlecn}[1]{\gdef\@titlecn{#1}}                           % 中文标题
 \newcommand*{\titleen}[1]{\gdef\@titleen{#1}}                           % 英文标题
 \newcommand*{\priormajor}[1]{\gdef\@priormajor{#1}}                     % 一级学科（学科专业）
@@ -84,21 +85,19 @@
 % 进行相关字体设置，定义必须的新字体
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO: Times New Roman目前只能在Windows上使用，需要增加Linux系统字体
-\setmainfont{Times New Roman}
-\setmonofont{Courier New}
-\setsansfont{Arial}
+% \setmainfont{Times New Roman}
+% \setmonofont{Courier New}
+% \setsansfont{Arial}
 \newfontfamily{\enheiti}{SimHei} % 解决标题英文括号不显示黑体
-
-
-\renewcommand\normalsize{%
-	\@setfontsize\normalsize{12.05}{14.45}%
-	\abovedisplayskip 12\p@ \@plus3\p@ \@minus7\p@
-	\abovedisplayshortskip \z@ \@plus3\p@
-    \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@
-}
+% \renewcommand\normalsize{%
+% 	\@setfontsize\normalsize{12.05}{14.45}%
+% 	\abovedisplayskip 12\p@ \@plus3\p@ \@minus7\p@
+% 	\abovedisplayshortskip \z@ \@plus3\p@
+%     \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@
+% }
 % 协议页的标题按模板是华文新魏
 \setCJKfamilyfont{hwxw}{STXinwei}
-\newcommand{\huawenxinwei}{\CJKfamily{hwxw}}
+% \newcommand{\huawenxinwei}{\CJKfamily{hwxw}}
 % 实现楷体GB_2312
 \setCJKfamilyfont{kaitigb}{KaiTi_GB2312.ttf}
 \newcommand{\kgb}{\CJKfamily{kaitigb}}
@@ -126,26 +125,6 @@
 \newcommand*{\csu@name@table}{表}
 \newcommand*{\csu@name@appendix}{附录}
 \newcommand*{\csu@name@acknowledge}{致谢}
-
-
-\newcommand\csu@pdfbookmark[2]{}
-% 定义通用的chapter命令
-\NewDocumentCommand{\csu@chapter}{s m}{
-  \if@openright\cleardoublepage\else\clearpage\fi
-%   \addcontentsline{toc}{chapter}{#1}%
-%   \csu@pdfbookmark{0}{#1}
-  \IfBooleanTF{#1}{
-      \csu@pdfbookmark{0}{#2}
-  }{
-      \addcontentsline{toc}{chapter}{#2}
-  }
-  \chapter*{#2}
-}
-
-
-
-
-
 
 %---------------------------------------------
 %控制引用格式，选用上标引用
