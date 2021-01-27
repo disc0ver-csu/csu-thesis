@@ -46,7 +46,19 @@
 
 ## 模板使用
 
-如果你是 Visual Studio Code + Tex Live 环境，我们在`.vscode`目录中提供了对应的 LaTeX 插件的配置。如果你希望使用命令行编译整个项目。
+如果你是使用 Visual Studio Code(with LaTeX Workshop) + (Tex Live | MiKTex) 环境进行写作，我们在 `.vscode` 目录中提供了对应的 LaTeX 插件的配置：如果希望使用该目录下的 `setting.json` 作为项目配置文件，请将其重命名为 `settings.json` ，按 `ctrl + p`，输入 `reload win`，重载 Visual Studio Code，LaTeX Workshop 插件即读取配置文件，你将在插件中的 `COMMANDS - ▷Build LaTeX project` 中看到我们为你准备的五个Recipes，具体条目如下所示。
+```plain text
+▷ Recipe: xelatex
+▷ Recipe: latexmk
+▷ Recipe: xelatex -> bibtex -> xelatex
+▷ Recipe: xelatex -> biber -> xelatex
+▷ Recipe: make thesis (Linux/macOS)
+```
+在任意的 `.tex` 文件下，执行倒数第二个recipe，即 `▷ Recipe: xelatex -> biber -> xelatex` 即可编译你的论文。
+
+**注意**，第一次编译时需要下载大量宏包，请不要担心，耐心等待一段时间。编译过程正式开始时，Visual Studio Code的底部将会出现一个字符绘制的进度条。如果等待时间过长，请考虑配置 Tex Live | MiKTeX 的软件源，或者配置代理服务器。
+
+如果你希望使用命令行编译整个项目。
 
 <!-- VScode TeXLive 配置方法：[https://www.jianshu.com/p/dc0ffa4368e3](https://www.jianshu.com/p/dc0ffa4368e3) -->
 
