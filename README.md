@@ -34,7 +34,7 @@
 
 - Github Releases:
 
-  [Release页面](https://github.com/disc0ver-csu/csu-thesis/releases)
+  [Release 页面](https://github.com/disc0ver-csu/csu-thesis/releases)
 
 ### Overleaf
 
@@ -46,29 +46,48 @@
 
 ## 模板使用
 
-如果你是使用 Visual Studio Code(with LaTeX Workshop) + (Tex Live | MiKTex) 环境进行写作，我们在 `.vscode` 目录中提供了对应的 LaTeX 插件的配置：如果希望使用该目录下的 `setting.json` 作为项目配置文件，请将其重命名为 `settings.json` ，按 `ctrl + p`，输入 `reload win`，回车，重载 Visual Studio Code，LaTeX Workshop 插件即读取配置文件，你将在插件中的 `COMMANDS - ▷Build LaTeX project` 中看到我们为你准备的五个Recipes，具体条目如下所示。
-```plain text
-▷ Recipe: xelatex
-▷ Recipe: latexmk
-▷ Recipe: xelatex -> bibtex -> xelatex
-▷ Recipe: xelatex -> biber -> xelatex
-▷ Recipe: make thesis (Linux/macOS)
-```
+### TeX 环境
+
+### 命令行
+
+- Linux 和 macOS 用户
+
+  由于写作指导所要求的 Times New Roman 等字体在 Linux 下并不可用，虽然模板会替换字体为对应环境下其他字体，我们**强烈建议模板使用者在 Windows 系统环境下进行最终版本文章的编译**。
+
+  目前版本没有提供脚本或者 make 工具，后续版本会添加，模板编译使用`xelatex`引擎，学术论文涉及目录和参考文献，有交叉引用，需要三次编译：
+
+  ```shell
+  xelatex -interaction=nonstopmode -file-line-error custhesis_main.tex
+  biber csuthesis_main.tex
+  xelatex -interaction=nonstopmode -file-line-error custhesis_main.tex
+  ```
+
+  编译成功后会在根目录下生成`csuthesis_main.pdf`文件。
+
+  你也可以使用`latexmk`编译工具。
+
+  ```shell
+  latexmk csuthesis_main.tex
+  ```
+
+- Windows 用户
+
+  由于暂未提供脚本，使用方法同上
+
+<!-- TODO -->
+
+### GUI 界面
+
+如果你使用的开发环境是 Visual Studio Code + (Tex Live | MiKTex)，我们在 `.vscode` 目录中提供了对应的 LaTeX 插件的配置。需要你在 Visual Studio Code 中安装 [LateX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) 插件，然后将 `.vscode` 目录中 `setting.json` 文件中的配置，拷贝添加至用户配置（ `Ctrl+p` 然后点击 `设置 (json)` ）中，该配置全局有效，类似教程可参考[配置 VSCode 作为 LaTeX 编辑器](http://eddyblog.oss-cn-shenzhen.aliyuncs.com/LaTeX/csu_thesis_1.gif)。
+
+![csu_thesis_1.gif](http://eddyblog.oss-cn-shenzhen.aliyuncs.com/LaTeX/csu_thesis_1.gif)
+
+如果你需要令配置文件仅对本项目生效，可以 `setting.json` 将重命名为 `settings.json` ，再在 Visual Studio Code 中按 `ctrl + p`，输入 `reload win`，回车，重载 Visual Studio Code即可。
+
 在任意的 `.tex` 文件下，执行倒数第二个recipe，即 `▷ Recipe: xelatex -> biber -> xelatex` 即可编译你的论文。
 
 **注意**，第一次编译时需要下载大量宏包，请不要担心，耐心等待一段时间。编译过程正式开始时，Visual Studio Code的底部将会出现一个字符绘制的进度条。如果等待时间过长，请考虑配置 Tex Live | MiKTeX 的软件源，或者配置代理服务器。
 
-如果你希望使用命令行编译整个项目。
-
-<!-- VScode TeXLive 配置方法：[https://www.jianshu.com/p/dc0ffa4368e3](https://www.jianshu.com/p/dc0ffa4368e3) -->
-
-### Linux 和 macOS 用户
-
-<!-- TODO -->
-
-### Windows 用户
-
-<!-- TODO -->
 
 ## 其他
 
@@ -92,8 +111,8 @@ TeX 作为一个优秀的排版软件，在学术界特别是数学、物理学�
 
 ## 更新日志
 
-- 2021/01/26: 发布v0.1.2版本，支持代码段和算法描述，修复附录编号问题，完善README
-- 2021/01/25: Edwardzcn 重构项目，发布v0.1.1版本，对照学校指导文件重新修改样式，并修复目录显示的问题
+- 2021/01/26: 发布 v0.1.2 版本，支持代码段和算法描述，修复附录编号问题，完善 README
+- 2021/01/25: Edwardzcn 重构项目，发布 v0.1.1 版本，对照学校指导文件重新修改样式，并修复目录显示的问题
 - 2019/12/13: BlurryLight 进行了一些代码更新
 - 2019/05/01: BlurryLight 在[CSU-Thesis-Latex-Template](https://github.com/CSGrandeur/CSU-Thesis-LaTeX-Template) 的基础上进行修改出本科学位论文模板
 
@@ -101,7 +120,7 @@ TeX 作为一个优秀的排版软件，在学术界特别是数学、物理学�
 
 - 感谢最先制作出中南大学博士学位论文 LaTeX 模板的郭大侠[@CSGrandeur](https://github.com/CSGrandeur)
 - 感谢添加本科学位论文样式支持的[@BlurryLight](https://github.com/BlurryLight)
-- 感谢帮助重构项目并进行测试的[@burst-bao](https://github.com/burst-bao)以及为独立使用LaTeX进行毕业论文写作提供宝贵经验的16级姜析阅学长
+- 感谢帮助重构项目并进行测试的[@burst-bao](https://github.com/burst-bao)以及为独立使用 LaTeX 进行毕业论文写作提供宝贵经验的 16 级姜析阅学长
 - 感谢[CTeX-kit](https://github.com/CTeX-org/ctex-kit) 提供了 LaTeX 的中文支持
 - 感谢上海交通大学学位论文 LaTeX 模板的维护者们[@sjtug](https://github.com/sjtug) 与清华大学学位论文 LaTeX 模板的维护者们[@tuna](https://github.com/tuna/)给予的宝贵设计经验
 

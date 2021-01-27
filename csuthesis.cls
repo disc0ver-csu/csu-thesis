@@ -75,9 +75,16 @@
 \DeclareOption{bachelor}{\csu@type@bachelortrue}
 \DeclareOption{course}{\csu@type@coursetrue}
 \DeclareOption{forprint}{\csu@type@printtrue}
+% 使用 \XeTeX{} 引擎时，\pkg{fontspec} 宏包会被 \pkg{xeCJK} 自动调用。传递给
+% \pkg{fontspec} 宏包 \opt{no-math} 选项，避免部分数学符号字体自动调整为 CMR。
+% 并使用 \opt{quiet} 忽略警告。
+%    \begin{macrocode}
+% \PassOptionsToPackage{no-math,quiet}{fontspec}
+\PassOptionsToPackage{no-math}{fontspec}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
+
 
 % 读取基类
 % \LoadClass[a4paper,12pt]{article}
@@ -108,11 +115,14 @@
 \RequirePackage{ctex}
 % 页面布局
 \RequirePackage{geometry}
-% 数学宏包
+% 使用 \pkg{amsmath} 处理数学公式
 \RequirePackage{amsmath}
-\RequirePackage{amsfonts}
-\RequirePackage{amssymb}
-\RequirePackage{bm}
+% 下面的数学宏包和unicode-math 冲突
+% \RequirePackage{amsfonts}
+% \RequirePackage{amssymb}
+% \RequirePackage{bm}
+% 使用 \pkg{unicode-math} 处理数学字体
+\RequirePackage{unicode-math}
 % 算法排版宏包
 \RequirePackage[chapter]{algorithm}
 \RequirePackage{algorithmic}
@@ -195,7 +205,7 @@
 % 来自https://github.com/hushidong/biblatex-gb7714-2015
 \RequirePackage[backend=biber,gbpub=false, style=gb7714-2015]{biblatex}
 
-
+\AtEndOfClass{
 % 根据模板类型加载不同配置
 \ifcsu@type@graduate
     \input{graduate.cls}
@@ -203,6 +213,328 @@
     \input{undergraduate.cls}
     % \input{test.cls}
 \fi
+}
+
+% 参考SJTU Thesis进行不同环境的英文字体配置
+% 字体配置
+\let\csu@font@family@xits\@empty
+\newcommand\csu@font@set@xits@names{%
+  \ifx\csu@font@family@xits\@empty
+    \IfFontExistsTF{XITSMath-Regular.otf}{%
+      \gdef\csu@font@family@xits{XITS}%
+      \gdef\csu@font@style@xits@rm{Regular}%
+      \gdef\csu@font@style@xits@bf{Bold}%
+      \gdef\csu@font@style@xits@it{Italic}%
+      \gdef\csu@font@style@xits@bfit{BoldItalic}%
+      \gdef\csu@font@name@xits@math@rm{XITSMath-Regular}%
+      \gdef\csu@font@name@xits@math@bf{XITSMath-Bold}%
+    }{%
+      \gdef\csu@font@family@xits{xits}%
+      \gdef\csu@font@style@xits@rm{regular}%
+      \gdef\csu@font@style@xits@bf{bold}%
+      \gdef\csu@font@style@xits@it{italic}%
+      \gdef\csu@font@style@xits@bfit{bolditalic}%
+      \gdef\csu@font@name@xits@math@rm{xits-math}%
+      \gdef\csu@font@name@xits@math@bf{xits-mathbold}%
+    }%
+  \fi
+}
+\let\csu@font@family@libertinus\@empty
+\newcommand\csu@font@set@libertinus@names{%
+  \ifx\csu@font@family@libertinus\@empty
+    \IfFontExistsTF{LibertinusSerif-Regular.otf}{%
+      \gdef\csu@font@family@libertinus@serif{LibertinusSerif}%
+      \gdef\csu@font@family@libertinus@sans{LibertinusSans}%
+      \gdef\csu@font@name@libertinus@math{LibertinusMath-Regular}%
+      \gdef\csu@font@style@libertinus@rm{Regular}%
+      \gdef\csu@font@style@libertinus@bf{Bold}%
+      \gdef\csu@font@style@libertinus@it{Italic}%
+      \gdef\csu@font@style@libertinus@bfit{BoldItalic}%
+    }{%
+      \gdef\csu@font@family@libertinus@serif{libertinusserif}%
+      \gdef\csu@font@family@libertinus@sans{libertinussans}%
+      \gdef\csu@font@name@libertinus@math{libertinusmath-regular}%
+      \gdef\csu@font@style@libertinus@rm{regular}%
+      \gdef\csu@font@style@libertinus@bf{bold}%
+      \gdef\csu@font@style@libertinus@it{italic}%
+      \gdef\csu@font@style@libertinus@bfit{bolditalic}%
+    }%
+  \fi
+}
+\newcommand\csu@set@font@xits{%
+  \csu@font@set@xits@names
+  \setmainfont{\csu@font@family@xits}[
+    Extension      = .otf,
+    UprightFont    = *-\csu@font@style@xits@rm,
+    BoldFont       = *-\csu@font@style@xits@bf,
+    ItalicFont     = *-\csu@font@style@xits@it,
+    BoldItalicFont = *-\csu@font@style@xits@bfit,
+  ]
+}
+\newcommand\csu@set@font@times{%
+  \setmainfont{Times New Roman}[Ligatures = Rare]
+  \setsansfont{Arial}
+  \setmonofont{Courier New}[Scale = MatchLowercase]
+}
+\newcommand\csu@set@font@stix{%
+  \setmainfont{STIX2Text}[
+    Extension      = .otf,
+    UprightFont    = *-Regular,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+  ]
+}
+\newcommand\csu@set@font@step{%
+  \setmainfont{STEP}[
+    Extension      = .otf,
+    UprightFont    = *-Regular,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+  ]
+}
+\newcommand\csu@set@font@source@sans@mono{%
+  \setsansfont{SourceSansPro}[
+    Extension      = .otf,
+    UprightFont    = *-Regular ,
+    ItalicFont     = *-RegularIt ,
+    BoldFont       = *-Bold ,
+    BoldItalicFont = *-BoldIt,
+  ]
+  \setmonofont{SourceCodePro}[
+    Extension      = .otf,
+    UprightFont    = *-Regular ,
+    ItalicFont     = *-RegularIt ,
+    BoldFont       = *-Bold ,
+    BoldItalicFont = *-BoldIt,
+    Scale          = MatchLowercase,
+  ]
+}
+\newcommand\csu@set@font@termes{%
+  \setmainfont{texgyretermes}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]%
+}
+\newcommand\csu@set@font@pagella{%
+  \setmainfont{texgyrepagella}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]%
+}
+\newcommand\csu@set@font@texgyre@sans@mono{%
+  \setsansfont{texgyreheros}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]%
+  \setmonofont{texgyrecursor}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]%
+}
+\newcommand\csu@set@font@cambria{%
+  \setmainfont{Cambria}
+  \setsansfont{Calibri}
+  \setmonofont{Consolas}[Scale = MatchLowercase]
+}
+\newcommand\csu@set@font@libertinus{%
+  \csu@font@set@libertinus@names
+  \setmainfont{\csu@font@family@libertinus@serif}[
+    Extension      = .otf,
+    UprightFont    = *-\csu@font@style@libertinus@rm,
+    BoldFont       = *-\csu@font@style@libertinus@bf,
+    ItalicFont     = *-\csu@font@style@libertinus@it,
+    BoldItalicFont = *-\csu@font@style@libertinus@bfit,
+  ]%
+  \setsansfont{\csu@font@family@libertinus@sans}[
+    Extension      = .otf,
+    UprightFont    = *-\csu@font@style@libertinus@rm,
+    BoldFont       = *-\csu@font@style@libertinus@bf,
+    ItalicFont     = *-\csu@font@style@libertinus@it,
+  ]%
+  \setmonofont{lmmonolt10}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-oblique,
+    BoldItalicFont = *-boldoblique,
+  ]%
+}
+\newcommand\csu@set@font@lm{%
+  \setmainfont{lmroman10}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]%
+  \setsansfont{lmsans10}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-oblique,
+    BoldItalicFont = *-boldoblique,
+  ]%
+  \setmonofont{lmmonolt10}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-oblique,
+    BoldItalicFont = *-boldoblique,
+  ]%
+}
+% 使用 \pkg{unicode-math} 配置数学字体。
+\unimathsetup{
+  math-style = ISO,
+  bold-style = ISO,
+  nabla      = upright,
+  partial    = upright,
+}
+\newcommand\csu@set@math@font@xits{%
+  \csu@font@set@xits@names
+  \setmathfont{\csu@font@name@xits@math@rm}[
+    Extension    = .otf,
+    BoldFont     = \csu@font@name@xits@math@bf,
+    StylisticSet = 8,
+  ]%
+  \setmathfont{\csu@font@name@xits@math@rm}[
+    Extension    = .otf,
+    BoldFont     = \csu@font@name@xits@math@bf,
+    StylisticSet = 1,
+    range        = {cal,bfcal},
+  ]%
+}
+\newcommand\csu@set@math@font@stix{%
+  \setmathfont{STIX2Math}[
+    Extension    = .otf,
+    StylisticSet = 8,
+  ]%
+  \setmathfont{STIX2Math}[
+    Extension    = .otf,
+    StylisticSet = 1,
+    range        = {cal,bfcal},
+  ]%
+}
+\newcommand\csu@set@math@font@step{%
+  \setmathfont{STEPMath-Regular}[
+    Extension    = .otf,
+    BoldFont     = STEPMath-Bold,
+    StylisticSet = 8,
+  ]%
+  \setmathfont{STEPMath-Regular}[
+    Extension    = .otf,
+    BoldFont     = STEPMath-Bold,
+    StylisticSet = 1,
+    range        = {cal,bfcal},
+  ]%
+}
+\newcommand\csu@set@math@font@termes{%
+  \setmathfont{texgyretermes-math.otf}
+}
+\newcommand\csu@set@math@font@pagella{%
+  \setmathfont{texgyrepagella-math.otf}
+}
+\newcommand\csu@set@math@font@cambria{%
+  \setmathfont{Cambria Math}
+}
+\newcommand\csu@set@math@font@libertinus{%
+  \csu@font@set@libertinus@names
+  \setmathfont{\csu@font@name@libertinus@math .otf}%
+}
+\newcommand\csu@set@math@font@lm{%
+  \setmathfont{latinmodern-math.otf}%
+}
+%    \end{macrocode}
+%
+% 设置西文字体集。
+%    \begin{macrocode}
+\newcommand\csu@load@fontset@xits{%
+  \csu@set@font@xits
+  \csu@set@font@source@sans@mono
+  \csu@set@math@font@xits
+}
+\newcommand\csu@load@fontset@times{%
+  \csu@set@font@times
+  \csu@set@math@font@xits
+}
+\newcommand\csu@load@fontset@stix{%
+  \csu@set@font@stix
+  \csu@set@font@source@sans@mono
+  \csu@set@math@font@stix
+}
+\newcommand\csu@load@fontset@step{%
+  \csu@set@font@step
+  \csu@set@font@source@sans@mono
+  \csu@set@math@font@step
+}
+\newcommand\csu@load@fontset@termes{%
+  \csu@set@font@termes
+  \csu@set@font@texgyre@sans@mono
+  \csu@set@math@font@termes
+}
+\newcommand\csu@load@fontset@pagella{%
+  \csu@set@font@pagella
+  \csu@set@font@texgyre@sans@mono
+  \csu@set@math@font@pagella
+}
+\newcommand\csu@load@fontset@cambria{%
+  \csu@set@font@cambria
+  \csu@set@math@font@cambria
+}
+\newcommand\csu@load@fontset@libertinus{%
+  \csu@set@font@libertinus
+  \csu@set@math@font@libertinus
+}
+\newcommand\csu@load@fontset@lm{%
+  \csu@set@font@lm
+  \csu@set@math@font@lm
+}
+\newcommand\csu@load@fontset@none{\relax}
+%    \end{macrocode}
+%
+% 载入西文字体集。
+%    \begin{macrocode}
+% \newcommand\csu@load@fontset{%
+%   \@nameuse{csu@load@fontset@\csu@latinfontset}
+% }
+% latinfontset 是csu的key 使用 对应的kv接口调用  现在没有实现
+% \csu@load@fontset@latinfontset
+% Windows系统请使用 times 字体集
+\csu@load@fontset@times
+% linux系统请使用 stix 字体集
+% \csu@load@fontset@stix
+% \csu@option@hook{csu}{latinfontset}{%
+%   \csu@load@fontset
+% }
+
+
+\newcommand\csu@pdfbookmark[2]{}
+% 定义通用的chapter命令
+\NewDocumentCommand{\csu@chapter}{s m}{
+  \if@openright\cleardoublepage\else\clearpage\fi
+%   \addcontentsline{toc}{chapter}{#1}%
+%   \csu@pdfbookmark{0}{#1}
+  \IfBooleanTF{#1}{
+      \csu@pdfbookmark{0}{#2}
+  }{
+      \addcontentsline{toc}{chapter}{#2}
+  }
+  \chapter*{#2}
+}
+
 
 \AtEndOfPackageFile*{hyperref}{
   \hypersetup{
@@ -224,7 +556,7 @@
     \stepcounter{csu@bookmark}%
     \pdfbookmark[#1]{#2}{csuchapter.\thecsu@bookmark}%
   }
-%   \renewcommand\sjtu@phantomsection{%
+%   \renewcommand\csu@phantomsection{%
 %     \phantomsection
 %   }
 %   \pdfstringdefDisableCommands{%
@@ -237,13 +569,14 @@
 %   }%
 %   \AtBeginDocument{%
 %     \hypersetup{
-%       pdftitle    = \sjtu@info@title,
-%       pdfsubject  = \sjtu@name@subject,
-%       pdfkeywords = \sjtu@info@keywords,
-%       pdfauthor   = \sjtu@info@author,
-%       pdfcreator  = {LaTeX with SJTUThesis \version}
+%       pdftitle    = \csu@info@title,
+%       pdfsubject  = \csu@name@subject,
+%       pdfkeywords = \csu@info@keywords,
+%       pdfauthor   = \csu@info@author,
+%       pdfcreator  = {LaTeX with csuThesis \version}
 %     }
 %   }%
 }
+
 
 \endinput
