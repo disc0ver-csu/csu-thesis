@@ -80,11 +80,12 @@
 
 如果你使用的开发环境是 Visual Studio Code + (Tex Live | MiKTex)，我们在 `.vscode` 目录中提供了对应的 LaTeX 插件的配置。需要你在 Visual Studio Code 中安装 [LateX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) 插件，然后将 `.vscode` 目录中 `setting.json` 文件中的配置，拷贝添加至用户配置（ `Ctrl+p` 然后点击 `设置 (json)` ）中，该配置全局有效，类似教程可参考[配置 VSCode 作为 LaTeX 编辑器](http://eddyblog.oss-cn-shenzhen.aliyuncs.com/LaTeX/csu_thesis_1.gif)。
 
+完成配置后，在任意的 `.tex` 文件下执行倒数第二个recipe，即 `▷ Recipe: xelatex -> biber -> xelatex` 即可编译你的论文。
+
 ![csu_thesis_1.gif](http://eddyblog.oss-cn-shenzhen.aliyuncs.com/LaTeX/csu_thesis_1.gif)
 
 如果你需要令配置文件仅对本项目生效，可以 `setting.json` 将重命名为 `settings.json` ，再在 Visual Studio Code 中按 `ctrl + p`，输入 `reload win`，回车，重载 Visual Studio Code即可。
 
-在任意的 `.tex` 文件下，执行倒数第二个recipe，即 `▷ Recipe: xelatex -> biber -> xelatex` 即可编译你的论文。
 
 **注意**，第一次编译时需要下载大量宏包，请不要担心，耐心等待一段时间。编译过程正式开始时，Visual Studio Code的底部将会出现一个字符绘制的进度条。如果等待时间过长，请考虑配置 Tex Live | MiKTeX 的软件源，或者配置代理服务器。
 
