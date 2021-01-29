@@ -1,6 +1,8 @@
 # CSUThesis Latex 模板
 
-[![CSUThesis](https://img.shields.io/badge/CSUTheis-v0.1.2-green.svg)](https://github.com/disc0ver-csu/csu-thesis/releases)
+![CSUThesis Github Release](https://img.shields.io/github/v/release/disc0ver-csu/csu-thesis?label=github%20release)
+[![Overleaf](https://img.shields.io/badge/overleaf-v0.1.3dev-green.svg)](https://www.overleaf.com/latex/templates/csuthesis-v0-dot-1-3dev/hcsjpbsfvcdx)
+![Release Date](https://img.shields.io/github/release-date/disc0ver-csu/csu-thesis?color=yellow&label=github%20release%20date)
 [![](https://img.shields.io/badge/language-TeX-orange.svg)](https://github.com/disc0ver-csu/csu-thesis)
 [![QQGroup](https://img.shields.io/badge/QQGroup-1102036265-blue.svg)]()
 
@@ -13,6 +15,8 @@
 ## 获取模板
 
 ### 下载至本地
+
+![CSUThesis Github Release](https://img.shields.io/github/v/release/disc0ver-csu/csu-thesis?label=github%20release)
 
 由于目前模板更新频繁，我们强烈建议您使用**稳定的发布版本**，同时请确保**您已经阅读了示例文档**。
 
@@ -38,11 +42,11 @@
 
 ### Overleaf
 
-即将发布
+[![Overleaf](https://img.shields.io/badge/overleaf-v0.1.3dev-green.svg)](https://www.overleaf.com/latex/templates/csuthesis-v0-dot-1-3dev/hcsjpbsfvcdx)
 
-<!-- TODO -->
+我们同时提供了[Overleaf 模板](https://www.overleaf.com/latex/templates/csuthesis-v0-dot-1-3dev/hcsjpbsfvcdx)，习惯在 Overleaf 上进行写作的同学可以从上面的模板链接创建自己的项目。
 
-<!-- ## 模板更新 -->
+:warning: 目前 Overleaf 上为测试版本，仍然存在 Linux 系统适配的问题。另外由于学校写作指导文件要求的部分商用字体（比如 Times New Romance）不可在 Linux 上使用，我们采取的方案是进行相近字体的替换。所以即便你的写作过程是在 Linux 或者 macOS 上完成的，我们仍**强烈建议**您在 Windows 操作系统上编译最终版论文。
 
 ## 模板使用
 
@@ -57,9 +61,9 @@
   目前版本没有提供脚本或者 make 工具，后续版本会添加，模板编译使用`xelatex`引擎，学术论文涉及目录和参考文献，有交叉引用，需要三次编译：
 
   ```shell
-  xelatex -interaction=nonstopmode -file-line-error custhesis_main.tex
+  xelatex -interaction=nonstopmode -file-line-error csuthesis_main.tex
   biber csuthesis_main.tex
-  xelatex -interaction=nonstopmode -file-line-error custhesis_main.tex
+  xelatex -interaction=nonstopmode -file-line-error csuthesis_main.tex
   ```
 
   编译成功后会在根目录下生成`csuthesis_main.pdf`文件。
@@ -80,19 +84,19 @@
 
 如果你使用的开发环境是 Visual Studio Code + (Tex Live | MiKTex)，我们在 `.vscode` 目录中提供了对应的 LaTeX 插件的配置。需要你在 Visual Studio Code 中安装 [LateX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) 插件，然后将 `.vscode` 目录中 `setting.json` 文件中的配置，拷贝添加至用户配置（ `Ctrl+p` 然后点击 `设置 (json)` ）中，该配置全局有效，类似教程可参考[配置 VSCode 作为 LaTeX 编辑器](http://eddyblog.oss-cn-shenzhen.aliyuncs.com/LaTeX/csu_thesis_1.gif)。
 
-完成配置后，在任意的 `.tex` 文件下执行倒数第二个recipe，即 `▷ Recipe: xelatex -> biber -> xelatex` 即可编译你的论文。
+完成配置后，在任意的 `.tex` 文件下执行倒数第二个 recipe，即 `▷ Recipe: xelatex -> biber -> xelatex` 即可编译你的论文。
 
 ![csu_thesis_1.gif](http://eddyblog.oss-cn-shenzhen.aliyuncs.com/LaTeX/csu_thesis_1.gif)
 
-如果你需要令配置文件仅对本项目生效，可以 `setting.json` 将重命名为 `settings.json` ，再在 Visual Studio Code 中按 `ctrl + p`，输入 `reload win`，回车，重载 Visual Studio Code即可。
+如果你需要令配置文件仅对本项目生效，可以 `setting.json` 将重命名为 `settings.json` ，再在 Visual Studio Code 中按 `ctrl + p`，输入 `reload win`，回车，重载 Visual Studio Code 即可。
 
-
-**注意**，第一次编译时需要下载大量宏包，请不要担心，耐心等待一段时间。编译过程正式开始时，Visual Studio Code的底部将会出现一个字符绘制的进度条。如果等待时间过长，请考虑配置 Tex Live | MiKTeX 的软件源，或者配置代理服务器。
+**注意**，第一次编译时需要下载大量宏包，请不要担心，耐心等待一段时间。编译过程正式开始时，Visual Studio Code 的底部将会出现一个字符绘制的进度条。如果等待时间过长，请考虑配置 Tex Live | MiKTeX 的软件源，或者配置代理服务器。
 
 ## 参与维护
+
 欢迎大家参与项目维护！
 
-请阅读 `docs` 目录中的开发者文档，明确开发流程和注意事项😉。
+请阅读 `docs` 目录中的[项目开发者指导](./docs/DEVELOPER_MANUAL.md)等文档，明确开发流程和注意事项 😉。
 
 ## 其他
 
