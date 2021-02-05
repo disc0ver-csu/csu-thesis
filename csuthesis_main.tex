@@ -4,8 +4,10 @@
 % 载入csuthesis.cls文件定义的模板
 % 支持选项，forprint（黑白打印模式）
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \documentclass[forprint]{csuthesis}
-\documentclass[]{csuthesis}
+% 选项
+%   type=[doctor|master|bachelor|course|translation],     % 可选（默认：doctor），论文类型（学位/课程/翻译）
+%   output=[print|electronic],                      % 可选（默认：print），输出要求（电子版/打印）
+\documentclass[type=bachelor,output=electronic]{csuthesis}
 
 \addbibresource{CSUthesis_main.bib}
 

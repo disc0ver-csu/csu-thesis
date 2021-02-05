@@ -20,21 +20,42 @@
 % 参考本校多位学长（包括最初的模板作者郭大侠）编写的模板，以及SJTU Thesis和WHU Thesis Latex模板进行重构。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 声明部分（Identification）
+% 基本信息
 %
 % 指定模板使用的 Latex 版本，标识输出模板名
+% 提供报错信息
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{csuthesis}[2020/01/21 v1.4.9-dev by Edwardzcn edwardzcn98@gmail.com]
+% 加载xparse宏包，LaTeX3支持
+\RequirePackage{xparse}
+% 报错与警告
+\NewDocumentCommand{\csu@error}{ m o }{
+    \ClassError{csuthesis_error}{#1}{#2}
+}
+\NewDocumentCommand{\csu@warning}{m o }{
+    \ClassWarning{csuthesis_warning}{#1}{#2}
+}
+% 引擎执行判断宏包
+\RequirePackage{ifxetex}
+\RequireXeTeX
+\ifxetex
+    % Pass
+\else
+    \csu@error{Please use xelatex driver instead of pdflatex.}
+\fi
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 预先定义（Preliminary declarations）
-% 
-% 定义kv对，在模板文件中使用的指令并引入依赖的包
+% 选项定义
+%
+% 提供模板可使用的选项
+% 提供报错信息
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\hyphenation{CSU-Thesis}
+\def\csuthesis{CSUThesis}
+\def\version{0.1.3}
 
 % 定义一些命令用于写文档
 % /cs 在ltxdoc 包中也提供，剩下是自定义的
@@ -45,72 +66,168 @@
 \DeclareRobustCommand\pkg{\textsf}
 \DeclareRobustCommand\cls{\textsf}
 
-% 模板类型选取
-\newif\ifcsu@type@bachelor
-\csu@type@bachelortrue
-\newif\ifcsu@type@master
-\csu@type@masterfalse
-\newif\ifcsu@type@doctor
-\csu@type@doctorfalse
-\newif\ifcsu@type@course
-\csu@type@coursefalse
-\newif\ifcsu@type@print
-\csu@type@printfalse
+
+\RequirePackage{kvdefinekeys}
+\RequirePackage{kvsetkeys}
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=csu,
+  prefix=csu@,
+  setkeys=\kvsetkeys}
+% 提供接口，支持 key-value 的方式来设置。
+\newcommand\csusetup[1]{
+  \kvsetkeys{csu}{#1}
+}
+\newcommand\csu@define@key[1]{
+  \kvsetkeys{csu@key}{#1}
+}
+\kv@set@family@handler{csu@key}{
+  % 处理未知key使用宏 kv set family hanlder, 使用的key为#1,value为#2
+  \@namedef{csu@#1@@name}{#1}
+  % defaul是定义key时默认值
+  \def\csu@@default{}
+  \def\csu@@choices{}
+  % 可以用 <name> 设置别称，为了方便宏名字带特殊字符的调用，比如key = math-style，
+  \kv@define@key{csu@value}{name}{
+    \@namedef{csu@#1@@name}{##1}
+  }
+  % 由于在定义接口时，\csu@⟨key⟩@@code 不一定有定义，而且在文档类/宏包中还有可能
+  % 对该 key 的 code 进行添加。所以 \csu@⟨key⟩@@code 会检查如果在定义文档类/宏包时则
+  % 推迟执行，否则立即执行。
+  % BUG double @
+  % \@namedef{csu@#1@check}{}
+  % \@namedef{csu@#1@code}{}
+  \@namedef{csu@#1@@check}{}
+  \@namedef{csu@#1@@code}{}
+  % 保存下choices = {} 定义的内容，在定义 \csu@<name>后再执行
+  \kv@define@key{csu@value}{choices}{
+    \def\csu@@choices{##1}
+    \@namedef{csu@#1@@reset}{}
+    % 这里 % 不能乱删
+    \@namedef{csu@#1@@check}{%
+      \@ifundefined{%
+        ifcsu@\@nameuse{csu@#1@@name}@\@nameuse{csu@\@nameuse{csu@#1@@name}}%
+      }{%
+        \csu@error{Invalid value "#1 = \@nameuse{csu@\@nameuse{csu@#1@@name}}"}%
+      }%
+      \@nameuse{csu@#1@@reset}%
+      \@nameuse{csu@\@nameuse{csu@#1@@name}@\@nameuse{csu@\@nameuse{csu@#1@@name}}true}%
+    }%
+  }%
+  \kv@define@key{csu@value}{default}{
+    \def\csu@@default{##1}
+  }
+  \kvsetkeys{csu@value}{#2}
+  \@namedef{csu@\@nameuse{csu@#1@@name}}{}
+  % 第一个 <choice> 设为 <default> ，并且对每个<choice>定义 ifcsu@<name>@choice
+  \kv@set@family@handler{csu@choice}{
+    \ifx\csu@@default\@empty
+      \def\csu@@default{##1}
+    \fi
+    % TODO
+    \expandafter\newif\csname ifcsu@\@nameuse{csu@#1@@name}@##1\endcsname
+    \expandafter\g@addto@macro\csname csu@#1@@reset\endcsname{
+      \@nameuse{csu@\@nameuse{csu@#1@@name}@##1false}
+    }
+  }
+  \kvsetkeys@expandafter{csu@choice}{\csu@@choices}
+  % 将 <default> 赋值到 \csu@<name>， 如果非空则执行相应的代码。
+  \expandafter\let\csname csu@\@nameuse{csu@#1@@name}\endcsname\csu@@default
+  \expandafter\ifx\csname csu@\@nameuse{csu@#1@@name}\endcsname\@empty\else
+    \@nameuse{csu@#1@@check}%
+  \fi
+  % 定义 \csusetup接口
+  \kv@define@key{csu}{#1}{
+    \@namedef{csu@\@nameuse{csu@#1@@name}}{##1}
+    \@nameuse{csu@#1@@check}
+    \@nameuse{csu@#1@@code}
+  }
+}
+% 定义接口向 key 添加 code
+\newcommand\csu@option@hook[2]{
+  \expandafter\g@addto@macro\csname csu@#1@@code\endcsname{#2}
+}
+\csu@define@key{
+  type = {
+    choices = {
+      bachelor,
+      master,
+      doctor,
+      postdoc,
+      course,
+      translation,
+    },
+    default = doctor,
+  },
+  % degree-type = {
+  %   choices = {
+  %     academic,
+  %     professional,
+  %   },
+  %   name = degree@type,
+  % },
+  % 语言
+  language = {
+    choices = {
+      chinese,
+      english,
+    },
+  },
+  % 选择打印版还是用于上传的电子版。
+  output = {
+    choices = {
+      print,
+      electronic,
+    },
+    default = print,
+  },
+}
 \newif\ifcsu@type@graduate
-\csu@type@graduatefalse
-\ifcsu@type@master
+\newcommand\csu@set@graduate{
+  \csu@type@graduatefalse
+  \ifcsu@type@doctor
     \csu@type@graduatetrue
-\fi
-\ifcsu@type@doctor
+  \fi
+  \ifcsu@type@master
     \csu@type@graduatetrue
-\fi
-
+  \fi
+}
+\csu@set@graduate
+\csu@option@hook{type}{
+  \csu@set@graduate
+}
 % 定义致谢环境，盲审下隐藏致谢
-\newif\ifcsu@review
-\csu@reviewfalse
-
-% 定义模板选项
-\DeclareOption{doctor}{\csu@type@doctortrue}
-\DeclareOption{master}{\csu@type@mastertrue}
-\DeclareOption{bachelor}{\csu@type@bachelortrue}
-\DeclareOption{course}{\csu@type@coursetrue}
-\DeclareOption{forprint}{\csu@type@printtrue}
+% \newif\ifcsu@review
+% \csu@reviewfalse
+\DeclareBoolOption[false]{review}
+\DeclareBoolOption[false]{continuous}
+% 注意openany和oneside参数，默认是无空白页不区分双面印。
+\DeclareBoolOption[false]{openright}
+\DeclareComplementaryOption{openany}{openright}
+\DeclareBoolOption[true]{raggedbottom}
+\DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+\ProcessKeyvalOptions*
+\ifcsu@openright
+  \PassOptionsToClass{openright}{book}
+\else
+  \PassOptionsToClass{openany}{book}
+\fi
 % 使用 \XeTeX{} 引擎时，\pkg{fontspec} 宏包会被 \pkg{xeCJK} 自动调用。传递给
 % \pkg{fontspec} 宏包 \opt{no-math} 选项，避免部分数学符号字体自动调整为 CMR。
 % 并使用 \opt{quiet} 忽略警告。
-%    \begin{macrocode}
-% \PassOptionsToPackage{no-math,quiet}{fontspec}
-\PassOptionsToPackage{no-math}{fontspec}
-
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-\ProcessOptions\relax
-
-
+\PassOptionsToPackage{no-math, quiet}{fontspec}
 % 读取基类
-% \LoadClass[a4paper,12pt]{article}
-\LoadClass[UTF8,openany,a4paper,oneside,zihao=-4]{ctexbook}
-% 注意openany和oneside参数，默认是无空白页不区分双面印。
+\LoadClass[UTF8,a4paper,oneside,zihao=-4]{ctexbook}
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 加载宏包
-% 引擎执行判断宏包
-\RequirePackage{ifxetex}
-% 加载xparse宏包
-\RequirePackage{xparse}
-% 报错与警告
-\NewDocumentCommand{\csu@error}{ m o }{
-    \ClassError{csuthesis_error}{#1}{#2}
-}
-\NewDocumentCommand{\csu@warning}{m o }{
-    \ClassWarning{csuthesis_warning}{#1}{#2}
-}
-
-\RequireXeTeX
-\ifxetex
-    % Pass
-\else
-    \csu@error{Please use xelatex driver instead of pdflatex.}
-\fi
-
+%
+% 加载必要的宏包
+% 部分宏包再前面由于需要已经加载（或顺序限制）
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 支持中文的 ctex 宏包
 \RequirePackage{ctex}
 % 页面布局
@@ -134,7 +251,6 @@
 % v0.1.4 考虑到兼容性问题，不适用titletoc和titilesrc
 % \RequirePackage{titletoc}
 % \RequirePackage{titlesec}
-% \RequirePackage{tocloft}
 \RequirePackage[titles]{tocloft}
 % 设置字体
 \RequirePackage{fontenc}
