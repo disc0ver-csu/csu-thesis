@@ -61,6 +61,7 @@
 | TeX Live   | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | MiKTeX     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | MacTeX     | :x:                | :heavy_check_mark: | :x:                |
+| CTeX       | :x:                | :x:                | :heavy_check_mark: |
 
 ## 模板使用
 
