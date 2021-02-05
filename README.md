@@ -48,9 +48,21 @@
 
 :warning: 目前 Overleaf 上为测试版本，仍然存在 Linux 系统适配的问题。另外由于学校写作指导文件要求的部分商用字体（比如 Times New Romance）不可在 Linux 上使用，我们采取的方案是进行相近字体的替换。所以即便你的写作过程是在 Linux 或者 macOS 上完成的，我们仍**强烈建议**您在 Windows 操作系统上编译最终版论文。
 
-## 模板使用
+## 环境配置
 
-### TeX 环境
+如果希望在本地使用本模板，除了获取模板文件以外，您还需要自行配置 TeX 排版系统环境。我们常说的 TeX 并不是一个单独的程序，而是一套由排版引擎，编译程序，各类宏包与说明文档等构成的复杂排版系统，被称为 [Tex document production system](https://www.tug.org/)。为了方便用户使用，软件开发者们开发了 TeX 的发行版，提供了整套系统以及便捷的配置方式。
+
+我们**推荐**使用[Tex Live](https://www.tug.org/texlive/)和[MiKTeX](https://miktex.org/)的最新版，因为这两种发行版，对 GNU/Linux，macOS 以及 Windows 都提供了较好的支持。需要说明的是，我们**不建议**使用[CTeX 套装](http://www.ctex.org/CTeX)，该套装对 Windows 环境下 MikTeX 基础上增加了中文的支持，但是 2012 年后不再更新，已经相对过时，故不推荐使用（一些使用过 CTeX 的同学在配置环境时会出现冲突导致编译失败）。
+
+下图是一些常见的 TeX 发行版以及支持的操作系统
+
+| TeX 发行版 | GNU/Linux          | macOS              | Windows            |
+| :--------- | :----------------- | :----------------- | :----------------- |
+| TeX Live   | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| MiKTeX     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| MacTeX     | :x:                | :heavy_check_mark: | :x:                |
+
+## 模板使用
 
 ### 命令行
 
@@ -120,6 +132,7 @@ TeX 作为一个优秀的排版软件，在学术界特别是数学、物理学�
 
 ## 更新日志
 
+- 2021/01/29: 添加开发者文档，Git 使用文档，提供 Overleaf 上测试版链接。
 - 2021/01/26: 发布 v0.1.2 版本，支持代码段和算法描述，修复附录编号问题，完善 README
 - 2021/01/25: Edwardzcn 重构项目，发布 v0.1.1 版本，对照学校指导文件重新修改样式，并修复目录显示的问题
 - 2019/12/13: BlurryLight 进行了一些代码更新
