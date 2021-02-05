@@ -277,61 +277,19 @@
 %     \tableofcontents
 % }
 \renewcommand\tableofcontents{
-    \csu@chapter*{\contentsname}
+    % \csu@chapter*{\contentsname}
     % \csu@pdfbookmark{0}{\contentsname}
     
-    % \chapter*{目录}
-    % \csu@pdfbookmark{0}{\csu@name@contents}
+    \chapter*{目录}
+    \csu@pdfbookmark{0}{\csu@name@contents}
     \@starttoc{toc}
 }
+\renewcommand{\cftdot}{$\cdot$}
+\renewcommand{\cftdotsep}{1.5}
+\setlength{\cftbeforechapskip}{0pt}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
 
-
-
-\setcounter{secnumdepth}{3}
-% 定义作为标题的格式
-% \titleformat{command}[shape]%定义标题类型和标题样式
-%               {format}%定义标题格式
-%               {label}%定义标题的标签，即标题的标号等
-%               {sep}%定义标题和标号之间的水平距离
-%               {before-code}%定义标题前的内容
-%               [after-code]%定义标题后的内容
-
-% TODO: 修复章节标题样式
-% \renewcommand{\chaptername}{第{\thesection}章}
-% \titleformat{\chapter}{\zihao{3}  \heiti \centering}{\chaptername}{1em}{}
-% \titleformat{\section}{\zihao{-4}  \heiti}{\thesection}{1em}{}
-% \titleformat{\subsection}{\zihao{-4}  \kaishu}{\thesubsection}{1em}{}
-
-% 定义在目录中的格式
-% \titlecontents{标题名}
-%               [左间距]
-%               {标题格式}
-%               {标题标志}
-%               {无序号标题}
-%               {指引线与页码}
-%               [下间距]
-
-% \titlecontents{section}
-%               [0em] % 按样例目录左侧是和前置部分文字左侧对齐的
-%               {\zihao{-4} \songti}
-%               %{\contentslabel {1em}}
-%               {第\thecontentslabel\ 章\quad}%
-%               {\hspace*{-1em}}
-%               {\titlerule*[0.5pc]{.}\contentspage}
-
-% \titlecontents{subsection}
-%     [4em]
-%     {\zihao{-4} \songti} % note that 3.8 = 1.5 + 2.3
-%     {\contentslabel{2.2em}}
-%     {\hspace*{-3.5em}}
-%     {\titlerule*[0.5pc]{.}\contentspage}
-
-% \titlecontents{subsubsection}
-%     [7em]
-%     {\zihao{-4} \songti} % note that 3.8 = 1.5 + 2.3
-%     {\contentslabel{3.0em}}
-%     {\hspace*{-5em}}
-%     {\titlerule*[0.5pc]{.}\contentspage}
 
 % 6. 符号说明（必要时）%
 % ---------------------------------------------------------%
