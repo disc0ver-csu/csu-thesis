@@ -131,7 +131,11 @@
 % 自定义关键词
 \RequirePackage{pgfkeys}
 % 设置目录
-\RequirePackage{titletoc}
+% v0.1.4 考虑到兼容性问题，不适用titletoc和titilesrc
+% \RequirePackage{titletoc}
+% \RequirePackage{titlesec}
+% \RequirePackage{tocloft}
+\RequirePackage[titles]{tocloft}
 % 设置字体
 \RequirePackage{fontenc}
 % 设置颜色
