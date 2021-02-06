@@ -46,7 +46,17 @@
 \else
     \fancyhead[L]{\includegraphics[scale=0.13]{csu_logo_long_blue.png}}
 \fi
-\fancyhf[RH]{\heiti \zihao{-5} {\@titlecn}}
+\ifcsu@type@bachelor
+    \fancyhf[RH]{\heiti \zihao{-5} {\@titlecn}}
+\else
+    \ifcsu@type@translation
+        \fancyhf[RH]{\heiti \zihao{-5} {文献翻译}}
+    \fi
+    \ifcsu@type@course
+        \fancyhf[RH]{\heiti \zihao{-5} {调研报告}}
+    \fi
+\fi
+
 % frontmatter设置
 \renewcommand{\frontmatter}{
     \cleardoublepage
@@ -150,12 +160,25 @@
     \gdef\@thesisdate{\year{} 年 6{} 月} % 将构建好的日期存储到宏（\@thesisdate）中
 }
 % 重定义\maketitle实现封面（扉页）绘制
-\RenewDocumentCommand{\maketitle}{}{%
-  \csu@pdfbookmark{0}{\csu@name@cover}
-  \csu@make@cover@zh%
+\RenewDocumentCommand{\maketitle}{}{
+    \csu@pdfbookmark{0}{\csu@name@cover}
+    % 根据选项进行不同的封面（扉页绘制）
+    \ifcsu@type@bachelor
+        % 绘制本科毕设论文封面
+        \csu@make@bachelor@cover@zh
+    \else
+        % 绘制论文翻译或者课程论文封面
+        \ifcsu@type@translation
+            \csu@make@translation@cover@zh
+        \fi
+        \ifcsu@type@course
+            \csu@make@research@cover@zh
+        \fi
+        % 否则不绘制封面
+    \fi
 }
-% 构建封面绘制宏
-\NewDocumentCommand{\csu@make@cover@zh}{} {
+% 构建本科毕设论文封面绘制宏
+\NewDocumentCommand{\csu@make@bachelor@cover@zh}{} {
     \thispagestyle{empty}
     \begin{center}
         \vspace*{10pt}
@@ -175,6 +198,96 @@
         \vspace*{14pt}
         \begingroup
             \zihao{1} \setmainfont{SimHei} GRADUATION DESIGN(THESIS) \par
+            % 1号，黑体
+        \endgroup
+        \vspace{70pt} % 空行
+        \begingroup
+            \linespread{1.3}
+            \zihao{-2} 
+            \heiti
+            \begin{tabular}{ll}
+                \hspace{12pt} \makebox[4em][s]{题\qquad 目：} & \underline{\parbox[][][c]{220pt}{\center \kaishu \@titlecn}} \\
+                \hspace{12pt} \makebox[4em][s]{学生姓名：} & \underline{\makebox[220pt][c]{\kaishu \@author}} \\
+                \hspace{12pt} \makebox[4em][s]{指导老师：} &  \underline{\makebox[220pt][c]{\kaishu \@supervisor}}  \\
+                \hspace{12pt} \makebox[4em][s]{学\qquad 院：} & \underline{\makebox[220pt][c]{\kaishu \@department}}  \\
+                \hspace{12pt} \makebox[4em][s]{专业班级：} & \underline{\makebox[220pt][c]{\kaishu \@myclass}}  \\
+            \end{tabular}
+        \endgroup
+        \par
+        \vspace{80pt}
+        % \vfill
+        \begingroup
+            {\zihao{2} \heiti 本科生院制 \par}
+            \vspace{10pt}
+            {\zihao{-2} \heiti \@thesisdate \par}
+        \endgroup
+    \end{center}
+}
+% 构建论文翻译封面绘制宏
+\NewDocumentCommand{\csu@make@transaltion@cover@zh}{} {
+    \thispagestyle{empty}
+    \begin{center}
+        \vspace*{10pt}
+        \begin{figure}[hbt]
+            \centering
+            \ifcsu@output@print
+                \includegraphics[width=0.71\textwidth]{csu_logo_long_black.png}
+            \else
+                \includegraphics[width=0.71\textwidth]{csu_logo_long_blue.png}
+            \fi
+        \end{figure}
+        \vspace{8pt}
+        \begingroup
+           \fontsize{45}{60}\selectfont \enheiti \heiti \CJKsetecglue{} 本科毕业设计(文献翻译) \par
+        \endgroup
+        \vspace*{14pt}
+        \begingroup
+            \zihao{1} \setmainfont{SimHei} GRADUATION DESIGN(TRANSLATION) \par
+            % 1号，黑体
+        \endgroup
+        \vspace{70pt} % 空行
+        \begingroup
+            \linespread{1.3}
+            \zihao{-2} 
+            \heiti
+            \begin{tabular}{ll}
+                \hspace{12pt} \makebox[4em][s]{题\qquad 目：} & \underline{\parbox[][][c]{220pt}{\center \kaishu \@titlecn}} \\
+                \hspace{12pt} \makebox[4em][s]{学生姓名：} & \underline{\makebox[220pt][c]{\kaishu \@author}} \\
+                \hspace{12pt} \makebox[4em][s]{指导老师：} &  \underline{\makebox[220pt][c]{\kaishu \@supervisor}}  \\
+                \hspace{12pt} \makebox[4em][s]{学\qquad 院：} & \underline{\makebox[220pt][c]{\kaishu \@department}}  \\
+                \hspace{12pt} \makebox[4em][s]{专业班级：} & \underline{\makebox[220pt][c]{\kaishu \@myclass}}  \\
+            \end{tabular}
+        \endgroup
+        \par
+        \vspace{80pt}
+        % \vfill
+        \begingroup
+            {\zihao{2} \heiti 本科生院制 \par}
+            \vspace{10pt}
+            {\zihao{-2} \heiti \@thesisdate \par}
+        \endgroup
+    \end{center}
+}
+% 构建调研报告封面绘制宏
+\NewDocumentCommand{\csu@make@research@cover@zh}{} {
+    \thispagestyle{empty}
+    \begin{center}
+        \vspace*{10pt}
+        \begin{figure}[hbt]
+            \centering
+            \ifcsu@output@print
+                \includegraphics[width=0.71\textwidth]{csu_logo_long_black.png}
+            \else
+                \includegraphics[width=0.71\textwidth]{csu_logo_long_blue.png}
+            \fi
+        \end{figure}
+        \vspace{8pt}
+        \begingroup
+           \fontsize{45}{60}\selectfont \enheiti \heiti \CJKsetecglue{} 调研报告 \par
+        \endgroup
+        \vspace*{14pt}
+        \begingroup
+            \zihao{1} \setmainfont{SimHei} RESEARCH REPORT \par
             % 1号，黑体
         \endgroup
         \vspace{70pt} % 空行
