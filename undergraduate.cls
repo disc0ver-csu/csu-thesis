@@ -108,9 +108,6 @@
 \let\songti\relax
 \newCJKfontfamily[song]\songti{SimSun}[AutoFakeBold]
 \newcommand{\kaiti}{\CJKfamily{kai}}
-% 设置参考文献的字体格式
-% \renewcommand{\bibfont}{\zihao{5} \kgb}
-
 
 % 预定义名称
 \newcommand*{\csu@name@cover}{扉页}
