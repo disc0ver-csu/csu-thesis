@@ -65,7 +65,9 @@
 \DeclareRobustCommand\env{\textsf}
 \DeclareRobustCommand\pkg{\textsf}
 \DeclareRobustCommand\cls{\textsf}
-
+\RequirePackage{hologo}
+\newcommand{\XeTeX}{\hologo{XeTeX}}
+\newcommand{\BibLaTeX}{\textsc{Bib}\LaTeX}
 
 \RequirePackage{kvdefinekeys}
 \RequirePackage{kvsetkeys}
@@ -287,20 +289,20 @@
 % 设置代码环境
 \RequirePackage{listings}
 \lstset{
- breaklines,
- columns=fixed,       
- numbers=none,                                        % 在左侧显示行号
- numberstyle=\tiny\color{gray},                       % 设定行号格式
- frame=single,                                        % 不显示背景边框
- rulecolor=\color{black},                             % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
-%  backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
- keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
- numberstyle=\footnotesize\color{darkgray},           
- commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
- stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
- showstringspaces=false,                              % 不显示字符串中的空格
- language=c++,                                        % 设置语言
- aboveskip=20pt
+  breaklines,
+  columns=fixed,       
+  numbers=none,                                        % 在左侧显示行号
+  numberstyle=\tiny\color{gray},                       % 设定行号格式
+  frame=single,                                        % 不显示背景边框
+  rulecolor=\color{black},                             % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  % backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+  keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+  numberstyle=\footnotesize\color{darkgray},           
+  commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
+  stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+  showstringspaces=false,                              % 不显示字符串中的空格
+  language=c++,                                        % 设置语言
+  aboveskip=20pt
 }
 
 
@@ -321,18 +323,17 @@
 % 
 % \RequirePackage{hypdoc}
 
-% 参考文献格式 GB/T7714-2015
-% 来自https://github.com/hushidong/biblatex-gb7714-2015
-\RequirePackage[backend=biber,gbpub=false, style=gb7714-2015]{biblatex}
+
+
+
 
 \AtEndOfClass{
-% 根据模板类型加载不同配置
-\ifcsu@type@graduate
-    \input{graduate.cls}
-\else
-    \input{undergraduate.cls}
-    % \input{test.cls}
-\fi
+  % 根据模板类型加载不同配置
+  \ifcsu@type@graduate
+      \input{graduate.cls}
+  \else
+      \input{undergraduate.cls}
+  \fi
 }
 
 % 参考SJTU Thesis进行不同环境的英文字体配置

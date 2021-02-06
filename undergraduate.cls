@@ -109,7 +109,7 @@
 \newCJKfontfamily[song]\songti{SimSun}[AutoFakeBold]
 \newcommand{\kaiti}{\CJKfamily{kai}}
 % 设置参考文献的字体格式
-\renewcommand{\bibfont}{\zihao{5} \kgb}
+% \renewcommand{\bibfont}{\zihao{5} \kgb}
 
 
 % 预定义名称
@@ -475,7 +475,7 @@
         fixskip      = true,
     },
 }
-
+\setcounter{secnumdepth}{3}
 % 定义描述距离的变量
 \newlength{\csu@headings@indent@fixed}
 \setlength{\csu@headings@indent@fixed}{2\ccwd}
