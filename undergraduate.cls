@@ -1,9 +1,11 @@
-% 定制titlepage
-% 定义命令和定义相应的宏。
-%----------------------------------------------------------------------%
-% 预定义全局使用的文字，如姓名、专业等信息，在content/info.tex中定义
-%----------------------------------------------------------------------%
-% 以下定义封面相关命令和相应的宏，以titleen为例，\titleen为实际在源码中使用的命令，一旦执行就会因为\gdef\@titleen{#1}使得其产生一个\@titleen的宏，而该宏能够在后续的环境中使用。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 预定义名称
+%
+% 预定义全局使用的文字，如姓名、专业等信息，
+% 在content/info.tex中定义
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 以下定义封面相关命令和相应的宏，以titleen为例，\titleen为实际在源码中使用的命令，
+% 一旦执行就会因为\gdef\@titleen{#1}使得其产生一个\@titleen的宏，而该宏能够在后续的环境中使用。
 % TODO: 之后版本迁移至公共模板入口csuthesis.cls 处（放置在引入子模版之后）
 \newcommand*{\titlecn}[1]{\gdef\@titlecn{#1}}                           % 中文标题
 \newcommand*{\titleen}[1]{\gdef\@titleen{#1}}                           % 英文标题
@@ -39,13 +41,11 @@
 % 对章节首页的特殊page style清除页眉页脚
 \patchcmd{\chapter}{\thispagestyle}{\@gobble}{}{}
 % 内芯页眉设置
-\ifcsu@type@print
+\ifcsu@output@print
     \fancyhead[L]{\includegraphics[scale=0.13]{csu_logo_long_black.png}}
 \else
     \fancyhead[L]{\includegraphics[scale=0.13]{csu_logo_long_blue.png}}
 \fi
-% \fancyhf[RH]{\heiti \zihao{-5} {图像与激光融合的轨道扣件脱落检测}} % 设置所有（奇数和偶数）右侧页眉
-% UPDATE 更新配置为论文标题
 \fancyhf[RH]{\heiti \zihao{-5} {\@titlecn}}
 % frontmatter设置
 \renewcommand{\frontmatter}{
@@ -108,9 +108,6 @@
 \let\songti\relax
 \newCJKfontfamily[song]\songti{SimSun}[AutoFakeBold]
 \newcommand{\kaiti}{\CJKfamily{kai}}
-% 设置参考文献的字体格式
-\renewcommand{\bibfont}{\zihao{5} \kgb}
-
 
 % 预定义名称
 \newcommand*{\csu@name@cover}{扉页}
@@ -164,7 +161,7 @@
         \vspace*{10pt}
         \begin{figure}[hbt]
             \centering
-            \ifcsu@type@print
+            \ifcsu@output@print
                 \includegraphics[width=0.71\textwidth]{csu_logo_long_black.png}
             \else
                 \includegraphics[width=0.71\textwidth]{csu_logo_long_blue.png}
@@ -284,11 +281,14 @@
     \csu@pdfbookmark{0}{\csu@name@contents}
     \@starttoc{toc}
 }
-\renewcommand{\cftdot}{$\cdot$}
-\renewcommand{\cftdotsep}{1.5}
-\setlength{\cftbeforechapskip}{0pt}
-\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
-\renewcommand{\cftchapdotsep}{\cftdotsep}
+\newcommand\csu@toc@set@format{
+    \renewcommand{\cftdot}{$\cdot$}
+    \renewcommand{\cftdotsep}{1.5}
+    \setlength{\cftbeforechapskip}{0pt}
+    \renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
+    \renewcommand{\cftchapdotsep}{\cftdotsep}
+}
+\csu@toc@set@format
 
 
 % 6. 符号说明（必要时）%
@@ -472,7 +472,7 @@
         fixskip      = true,
     },
 }
-
+\setcounter{secnumdepth}{3}
 % 定义描述距离的变量
 \newlength{\csu@headings@indent@fixed}
 \setlength{\csu@headings@indent@fixed}{2\ccwd}

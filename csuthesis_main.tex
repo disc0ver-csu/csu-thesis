@@ -3,11 +3,20 @@
 %
 % 载入csuthesis.cls文件定义的模板
 % 支持选项，forprint（黑白打印模式）
+% 载入主体内容样式与参考文献样式
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \documentclass[forprint]{csuthesis}
-\documentclass[]{csuthesis}
-
-\addbibresource{CSUthesis_main.bib}
+% 选项
+%   type=[doctor|master|bachelor|course|translation],     % 可选（默认：doctor），论文类型（学位/课程/翻译）
+%   output=[print|electronic],                      % 可选（默认：print），输出要求（电子版/打印）
+\documentclass[type=bachelor,output=electronic]{csuthesis}
+% 来自https://github.com/hushidong/biblatex-gb7714-2015
+% 参考文献 gb7714-2015 支持宏包
+% 使用了biblatex-gb7714-2015宏包，指定后端为biber
+\usepackage[backend=biber,style=gb7714-2015,gbnamefmt=uppercase,gbpub=false,gbpunctin=false]{biblatex}
+% 重定义参考文献字体为楷体GB_2312 字号5号
+\renewcommand{\bibfont}{\zihao{5} \kgb}
+% 导入参考文献数据库
+\addbibresource{csuthesis_main.bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 基本信息
@@ -86,26 +95,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 参考文献
 %
-% 存储在\content\acknowledgements.tex文件中
-% 根据本科生院的要求，致谢应该在参考文献的前面，不编章号，而附录应该位于参考文献后。
-% 有待修复
+% 文中引用的文献依次编序，其序号用方括号括起，如[5]、[6]，置于右上角。
+% 根据
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \section{参考文献} % bibliography会自动显示参考文献四个字
-\addcontentsline{toc}{chapter}{参考文献} % 由于参考文献不是chapter，这句把参考文献加入目录
-% \nocite{*} % 该命令用于显示全部参考文献，即使文中没引用
-% cls文件中已经引入package，这里不需要调用 \bibliographystyle 了。
-% \bibliographystyle{gbt7714-2005}
-% \bibliography{thesis-references}
+% 由于参考文献不是chapter，这句把参考文献加入目录
+% \addcontentsline{toc}{chapter}{参考文献} 
 \printbibliography
-
 \newpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 附录部分
 %
-% 根据学校要求，正文中不应出现长篇幅的代码段或公式推证
-% 应单独放置在正文后的附录部分
+%
+% 不宜收入正文中，又有价值的内容可编入毕业论文(设计)的附录中。
+% 大号的设计图纸；篇幅较大的计算机程序(以研究软件程序
+% 为主的毕业论文(设计)题目，其程序可作为正文的一部分)；
+% 过长的公式推演过程
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % https://www.zhihu.com/question/29413517/answer/44358389 %
