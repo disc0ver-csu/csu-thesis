@@ -52,7 +52,7 @@
     \ifcsu@type@translation
         \fancyhf[RH]{\heiti \zihao{-5} {文献翻译}}
     \fi
-    \ifcsu@type@course
+    \ifcsu@type@research
         \fancyhf[RH]{\heiti \zihao{-5} {调研报告}}
     \fi
 \fi
@@ -171,7 +171,7 @@
         \ifcsu@type@translation
             \csu@make@translation@cover@zh
         \fi
-        \ifcsu@type@course
+        \ifcsu@type@research
             \csu@make@research@cover@zh
         \fi
         % 否则不绘制封面
@@ -224,7 +224,7 @@
     \end{center}
 }
 % 构建论文翻译封面绘制宏
-\NewDocumentCommand{\csu@make@transaltion@cover@zh}{} {
+\NewDocumentCommand{\csu@make@translation@cover@zh}{} {
     \thispagestyle{empty}
     \begin{center}
         \vspace*{10pt}
@@ -238,14 +238,18 @@
         \end{figure}
         \vspace{8pt}
         \begingroup
-           \fontsize{45}{60}\selectfont \enheiti \heiti \CJKsetecglue{} 本科毕业设计(文献翻译) \par
+           \linespread{1.0}
+           \fontsize{45}{60}\selectfont \enheiti \heiti \CJKsetecglue{} 本科毕业设计(论文) \par 
+           \fontsize{40}{45}\selectfont \enheiti \heiti \CJKsetecglue{}文献翻译 \par
         \endgroup
         \vspace*{14pt}
         \begingroup
-            \zihao{1} \setmainfont{SimHei} GRADUATION DESIGN(TRANSLATION) \par
+            \linespread{1.0}
+            \zihao{1} \setmainfont{SimHei} GRADUATION DESIGN(THESIS) \par
+            \zihao{1} \setmainfont{SimHei} TRANSLATION \par
             % 1号，黑体
         \endgroup
-        \vspace{70pt} % 空行
+        \vspace{40pt} % 空行
         \begingroup
             \linespread{1.3}
             \zihao{-2} 
@@ -259,7 +263,7 @@
             \end{tabular}
         \endgroup
         \par
-        \vspace{80pt}
+        \vspace{40pt}
         % \vfill
         \begingroup
             {\zihao{2} \heiti 本科生院制 \par}
@@ -282,15 +286,20 @@
             \fi
         \end{figure}
         \vspace{8pt}
-        \begingroup
-           \fontsize{45}{60}\selectfont \enheiti \heiti \CJKsetecglue{} 调研报告 \par
-        \endgroup
-        \vspace*{14pt}
-        \begingroup
-            \zihao{1} \setmainfont{SimHei} RESEARCH REPORT \par
-            % 1号，黑体
-        \endgroup
-        \vspace{70pt} % 空行
+    \begingroup
+        \linespread{1.0}
+        \fontsize{45}{60}\selectfont \enheiti \heiti \CJKsetecglue{} 本科毕业设计(论文) \par 
+        \fontsize{40}{45}\selectfont \enheiti \heiti \CJKsetecglue{} 调研报告 \par
+     \endgroup
+     \vspace*{14pt}
+     \begingroup
+         \linespread{1.0}
+         \zihao{1} \setmainfont{SimHei} GRADUATION DESIGN(THESIS) \par
+         \zihao{1} \setmainfont{SimHei} RESEARCH REPORT \par
+         
+         % 1号，黑体
+     \endgroup
+        \vspace{40pt} % 空行
         \begingroup
             \linespread{1.3}
             \zihao{-2} 
@@ -304,7 +313,7 @@
             \end{tabular}
         \endgroup
         \par
-        \vspace{80pt}
+        \vspace{40pt}
         % \vfill
         \begingroup
             {\zihao{2} \heiti 本科生院制 \par}

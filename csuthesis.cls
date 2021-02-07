@@ -156,10 +156,10 @@
       master,
       doctor,
       postdoc,
-      course,
+      research,
       translation,
     },
-    default = doctor,
+    default = bachelor,
   },
   % degree-type = {
   %   choices = {
