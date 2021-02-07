@@ -65,33 +65,7 @@
 
 ## 模板使用
 
-### 命令行
-
-- Linux 和 macOS 用户
-
-  由于写作指导所要求的 Times New Roman 等字体在 Linux 下并不可用，虽然模板会替换字体为对应环境下其他字体，我们**强烈建议模板使用者在 Windows 系统环境下进行最终版本文章的编译**。
-
-  目前版本没有提供脚本或者 make 工具，后续版本会添加，模板编译使用`xelatex`引擎，学术论文涉及目录和参考文献，有交叉引用，需要三次编译：
-
-  ```shell
-  xelatex -interaction=nonstopmode -file-line-error csuthesis_main.tex
-  biber csuthesis_main.tex
-  xelatex -interaction=nonstopmode -file-line-error csuthesis_main.tex
-  ```
-
-  编译成功后会在根目录下生成`csuthesis_main.pdf`文件。
-
-  你也可以使用`latexmk`编译工具。
-
-  ```shell
-  latexmk csuthesis_main.tex
-  ```
-
-- Windows 用户
-
-  由于暂未提供脚本，使用方法同上
-
-<!-- TODO -->
+在`content` 目录下撰写文章内容，之后使用如下方式编译生成 pdf 格式文件。我们希望模板使用者有基本的 latex 撰写经验以及命令行使用能力，模板也配置了一些相关工具来帮助编译。
 
 ### GUI 界面
 
@@ -104,6 +78,42 @@
 如果你需要令配置文件仅对本项目生效，可以 `setting.json` 将重命名为 `settings.json` ，再在 Visual Studio Code 中按 `ctrl + p`，输入 `reload win`，回车，重载 Visual Studio Code 即可。
 
 **注意**，第一次编译时需要下载大量宏包，请不要担心，耐心等待一段时间。编译过程正式开始时，Visual Studio Code 的底部将会出现一个字符绘制的进度条。如果等待时间过长，请考虑配置 Tex Live | MiKTeX 的软件源，或者配置代理服务器。
+
+### 命令行
+
+- Windows 用户
+
+  你可以在项目目录使用`latexmk`进行编译，推荐`latexmk`是因为参考文献等带来的交叉引用问题需要多次编译（使用`xelatex`和`biber`），而`latexmk`可以帮助我们免除此苦恼。相关配置在`latexmkrc`中。你可以按如下方式使用该工具。
+
+  ```shell
+  latexmk                     # 编译生成 csuthesis_main.pdf
+  latexmk csuthesis_main.tex  # 给出完整参数，编译生成 csuthesis_main.pdf
+  latexmk -c                  # 删除除 pdf 文件外的生成文件
+  latexmk -C                  # 删除包含 pdf 文件在内的所有生成文件
+  ```
+
+  你也可以直接使用`xelatex`和`biber`来进行编译，一般而言这是不必要的，但是如果你改动了模板参数想要进行测试，或者希望编译生成没有参考文献的文件，这种方式可以提供更多帮助。
+
+  ```shell
+  xelatex -interaction=nonstopmode -file-line-error csuthesis_main.tex  # 编译生成无目录与参考文献的文件
+  biber csuthesis_main.tex                                              # 编译参考文献
+  xelatex -interaction=nonstopmode -file-line-error csuthesis_main.tex  # 再次编译
+  ```
+
+- Linux 和 macOS 用户
+
+  由于写作指导所要求的 Times New Roman 等字体在 Linux 下并不可用，虽然模板会替换字体为对应环境下其他字体，我们**强烈建议模板使用者在 Windows 系统环境下进行最终版本文章的编译**。
+
+  你可以使用模板提供的`Makefile`工具进行编译：
+
+  ```shell
+  make all                      # 编译生成 csuthesis_main.pdf
+  make clean                    # 删除除 pdf 文件外的生成文件
+  make cleanall                 # 删除包含 pdf 文件在内的所有生成文件
+  make wordcount                # 字数统计
+  ```
+
+  当然你也可以使用`latexmk`或者`xelatex`配合`biber`编译生成 pdf 文件。
 
 ## 参与维护
 
@@ -133,6 +143,7 @@ TeX 作为一个优秀的排版软件，在学术界特别是数学、物理学�
 
 ## 更新日志
 
+- 2021/02/07：提供不同选项接口，配置不同的封面。
 - 2021/01/29: 添加开发者文档，Git 使用文档，提供 Overleaf 上测试版链接。
 - 2021/01/26: 发布 v0.1.2 版本，支持代码段和算法描述，修复附录编号问题，完善 README
 - 2021/01/25: Edwardzcn 重构项目，发布 v0.1.1 版本，对照学校指导文件重新修改样式，并修复目录显示的问题
@@ -143,18 +154,13 @@ TeX 作为一个优秀的排版软件，在学术界特别是数学、物理学�
 
 - 感谢最先制作出中南大学博士学位论文 LaTeX 模板的郭大侠[@CSGrandeur](https://github.com/CSGrandeur)
 - 感谢添加本科学位论文样式支持的[@BlurryLight](https://github.com/BlurryLight)
-- 感谢帮助重构项目并进行测试的[@burst-bao](https://github.com/burst-bao)以及为独立使用 LaTeX 进行毕业论文写作提供宝贵经验的 16 级姜析阅学长
+- 感谢帮助重构项目并进行测试的[@burst-bao](https://github.com/burst-bao)和[@Wp-Zhang](https://github.com/Wp-Zhang)以及为独立使用 LaTeX 进行毕业论文写作提供宝贵经验的 16 级姜析阅学长
 - 感谢[CTeX-kit](https://github.com/CTeX-org/ctex-kit) 提供了 LaTeX 的中文支持
 - 感谢上海交通大学学位论文 LaTeX 模板的维护者们[@sjtug](https://github.com/sjtug) 与清华大学学位论文 LaTeX 模板的维护者们[@tuna](https://github.com/tuna/)给予的宝贵设计经验
 
-<!-- ## 主要内容
+<!--
 
 ## 文件介绍
-
-
-### `gbt7714-unsrt.bst`和`gbt7714.sty`两个文件
-
-来自项目[CTeX-org/gbt7714-bibtex-style](https://github.com/CTeX-org/gbt7714-bibtex-style)，是参考文献的样式，与学校论文撰写规范一致。
 
 ### `content`目录
 
@@ -178,7 +184,7 @@ TeX 作为一个优秀的排版软件，在学术界特别是数学、物理学�
 
 ### `images`目录
 
-放图片，模板已经配置了相对路径，所以在文中插图片时，直接用 images 目录下的相对路径即可，比如`images/csu.png`，在正文中插入只需要`csu.png`。
+。
 
 ### `KaiTi_GB2312.tff`
 
@@ -187,16 +193,6 @@ TeX 作为一个优秀的排版软件，在学术界特别是数学、物理学�
 ## 编译
 
 ### 如果你使用命令行编译
-
-#### 手动编译
-
-1. 清空`.aux`文件。
-2. 使用`xelatex`对`csuthesis_main.tex`文件进行编译。
-   `xelatex csuthesis_main.tex`
-3. 使用`biber`对参考文献进行编译。
-   `biber csuthesis_main`
-4. 再重新编译主 tex 文件
-   `xelatex csuthesis_main.tex`
 
 #### 自动化编译
 

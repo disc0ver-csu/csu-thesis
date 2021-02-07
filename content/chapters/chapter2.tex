@@ -7,6 +7,8 @@
 
 图片可以通过\cs{includegraphics}指令插入，我们建议模板使用者将文章所需插入的图片源问卷放置在 images 目录中，
 另外，矢量图片应使用PDF格式，位图照片则应使用JPG格式（LaTeX不支持TIFF格式）。具有透明背景的栅格图可以使用PNG格式。
+模板已经配置了相对路径，所以在文中插图片时，直接用 images 目录下的相对路径即可，比如 images/csu.png ，
+在正文中插入只需要\cs{includegraphics{csu.png}}，不需要再增加前缀。
 
 下面是一个简单的插图示例。
 
