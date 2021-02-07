@@ -13,7 +13,7 @@ all: $(THESIS).pdf
 
 .PHONY : all cleanall pvc view wordcount git zip
 
-$(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib CSUthesis.cls Makefile
+$(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib csuthesis.cls Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
 
 pvc :
