@@ -6,7 +6,7 @@
 % 载入主体内容样式与参考文献样式
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 选项
-%   type=[bachelor|research|translation],                  % 可选（默认：bachelor），论文类型（学位or课程/调研报告/文献翻译）
+%   type=[bachelor|bachelor|translation],                  % 可选（默认：bachelor），论文类型（学位/课程/翻译）
 %   output=[print|electronic],                            % 可选（默认：print），输出要求（电子版/打印）
 \documentclass[type=translation,output=electronic]{csuthesis}
 % 来自https://github.com/hushidong/biblatex-gb7714-2015
@@ -17,8 +17,6 @@
 \renewcommand{\bibfont}{\zihao{5} \kgb}
 % 导入参考文献数据库
 \addbibresource{csuthesis_main.bib}
-% 按照章节(chapter)标注图片序号，亦可根据需要改为section等
-\counterwithin{figure}{chapter}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 基本信息
