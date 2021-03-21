@@ -157,7 +157,7 @@
 % 利用上述的pgf的key-value定制论文日期命令
 \newcommand{\thesisdate}[1] {
     \pgfkeys{/thesisdate/pgf/.cd,#1} % 指定使用/thesisdate/pgf/.cd来解释参数，然后在后文能直接使用存储位置来指定解释的内容
-    \gdef\@thesisdate{\year{} 年 6{} 月} % 将构建好的日期存储到宏（\@thesisdate）中
+    \gdef\@thesisdate{\year{} 年 \month{} 月} % 将构建好的日期存储到宏（\@thesisdate）中
 }
 % 重定义\maketitle实现封面（扉页）绘制
 \RenewDocumentCommand{\maketitle}{}{
