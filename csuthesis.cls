@@ -289,6 +289,7 @@
 % 设置代码环境
 \RequirePackage{listings}
 \lstset{
+  basicstyle=\ttfamily,
   breaklines,
   columns=fixed,       
   numbers=none,                                        % 在左侧显示行号
