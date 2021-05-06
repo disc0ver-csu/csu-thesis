@@ -377,7 +377,8 @@
 }
 {
     \begin{flushleft}
-        \noindent {\zihao{4} \bfseries Key\ words:~} {\zihao{4} \@keywordsen} \par % 关键词为四号黑体，内容为四号宋体
+        % bugfix 英文摘要字体设置
+        \noindent {\zihao{-4} \bfseries Key\ words:~} {\zihao{-4} \@keywordsen} \par % 新版本要求小四号
     \end{flushleft}
 }
 
@@ -404,6 +405,9 @@
     \@starttoc{toc}
 }
 \newcommand\csu@toc@set@format{
+    % bugfix: 修复章节加粗
+    \renewcommand\cftchapfont{\songti\zihao{-4}}
+    \renewcommand\cftchappagefont{\songti\zihao{-4}}
     \renewcommand{\cftdot}{$\cdot$}
     \renewcommand{\cftdotsep}{1.5}
     \setlength{\cftbeforechapskip}{0pt}
