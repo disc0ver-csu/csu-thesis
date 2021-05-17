@@ -96,7 +96,7 @@
 
   ```shell
   xelatex -interaction=nonstopmode -file-line-error csuthesis_main.tex  # 编译生成无目录与参考文献的文件
-  biber csuthesis_main.tex                                              # 编译参考文献
+  biber csuthesis_main                                                  # 编译参考文献
   xelatex -interaction=nonstopmode -file-line-error csuthesis_main.tex  # 再次编译
   ```
 
