@@ -2,6 +2,7 @@
 name: Help wanted
 about: Ask a question about use, need help
 title: ""
+labels: ":question: help wanted"
 ---
 
 #### Make sure

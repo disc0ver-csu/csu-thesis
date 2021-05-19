@@ -2,7 +2,7 @@
 name: 问题求助
 about: 提出一个使用过程中遇到的问题，需要得到帮助
 title: ""
-labels: ":bug: bug"
+labels: ":question: help wanted"
 ---
 
 #### 请确认
