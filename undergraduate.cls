@@ -528,6 +528,7 @@
 % 数学环境, 定理等设置 %
 % -------------------------------------------------------%
 \newtheorem{definition}{\csu@cap@definition}
+\newtheorem{proposition}{\csu@cap@proposition}
 \newtheorem{theorem}{\csu@cap@theorem}
 \newtheorem{lemma}{\csu@cap@lemma}
 \newtheorem{corollary}{\csu@cap@corollary}
@@ -542,6 +543,7 @@
 
 % 数学定理相关的常量
 \newcommand*{\csu@cap@definition}{定义}
+\newcommand*{\csu@cap@proposition}{命题}
 \newcommand*{\csu@cap@theorem}{定理}
 \newcommand*{\csu@cap@lemma}{引理}
 \newcommand*{\csu@cap@corollary}{推论}
