@@ -405,16 +405,19 @@
     \@starttoc{toc}
 }
 \newcommand\csu@toc@set@format{
+    % 目录格式修复
     % bugfix: 修复章节加粗
     \renewcommand\cftchapfont{\songti\zihao{-4}}
     \renewcommand\cftchappagefont{\songti\zihao{-4}}
     \renewcommand{\cftdot}{$\cdot$}
-    \renewcommand{\cftdotsep}{1.5}
-    \setlength{\cftbeforechapskip}{0pt}
+    \renewcommand{\cftdotsep}{0.5}
+    \setlength{\cftbeforechapskip}{4pt}
+    \setlength{\cftbeforesecskip}{4pt}
+    \setlength{\cftbeforesubsecskip}{4pt}
+    % \setlength{\cftaftersecskip}{12pt}
     \renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
     \renewcommand{\cftchapdotsep}{\cftdotsep}
 }
-\csu@toc@set@format
 
 
 % 6. 符号说明（必要时）%
