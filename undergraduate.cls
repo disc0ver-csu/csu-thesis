@@ -214,7 +214,7 @@
             \end{tabular}
         \endgroup
         \par
-        \vspace{80pt}
+        \vspace{40pt}
         % \vfill
         \begingroup
             {\zihao{2} \heiti 本科生院制 \par}
