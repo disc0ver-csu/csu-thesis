@@ -131,7 +131,7 @@
 \newcommand*{\csu@name@figure}{图}
 \newcommand*{\csu@name@table}{表}
 \newcommand*{\csu@name@appendix}{附录}
-\newcommand*{\csu@name@acknowledge}{致谢}
+\newcommand*{\csu@name@acknowledgements}{致谢}
 
 %---------------------------------------------
 %控制引用格式，选用上标引用
@@ -214,7 +214,7 @@
             \end{tabular}
         \endgroup
         \par
-        \vspace{80pt}
+        \vspace{40pt}
         % \vfill
         \begingroup
             {\zihao{2} \heiti 本科生院制 \par}
@@ -397,24 +397,24 @@
 %     \tableofcontents
 % }
 \renewcommand\tableofcontents{
-    % \csu@chapter*{\contentsname}
-    % \csu@pdfbookmark{0}{\contentsname}
-    
-    \chapter*{目录}
+    \chapter*{\csu@name@contents}
     \csu@pdfbookmark{0}{\csu@name@contents}
     \@starttoc{toc}
 }
 \newcommand\csu@toc@set@format{
+    % 目录格式修复
     % bugfix: 修复章节加粗
     \renewcommand\cftchapfont{\songti\zihao{-4}}
     \renewcommand\cftchappagefont{\songti\zihao{-4}}
     \renewcommand{\cftdot}{$\cdot$}
-    \renewcommand{\cftdotsep}{1.5}
-    \setlength{\cftbeforechapskip}{0pt}
+    \renewcommand{\cftdotsep}{0.5}
+    \setlength{\cftbeforechapskip}{4pt}
+    \setlength{\cftbeforesecskip}{4pt}
+    \setlength{\cftbeforesubsecskip}{4pt}
+    % \setlength{\cftaftersecskip}{12pt}
     \renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
     \renewcommand{\cftchapdotsep}{\cftdotsep}
 }
-\csu@toc@set@format
 
 
 % 6. 符号说明（必要时）%
@@ -528,6 +528,7 @@
 % 数学环境, 定理等设置 %
 % -------------------------------------------------------%
 \newtheorem{definition}{\csu@cap@definition}
+\newtheorem{proposition}{\csu@cap@proposition}
 \newtheorem{theorem}{\csu@cap@theorem}
 \newtheorem{lemma}{\csu@cap@lemma}
 \newtheorem{corollary}{\csu@cap@corollary}
@@ -542,6 +543,7 @@
 
 % 数学定理相关的常量
 \newcommand*{\csu@cap@definition}{定义}
+\newcommand*{\csu@cap@proposition}{命题}
 \newcommand*{\csu@cap@theorem}{定理}
 \newcommand*{\csu@cap@lemma}{引理}
 \newcommand*{\csu@cap@corollary}{推论}
@@ -672,8 +674,12 @@
 \newenvironment{acknowledgements}{
 %   \ifcsu@review\relax\else
     \ifcsu@review\else
+    % Fix: 修复书签定位问题
+    % \chapter*{\csu@name@acknowledgements}
+    % \csu@pdfbookmark{0}{\csu@name@acknowledgements}
+    % \phantomsection
+    \csu@chapter{\csu@name@acknowledgements}
     % \csu@chapter{\csu@name@acknowledgements}
-    \csu@chapter{\csu@name@acknowledge}
   \fi
 }
 
