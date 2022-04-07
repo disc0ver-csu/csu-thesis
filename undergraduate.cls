@@ -131,7 +131,7 @@
 \newcommand*{\csu@name@figure}{图}
 \newcommand*{\csu@name@table}{表}
 \newcommand*{\csu@name@appendix}{附录}
-\newcommand*{\csu@name@acknowledge}{致谢}
+\newcommand*{\csu@name@acknowledgements}{致谢}
 
 %---------------------------------------------
 %控制引用格式，选用上标引用
@@ -397,10 +397,7 @@
 %     \tableofcontents
 % }
 \renewcommand\tableofcontents{
-    % \csu@chapter*{\contentsname}
-    % \csu@pdfbookmark{0}{\contentsname}
-    
-    \chapter*{目录}
+    \chapter*{\csu@name@contents}
     \csu@pdfbookmark{0}{\csu@name@contents}
     \@starttoc{toc}
 }
@@ -677,8 +674,12 @@
 \newenvironment{acknowledgements}{
 %   \ifcsu@review\relax\else
     \ifcsu@review\else
+    % Fix: 修复书签定位问题
+    % \chapter*{\csu@name@acknowledgements}
+    % \csu@pdfbookmark{0}{\csu@name@acknowledgements}
+    % \phantomsection
+    \csu@chapter{\csu@name@acknowledgements}
     % \csu@chapter{\csu@name@acknowledgements}
-    \csu@chapter{\csu@name@acknowledge}
   \fi
 }
 

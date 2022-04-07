@@ -199,8 +199,6 @@
   \csu@set@graduate
 }
 % 定义致谢环境，盲审下隐藏致谢
-% \newif\ifcsu@review
-% \csu@reviewfalse
 \DeclareBoolOption[false]{review}
 \DeclareBoolOption[false]{continuous}
 % 注意openany和oneside参数，默认是无空白页不区分双面印。
@@ -250,7 +248,7 @@
 % 自定义关键词
 \RequirePackage{pgfkeys}
 % 设置目录
-% v0.1.4 考虑到兼容性问题，不适用titletoc和titilesrc
+% v0.1.4 考虑到兼容性问题，不适用titletoc和titilesec
 % \RequirePackage{titletoc}
 % \RequirePackage{titlesec}
 \RequirePackage[titles]{tocloft}
@@ -652,6 +650,7 @@
   \IfBooleanTF{#1}{
       \csu@pdfbookmark{0}{#2}
   }{
+      \phantomsection
       \addcontentsline{toc}{chapter}{#2}
   }
   \chapter*{#2}
