@@ -42,9 +42,9 @@
 \patchcmd{\chapter}{\thispagestyle}{\@gobble}{}{}
 % 内芯页眉设置
 \ifcsu@output@print
-    \fancyhead[L]{\includegraphics[scale=0.13]{csu_logo_long_black.png}}
+    \fancyhead[L]{\includegraphics[scale=0.13]{images/csu_logo_long_black.png}}
 \else
-    \fancyhead[L]{\includegraphics[scale=0.13]{csu_logo_long_blue.png}}
+    \fancyhead[L]{\includegraphics[scale=0.13]{images/csu_logo_long_blue.png}}
 \fi
 \ifcsu@type@bachelor
     \fancyhf[RH]{\heiti \zihao{-5} {\@titlecn}}
@@ -98,26 +98,28 @@
 % \setmainfont{Times New Roman}
 % \setmonofont{Courier New}
 % \setsansfont{Arial}
-\newfontfamily{\enheiti}{SimHei} % 解决标题英文括号不显示黑体
+
 % \renewcommand\normalsize{%
 % 	\@setfontsize\normalsize{12.05}{14.45}%
 % 	\abovedisplayskip 12\p@ \@plus3\p@ \@minus7\p@
 % 	\abovedisplayshortskip \z@ \@plus3\p@
 %     \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@
 % }
-% 协议页的标题按模板是华文新魏
-\setCJKfamilyfont{hwxw}{STXinwei}
-% \newcommand{\huawenxinwei}{\CJKfamily{hwxw}}
-% 实现楷体GB_2312
-\setCJKfamilyfont{kaitigb}{KaiTi_GB2312.ttf}
-\newcommand{\kgb}{\CJKfamily{kaitigb}}
-% 重定义ctex定义好的宋体和黑体，以支持伪加粗AutoFakeBold
-% 即支持类似word里的给黑体、宋体等中文字体加粗的操作，用\bfseries
-\let\heiti\relax
-\newCJKfontfamily[hei]\heiti{SimHei}[AutoFakeBold]
-\let\songti\relax
-\newCJKfontfamily[song]\songti{SimSun}[AutoFakeBold]
-\newcommand{\kaiti}{\CJKfamily{kai}}
+
+% Windows 设置
+\setCJKmainfont{SimSun}[AutoFakeBold, AutoFakeSlant]
+\setCJKsansfont{SimHei}[AutoFakeBold, AutoFakeSlant]
+\setCJKmonofont{FangSong}[AutoFakeBold, AutoFakeSlant]
+% % 协议页的标题按模板是华文新魏
+% % Fix: 合并为 newCJKfontfamily
+\newCJKfontfamily[hwxw]\hwxw{STXinwei}[BoldFont=*, ItalicFont=*, BoldItalicFont=*]
+\newCJKfontfamily[zysong]\songti{SimSun}[BoldFont=*, ItalicFont=*, BoldItalicFont=*]
+\newCJKfontfamily[zyhei]\heiti{SimHei}[BoldFont=*, ItalicFont=*, BoldItalicFont=*]
+\newCJKfontfamily[zykai]\kaiti{KaiTi}[BoldFont=*, ItalicFont=*, BoldItalicFont=*]
+\newCJKfontfamily[kaitigb]\kgb{KaiTi_GB2312.ttf}[BoldFont=*, ItalicFont=*, BoldItalicFont=*]
+% % 重定义ctex定义好的宋体和黑体，以支持伪加粗AutoFakeBold
+% % 即支持类似word里的给黑体、宋体等中文字体加粗的操作，用\bfseries
+\newfontfamily{\enheiti}{SimHei} % 解决标题英文括号不显示黑体
 
 % 预定义名称
 \newcommand*{\csu@name@cover}{扉页}
@@ -185,9 +187,9 @@
         \begin{figure}[hbt]
             \centering
             \ifcsu@output@print
-                \includegraphics[width=0.71\textwidth]{csu_logo_long_black.png}
+                \includegraphics[width=0.71\textwidth]{images/csu_logo_long_black.png}
             \else
-                \includegraphics[width=0.71\textwidth]{csu_logo_long_blue.png}
+                \includegraphics[width=0.71\textwidth]{images/csu_logo_long_blue.png}
             \fi
         \end{figure}
         \vspace{8pt}
@@ -197,7 +199,7 @@
         \endgroup
         \vspace*{14pt}
         \begingroup
-            \zihao{1} \setmainfont{SimHei} GRADUATION DESIGN(THESIS) \par
+            \zihao{1} \enheiti GRADUATION DESIGN(THESIS) \par
             % 1号，黑体
         \endgroup
         \vspace{70pt} % 空行
@@ -206,11 +208,11 @@
             \zihao{-2} 
             \heiti
             \begin{tabular}{ll}
-                \hspace{12pt} \makebox[4em][s]{题\qquad 目：} & \underline{\parbox[][][c]{220pt}{\center \kaishu \@titlecn}} \\
-                \hspace{12pt} \makebox[4em][s]{学生姓名：} & \underline{\makebox[220pt][c]{\kaishu \@author}} \\
-                \hspace{12pt} \makebox[4em][s]{指导老师：} &  \underline{\makebox[220pt][c]{\kaishu \@supervisor}}  \\
-                \hspace{12pt} \makebox[4em][s]{学\qquad 院：} & \underline{\makebox[220pt][c]{\kaishu \@department}}  \\
-                \hspace{12pt} \makebox[4em][s]{专业班级：} & \underline{\makebox[220pt][c]{\kaishu \@myclass}}  \\
+                \hspace{12pt} \makebox[4em][s]{题\qquad 目：} & \underline{\parbox[][][c]{220pt}{\center \kaiti \@titlecn}} \\
+                \hspace{12pt} \makebox[4em][s]{学生姓名：} & \underline{\makebox[220pt][c]{\kaiti \@author}} \\
+                \hspace{12pt} \makebox[4em][s]{指导老师：} &  \underline{\makebox[220pt][c]{\kaiti \@supervisor}}  \\
+                \hspace{12pt} \makebox[4em][s]{学\qquad 院：} & \underline{\makebox[220pt][c]{\kaiti \@department}}  \\
+                \hspace{12pt} \makebox[4em][s]{专业班级：} & \underline{\makebox[220pt][c]{\kaiti \@myclass}}  \\
             \end{tabular}
         \endgroup
         \par
@@ -231,9 +233,9 @@
         \begin{figure}[hbt]
             \centering
             \ifcsu@output@print
-                \includegraphics[width=0.71\textwidth]{csu_logo_long_black.png}
+                \includegraphics[width=0.71\textwidth]{images/csu_logo_long_black.png}
             \else
-                \includegraphics[width=0.71\textwidth]{csu_logo_long_blue.png}
+                \includegraphics[width=0.71\textwidth]{images/csu_logo_long_blue.png}
             \fi
         \end{figure}
         \vspace{8pt}
@@ -245,8 +247,8 @@
         \vspace*{14pt}
         \begingroup
             \linespread{1.0}
-            \zihao{1} \setmainfont{SimHei} GRADUATION DESIGN(THESIS) \par
-            \zihao{1} \setmainfont{SimHei} TRANSLATION \par
+            \zihao{1} \enheiti GRADUATION DESIGN(THESIS) \par
+            \zihao{1} \enheiti TRANSLATION \par
             % 1号，黑体
         \endgroup
         \vspace{40pt} % 空行
@@ -255,11 +257,11 @@
             \zihao{-2} 
             \heiti
             \begin{tabular}{ll}
-                \hspace{12pt} \makebox[4em][s]{题\qquad 目：} & \underline{\parbox[][][c]{220pt}{\center \kaishu \@titlecn}} \\
-                \hspace{12pt} \makebox[4em][s]{学生姓名：} & \underline{\makebox[220pt][c]{\kaishu \@author}} \\
-                \hspace{12pt} \makebox[4em][s]{指导老师：} &  \underline{\makebox[220pt][c]{\kaishu \@supervisor}}  \\
-                \hspace{12pt} \makebox[4em][s]{学\qquad 院：} & \underline{\makebox[220pt][c]{\kaishu \@department}}  \\
-                \hspace{12pt} \makebox[4em][s]{专业班级：} & \underline{\makebox[220pt][c]{\kaishu \@myclass}}  \\
+                \hspace{12pt} \makebox[4em][s]{题\qquad 目：} & \underline{\parbox[][][c]{220pt}{\center \kaiti \@titlecn}} \\
+                \hspace{12pt} \makebox[4em][s]{学生姓名：} & \underline{\makebox[220pt][c]{\kaiti \@author}} \\
+                \hspace{12pt} \makebox[4em][s]{指导老师：} &  \underline{\makebox[220pt][c]{\kaiti \@supervisor}}  \\
+                \hspace{12pt} \makebox[4em][s]{学\qquad 院：} & \underline{\makebox[220pt][c]{\kaiti \@department}}  \\
+                \hspace{12pt} \makebox[4em][s]{专业班级：} & \underline{\makebox[220pt][c]{\kaiti \@myclass}}  \\
             \end{tabular}
         \endgroup
         \par
@@ -280,9 +282,9 @@
         \begin{figure}[hbt]
             \centering
             \ifcsu@output@print
-                \includegraphics[width=0.71\textwidth]{csu_logo_long_black.png}
+                \includegraphics[width=0.71\textwidth]{images/csu_logo_long_black.png}
             \else
-                \includegraphics[width=0.71\textwidth]{csu_logo_long_blue.png}
+                \includegraphics[width=0.71\textwidth]{images/csu_logo_long_blue.png}
             \fi
         \end{figure}
         \vspace{8pt}
@@ -294,9 +296,8 @@
      \vspace*{14pt}
      \begingroup
          \linespread{1.0}
-         \zihao{1} \setmainfont{SimHei} GRADUATION DESIGN(THESIS) \par
-         \zihao{1} \setmainfont{SimHei} RESEARCH REPORT \par
-         
+         \zihao{1} \enheiti GRADUATION DESIGN(THESIS) \par
+         \zihao{1} \enheiti RESEARCH REPORT \par
          % 1号，黑体
      \endgroup
         \vspace{40pt} % 空行
@@ -305,11 +306,11 @@
             \zihao{-2} 
             \heiti
             \begin{tabular}{ll}
-                \hspace{12pt} \makebox[4em][s]{题\qquad 目：} & \underline{\parbox[][][c]{220pt}{\center \kaishu \@titlecn}} \\
-                \hspace{12pt} \makebox[4em][s]{学生姓名：} & \underline{\makebox[220pt][c]{\kaishu \@author}} \\
-                \hspace{12pt} \makebox[4em][s]{指导老师：} &  \underline{\makebox[220pt][c]{\kaishu \@supervisor}}  \\
-                \hspace{12pt} \makebox[4em][s]{学\qquad 院：} & \underline{\makebox[220pt][c]{\kaishu \@department}}  \\
-                \hspace{12pt} \makebox[4em][s]{专业班级：} & \underline{\makebox[220pt][c]{\kaishu \@myclass}}  \\
+                \hspace{12pt} \makebox[4em][s]{题\qquad 目：} & \underline{\parbox[][][c]{220pt}{\center \kaiti \@titlecn}} \\
+                \hspace{12pt} \makebox[4em][s]{学生姓名：} & \underline{\makebox[220pt][c]{\kaiti \@author}} \\
+                \hspace{12pt} \makebox[4em][s]{指导老师：} &  \underline{\makebox[220pt][c]{\kaiti \@supervisor}}  \\
+                \hspace{12pt} \makebox[4em][s]{学\qquad 院：} & \underline{\makebox[220pt][c]{\kaiti \@department}}  \\
+                \hspace{12pt} \makebox[4em][s]{专业班级：} & \underline{\makebox[220pt][c]{\kaiti \@myclass}}  \\
             \end{tabular}
         \endgroup
         \par
@@ -587,7 +588,7 @@
         afterskip    = {1ex \@plus .2ex},
     },
     subsection = {%
-        format       = \zihao{-4} \kaishu,
+        format       = \zihao{-4} \kaiti,
         afterindent  = true,
         % afterskip 默认为 2.3ex plus .2ex 适当缩减
         afterskip    = {1ex \@plus .2ex},

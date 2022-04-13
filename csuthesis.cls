@@ -27,7 +27,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{csuthesis}[2020/01/21 v1.4.9-dev by Edwardzcn edwardzcn98@gmail.com]
+\ProvidesClass{csuthesis}[2022/04/13 v1.0.5 by Edwardzcn edwardzcn98@gmail.com]
 % 加载xparse宏包，LaTeX3支持
 \RequirePackage{xparse}
 % 报错与警告
@@ -55,7 +55,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \hyphenation{CSU-Thesis}
 \def\csuthesis{CSUThesis}
-\def\version{0.1.4}
+\def\version{1.0.4}
 
 % 定义一些命令用于写文档
 % /cs 在ltxdoc 包中也提供，剩下是自定义的
