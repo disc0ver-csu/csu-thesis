@@ -55,7 +55,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \hyphenation{CSU-Thesis}
 \def\csuthesis{CSUThesis}
-\def\version{1.0.4}
+\def\version{1.0.5}
 
 % 定义一些命令用于写文档
 % /cs 在ltxdoc 包中也提供，剩下是自定义的
