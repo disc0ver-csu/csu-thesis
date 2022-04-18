@@ -416,6 +416,8 @@
     \renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
     \renewcommand{\cftchapdotsep}{\cftdotsep}
 }
+% bugfix: forget to call (v1.0.3-v1.0.4)
+\csu@toc@set@format
 
 
 % 6. 符号说明（必要时）%
