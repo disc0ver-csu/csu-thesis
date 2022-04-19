@@ -8,7 +8,7 @@
 % 选项
 %   type=[bachelor|research|translation],                  % 可选（默认：bachelor），论文类型（学位or课程/调研报告/文献翻译）
 %   output=[print|electronic],                            % 可选（默认：print），输出要求（电子版/打印）
-\documentclass[type=bachelor,output=electronic]{csuthesis}
+\documentclass[type=bachelor, output=electronic, fontset=none]{csuthesis}
 % 来自https://github.com/hushidong/biblatex-gb7714-2015
 % 参考文献 gb7714-2015 支持宏包
 % 使用了biblatex-gb7714-2015宏包，指定后端为biber
@@ -22,9 +22,15 @@
 \counterwithin{table}{chapter}
 
 % 公式、图片、表格序号改成(1-1)的形式
-\renewcommand{\theequation}{\thechapter-\arabic{equation}}
-\renewcommand\thefigure{\arabic{section}-\arabic{figure}}
-\renewcommand\thetable{\arabic{section}-\arabic{figure}}
+
+% \renewcommand{\theequation}{\arabic{equation}}
+% \renewcommand\thefigure{\arabic{figure}}
+% \renewcommand\thetable{\arabic{table}}
+
+
+\renewcommand\theequation{\arabic{chapter}-\arabic{equation}}
+\renewcommand\thefigure{\arabic{chapter}-\arabic{figure}}
+\renewcommand\thetable{\arabic{chapter}-\arabic{table}}
 
 % 各级小标题前后间距：前后各一个字符，首行缩进俩字符
 % \titlespacing{\section}{0pt}{2.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}

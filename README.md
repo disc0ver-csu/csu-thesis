@@ -42,11 +42,11 @@
 
 ### Overleaf
 
-[![Overleaf](https://img.shields.io/badge/overleaf-v0.1.3dev-green.svg)](https://www.overleaf.com/latex/templates/csuthesis-v0-dot-1-3dev/hcsjpbsfvcdx)
+[![Overleaf](https://img.shields.io/badge/overleaf-v1.0.5-green.svg)](https://www.overleaf.com/latex/templates/csuthesis-v1-dot-0-5/dkgwknrbqjzq)
 
-我们同时提供了[Overleaf 模板](https://www.overleaf.com/latex/templates/csuthesis-v0-dot-1-3dev/hcsjpbsfvcdx)，习惯在 Overleaf 上进行写作的同学可以从上面的模板链接创建自己的项目。
+随着v1.0.5发布，我们正式提供了 Overleaf 模板，链接见[Overleaf Gallery](https://github.com/disc0ver-csu/csu-thesis)。~~这次真的不是愚人节玩笑~~。习惯在 Overleaf 上进行写作的同学可以从上面的模板链接创建自己的项目。
 
-:warning: 目前 Overleaf 上为测试版本，仍然存在 Linux 系统适配的问题。另外由于学校写作指导文件要求的部分商用字体（比如 Times New Romance）不可在 Linux 上使用，我们采取的方案是进行相近字体的替换。所以即便你的写作过程是在 Linux 或者 macOS 上完成的，我们仍**强烈建议**您在 Windows 操作系统上编译最终版论文。
+:warning: 目前 Overleaf 上虽然已是正式版本，英文字体使用默认设置，中文字体适配上传了`simhei.tff`，`simsun.ttc`等中易字体（即Word中熟悉的黑体与宋体），但不确定是否还存在其他 Linux 系统适配的问题。另外由于学校写作指导文件要求的部分商用字体（比如 Times New Romance）不可在 Linux 上使用，我们采取的方案是进行相近字体的替换。所以即便你的写作过程是在Overleaf上完成的，我们仍**建议**您在 Windows 操作系统上编译最终版论文。
 
 ## 环境配置
 

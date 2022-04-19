@@ -60,7 +60,7 @@
     \label{f.row}
 \end{figure}
 
-\section{纵向布局}
+\subsection{纵向布局}
 
 纵向布局如图\ref{f.col}
 
@@ -84,7 +84,7 @@
     \label{f.col}
 \end{figure}
 
-\section{竖排多图横排布局}
+\subsection{竖排多图横排布局}
 
 \begin{figure}[!htb]
     \centering
@@ -113,7 +113,7 @@
 竖排多图横排布局如图\ref{f.csu_col_row}所示。注意看(a)、(b)编号与图关系
 
 
-\section{横排多图竖排布局}
+\subsection{横排多图竖排布局}
 
 中南大学由原湖南医科大学、长沙铁道学院与中南工业大学于2000年4月合并组建而成。原中南工业大学的前身为创建于1952年的中南矿冶学院，原长沙铁道学院的前身为创建于1953年的中南土木建筑学院，两校的主体学科最早溯源于1903年创办的湖南高等实业学堂的矿科和路科。原湖南医科大学的前身为1914年创建的湘雅医学专门学校，是我国创办最早的西医高等学校之一。中南大学秉承百年办学积淀，顺应中国高等教育体制改革大势，弘扬以“知行合一、经世致用”为核心的大学精神，力行“向善、求真、唯美、有容”的校风，坚持自身办学特色，服务国家和社会重大需求，团结奋进，改革创新，追求卓越，综合实力和整体水平大幅提升。
 
@@ -141,9 +141,7 @@
 
 横排多图竖排布局如图\ref{f.csu_row_col}所示。注意看(a)、(b)编号与图关系。
 
-\section{2x2图片布局}
-
-\section{ 2x2 布局}
+\subsection{2x2图片布局}
 
 \begin{figure}[!htb]
     \centering
@@ -186,3 +184,19 @@
 \end{figure}
 
 \newpage
+
+\section{图表编号}
+
+本节主要阐述在图表下侧的编号，以及引用时的编号设置问题。
+使用在上一节（上一个section， \verb|\section{插图}| ）中引入的图\ref{f.example}，
+以及在本节加入下方新图片对比来说明。
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.3\linewidth]{csu_logo_blue.png}
+    \caption{图标编号示例}
+    \label{f.example.2}
+\end{figure}
+
+可以看到在上一节“插图示例”的编号为图\ref{f.example}。
+而在本节“图标编号示例”为图\ref{f.example.2}。
