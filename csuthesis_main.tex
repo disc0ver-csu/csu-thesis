@@ -22,9 +22,15 @@
 \counterwithin{table}{chapter}
 
 % 公式、图片、表格序号改成(1-1)的形式
-\renewcommand{\theequation}{\thechapter-\arabic{equation}}
-\renewcommand\thefigure{\arabic{section}-\arabic{figure}}
-\renewcommand\thetable{\arabic{section}-\arabic{figure}}
+
+% \renewcommand{\theequation}{\arabic{equation}}
+% \renewcommand\thefigure{\arabic{figure}}
+% \renewcommand\thetable{\arabic{table}}
+
+
+\renewcommand\theequation{\arabic{chapter}-\arabic{equation}}
+\renewcommand\thefigure{\arabic{chapter}-\arabic{figure}}
+\renewcommand\thetable{\arabic{chapter}-\arabic{table}}
 
 % 各级小标题前后间距：前后各一个字符，首行缩进俩字符
 % \titlespacing{\section}{0pt}{2.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}
