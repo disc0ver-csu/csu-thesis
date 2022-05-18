@@ -52,13 +52,23 @@ TeX (/tɛx, tɛk/, see below), stylized within the system as TEX, is a typesetti
 需要说明的是由于学校写作指导要求的字体部分不可在Linux上使用，即便你的写作过程是在Linux或者macOS上完成的，
 我们仍\textbf{强烈建议}您在Windows操作系统上编译最终版论文。
 
-中文字体可以使用如下命令来调节。
+中文可选字体以及选用指令如下：
 
 \begin{tabular}{l l}
   \verb|\songti| & {\songti 宋体} \\
-  \verb|\heiti| & {\heiti 黑体} \\
+  \verb|\heiti| & {\heiti 黑体}  \\
   \verb|\kaiti| & {\kaiti 楷体}
 \end{tabular}
+
+我们在模板中通过调整\verb|\newCJKfontfamily|的AutoFakeBold参数来简单实现字体加粗，在正文中你可以使用习惯的\verb|\textbf|指令来加粗对应中文。如果你需要调整字体，也可以组合使用字体选择并加粗，比如\verb|\kaiti\bfseries|
+
+\textbf{宋体加粗测试}，宋体不加粗测试。
+
+{\kaiti\bfseries 楷体加粗测试。}{\kaiti 楷体不加粗测试。}
+
+目前模板并没有按照一些其他模板写法中常见的，重定向加粗和倾斜效果到upright，TODO：后续可能考虑重定义\verb|emph|和\verb|strong|样式。
+
+
 
 
 \section{模板主要结构}
@@ -70,12 +80,12 @@ TeX (/tɛx, tɛk/, see below), stylized within the system as TEX, is a typesetti
   \centering
   \begin{tabular}{r|l|l}
     \hline\hline
-    \multicolumn{2}{l|}{csuthesis\_main.tex } & 主文档，可以理解为文章入口。                                      \\ \hline
-                                                & info.tex   & 作者、文章基本信息 \\ \cline{2-3}
-                                                & abstactzh/en.tex    & 中/英文摘要内容 \\ \cline{2-3}
-    \raisebox{1em}{content 目录 }          &  subchapters 目录   & 章节内容           \\ \hline
-    \multicolumn{2}{l|}{images 目录}         & 用于存放图片文件                                                \\ \hline
-    \multicolumn{2}{l|}{csuthesis.cls }       & 模板入口                         \\ \hline\hline
+    \multicolumn{2}{l|}{csuthesis\_main.tex } & 主文档，可以理解为文章入口。                      \\ \hline
+                                              & info.tex                     & 作者、文章基本信息 \\ \cline{2-3}
+                                              & abstactzh/en.tex             & 中/英文摘要内容    \\ \cline{2-3}
+    \raisebox{1em}{content 目录 }             & subchapters 目录             & 章节内容           \\ \hline
+    \multicolumn{2}{l|}{images 目录}          & 用于存放图片文件                                  \\ \hline
+    \multicolumn{2}{l|}{csuthesis.cls }       & 模板入口                                          \\ \hline\hline
   \end{tabular}
 \end{table}
 
