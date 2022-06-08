@@ -1,7 +1,7 @@
 # CSUThesis Latex 模板
 
 ![CSUThesis Github Release](https://img.shields.io/github/v/release/disc0ver-csu/csu-thesis?label=github%20release)
-[![Overleaf](https://img.shields.io/badge/overleaf-v0.1.3dev-green.svg)](https://www.overleaf.com/latex/templates/csuthesis-v0-dot-1-3dev/hcsjpbsfvcdx)
+[![Overleaf](https://img.shields.io/badge/overleaf-v1.0.5-green.svg)](https://www.overleaf.com/latex/templates/csuthesis-v0-dot-1-3dev/hcsjpbsfvcdx)
 ![Release Date](https://img.shields.io/github/release-date/disc0ver-csu/csu-thesis?color=yellow&label=github%20release%20date)
 [![](https://img.shields.io/badge/language-TeX-orange.svg)](https://github.com/disc0ver-csu/csu-thesis)
 [![QQGroup](https://img.shields.io/badge/QQGroup-1102036265-blue.svg)]()

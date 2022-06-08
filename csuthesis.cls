@@ -27,7 +27,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{csuthesis}[2022/04/13 v1.0.5 by Edwardzcn edwardzcn98@gmail.com]
+\ProvidesClass{csuthesis}[2022/06/08 v1.0.7 by Edwardzcn edwardzcn98@gmail.com]
 % 加载xparse宏包，LaTeX3支持
 \RequirePackage{xparse}
 % 报错与警告
