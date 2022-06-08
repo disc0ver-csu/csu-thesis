@@ -1,1 +1,43 @@
 %!TEX root = ../../csuthesis_main.tex
+
+\chapter{引用文献标注}
+
+文献标注和索引的处理一直是学术写作中一个繁琐步骤，特别是在word环境下。而在\LaTeX 中我们只需要编辑（或直接获取） \BibLaTeX 格式索引文件然后在正文中使用\cs{cite} \cs{citet}等指令进行引用标注就可以。注意，引文参考文献的每条都应该在正文中标注出来\cite{knuth1984texbook,__2011,__2014,__2015,__2016,__2017,_lpr_2019,_lpr_2020,_lpr_2020-1,_lpr_2020-2,_lpr_2021,balakrishnan_corfu_2012,balakrishnan_tango_2013,balakrishnan_virtual_2020,cidon_copysets_2013,csu__2020,ding_scalog_2020,hartman_zebra_1993,jia_boki_2021,kalia_design_2016,knuth1984texbook,lamport1994latex,lockerman_fuzzylog_2018,mehdi_i_2017,Pawlak1982Rough,pritchard1969statistical,wei_vcorfu_2017}，下面介绍在文章中标注引用指令的具体使用方法。
+
+参考文献格式应符合国标 GB/T 7714 的要求，模板使用 \BibLaTeX 配合 \pkg{biblatex-gbt7714-2015} 样式包，\footnote{\url{https://www.ctan.org/pkg/biblatex-gb7714-2015}}控制参考文献的输出样式，由于该样式包 2016年后加入CTAN，如果你本地的\TeX 环境较旧，建议参考\url{https://github.com/disc0ver-csu/csu-thesis} 环境配置部分安装较新的\TeX 环境。
+
+\section{顺序编码}
+
+根据学校要求，参考文献标注用中括号上标形式进行标注。使用方式与效果如下表所展示
+
+\begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
+    \verb|\cite{knuth1984texbook}|               & \cite{knuth1984texbook}               \\
+    \verb|\citet{knuth1984texbook}|              & \citet{knuth1984texbook}              \\
+    \verb|\citep{knuth1984texbook}|              & \citep{knuth1984texbook}              \\
+    % 暂不支持
+    % \verb|\cite[42]{knuth1984texbook}|           & \cite[42]{knuth1984texbook}           \\
+    \verb|\cite{knuth1984texbook,lamport1994latex}| & \cite{knuth1984texbook,lamport1994latex} \\
+\end{tabular}
+
+\section{获取BibTeX格式索引}
+
+获取参考文献的 BibTeX 格式索引有两种方式：
+
+\begin{itemize}
+    \item 通过Google Scholare或者百度学术等学术文献搜索引擎获取，自行编辑 .bib 文件
+    \item 通过Zotero等学术文献整理软件，添加所有的引用文献至库中，导出对应的 .bib 文件
+\end{itemize}
+
+编译带参考文献的文章时，我们需要两次编译过程。我们提供了对应的自动化脚本，以及配合vscode latex插件的任务流程，
+帮助模板使用者进行编译。
+
+\section{参考文献插入示例}
+
+LaTeX\cite{lamport1994latex}插入参考文献最方便的方式是使用bibliography\cite{pritchard1969statistical}，大多数出版商的论文页面\cite{lamport1994latex,pritchard1969statistical}都会有导出bib格式参考文献的链接，把每个文献的bib放入``csuthesis\_main.bib''，然后用bibkey即可插入参考文献。
+
+中南大学由原湖南医科大学、长沙铁道学院与中南工业大学于2000年4月合并组建而成。原中南工业大学的前身为创建于1952年的中南矿冶学院，原长沙铁道学院的前身为创建于1953年的中南土木建筑学院，两校的主体学科最早溯源于1903年创办的湖南高等实业学堂的矿科和路科。原湖南医科大学的前身为1914年创建的湘雅医学专门学校，是我国创办最早的西医高等学校之一。中南大学秉承百年办学积淀，顺应中国高等教育体制改革大势，弘扬以“知行合一、经世致用”为核心的大学精神，力行“向善、求真、唯美、有容”的校风，坚持自身办学特色，服务国家和社会重大需求，团结奋进，改革创新，追求卓越，综合实力和整体水平大幅提升。
+
+
+\newpage
+
+
