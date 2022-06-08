@@ -371,7 +371,7 @@
     \csu@pdfbookmark{0}{\csu@name@abstract@en}
     \vspace*{0pt}
     \begin{center} \zihao{-2} \bfseries \@titleen \end{center}
-
+    \vspace{0pt}
     \begin{center} \zihao{3} \bfseries ABSTRACT \end{center}
     \vspace{12pt}
     \linespread{1.5}
@@ -587,20 +587,19 @@
         % beforeskip 默认为 3.5ex plus 1ex minus .2ex 适当缩减
         % beforeskip   = {20pt},
         % beforeskip   = {\ifcsu@type@graduate 30pt \else 20pt\fi}
-        % afterskip 默认为 2.3ex plus .2ex 适当缩减
-        afterskip    = {1ex \@plus .2ex},
+        afterskip    = {2ex \@plus .2ex},
+        fixskip      = true,
     },
     subsection = {%
         format       = \zihao{-4} \kaiti,
         afterindent  = true,
-        % afterskip 默认为 2.3ex plus .2ex 适当缩减
-        afterskip    = {1ex \@plus .2ex},
+        afterskip    = {2ex \@plus .2ex},
         fixskip      = true,
     },
     subsubsection = {%
         format       = \zihao{-4} \normalfont,
         afterindent  = true,
-        afterskip    = {1ex \@plus .2ex},
+        afterskip    = {2ex \@plus .2ex},
         fixskip      = true,
     },
 }
