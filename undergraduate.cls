@@ -95,7 +95,7 @@
 % 进行相关字体设置，定义必须的新字体
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO: Times New Roman目前只能在Windows上使用，需要增加Linux系统字体
-% \setmainfont{Times New Roman}
+\setmainfont{TIMES.TTF}[Path=fonts/, AutoFakeBold={3.17}, AutoFakeSlant]
 % \setmonofont{Courier New}
 % \setsansfont{Arial}
 
@@ -121,7 +121,7 @@
 
 % % 重定义ctex定义好的宋体和黑体，以支持伪加粗AutoFakeBold
 % % 即支持类似word里的给黑体、宋体等中文字体加粗的操作，用\bfseries
-\newfontfamily{\enheiti}{SimHei} % 解决标题英文括号不显示黑体
+\newfontfamily{\enheiti}{simhei.ttf}[Path=fonts/, AutoFakeBold={3.17}] % 解决标题英文括号不显示黑体
 
 % 预定义名称
 \newcommand*{\csu@name@cover}{扉页}
