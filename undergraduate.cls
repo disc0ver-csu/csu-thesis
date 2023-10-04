@@ -95,7 +95,7 @@
 % 进行相关字体设置，定义必须的新字体
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO: Times New Roman目前只能在Windows上使用，需要增加Linux系统字体
-% \setmainfont{Times New Roman}
+\setmainfont{TIMES.TTF}[Path=fonts/, AutoFakeBold={3.17}, AutoFakeSlant]
 % \setmonofont{Courier New}
 % \setsansfont{Arial}
 
@@ -107,20 +107,21 @@
 % }
 
 % Windows 设置
-\setCJKmainfont{SimSun}[AutoFakeBold, AutoFakeSlant]
-\setCJKsansfont{SimHei}[AutoFakeBold, AutoFakeSlant]
-\setCJKmonofont{FangSong}[AutoFakeBold, AutoFakeSlant]
+\setCJKmainfont{simsun.ttc}[Path=fonts/, AutoFakeBold={3.17}, AutoFakeSlant]
+\setCJKsansfont{simhei.ttf}[Path=fonts/, AutoFakeBold={3.17}, AutoFakeSlant]
+\setCJKmonofont{simfang.ttf}[Path=fonts/, AutoFakeBold={3.17}, AutoFakeSlant]
 % % 协议页的标题按模板是华文新魏
 % % Fix: 合并为 newCJKfontfamily
-\newCJKfontfamily[hwxw]\hwxw{STXinwei}[BoldFont=*, ItalicFont=*, BoldItalicFont=*]
-% \newCJKfontfamily[zysong]\songti{SimSun}[BoldFont=*, ItalicFont=*, BoldItalicFont=*]
-\newCJKfontfamily[zysong]\songti{SimSun}[AutoFakeBold={3.17}]
-\newCJKfontfamily[zyhei]\heiti{SimHei}[AutoFakeBold={3.17}]
-\newCJKfontfamily[zykai]\kaiti{KaiTi}[AutoFakeBold={3.17}]
-\newCJKfontfamily[kaitigb]\kgb{KaiTi_GB2312.ttf}[AutoFakeBold={3.17}]
+\newCJKfontfamily[hwxw]\hwxw{stxinwei.ttf}[Path=fonts/, BoldFont=*, ItalicFont=*, BoldItalicFont=*, AutoFakeBold={3.17}]
+\newCJKfontfamily[zysong]\songti{simsun.ttc}[Path=fonts/, AutoFakeBold={3.17}]
+\newCJKfontfamily[zyhei]\heiti{simhei.ttf}[Path=fonts/, BoldFont=*, ItalicFont=*, BoldItalicFont=*, AutoFakeBold={3.17}]
+\newCJKfontfamily[zykai]\kaiti{simkai.ttf}[Path=fonts/, BoldFont=*, ItalicFont=*, BoldItalicFont=*, AutoFakeBold={3.17}]
+\newCJKfontfamily[kaitigb]\kgb{KaiTi_GB2312.ttf}[Path=fonts/, BoldFont=*, ItalicFont=*, BoldItalicFont=*, AutoFakeBold={3.17}]
+
+
 % % 重定义ctex定义好的宋体和黑体，以支持伪加粗AutoFakeBold
 % % 即支持类似word里的给黑体、宋体等中文字体加粗的操作，用\bfseries
-\newfontfamily{\enheiti}{SimHei} % 解决标题英文括号不显示黑体
+\newfontfamily{\enheiti}{simhei.ttf}[Path=fonts/, AutoFakeBold={3.17}] % 解决标题英文括号不显示黑体
 
 % 预定义名称
 \newcommand*{\csu@name@cover}{扉页}
